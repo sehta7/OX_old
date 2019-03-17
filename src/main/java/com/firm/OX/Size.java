@@ -25,4 +25,12 @@ public class Size {
     public int hashCode() {
         return Objects.hash(length, height);
     }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getHeight(){
+        return height;
+    }
 }
