@@ -20,4 +20,10 @@ public class FieldTest {
     public void testIfNotEmptyFieldCanBeCreated() {
         Field field = new NotEmptyField();
     }
+
+    @Test(dataProviderClass = FieldDP.class, dataProvider = "positions")
+    public void testIfEmptyFieldCanHavePosition(Position position) {
+        Field field = new EmptyField(position);
+        assert (field.getPosition().equals(position)) : "Empty field has wrong position";
+    }
 }
