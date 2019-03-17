@@ -13,7 +13,7 @@ public class FieldTest {
 
     @Test
     public void testIfEmptyFieldCanBeCreated() {
-        Field field = new EmptyField();
+        Field field = new EmptyField(new Position(0,0));
     }
 
     @Test

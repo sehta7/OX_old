@@ -16,11 +16,11 @@ public class FieldDP {
     public static Object[][] positions(){
         Random random = new Random();
         return new Object[][]{
-                {random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE)},
-                {random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE)},
-                {random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE)},
-                {random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE)},
-                {random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE)}
+                {new Position(random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE))},
+                {new Position(random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE))},
+                {new Position(random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE))},
+                {new Position(random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE))},
+                {new Position(random.nextInt(Integer.MAX_VALUE), random.nextInt(Integer.MAX_VALUE))}
         };
     }
 }
