@@ -1,12 +1,18 @@
 package com.firm.OX;
 
 public class EmptyField implements Field {
-    public EmptyField(Position position) {
 
+    private Position position;
+
+    public EmptyField(Position position) {
+        this.position = position;
     }
 
     @Override
     public Position getPosition() {
-        return null;
+        if(position == null){
+            throw new NullPointerException();
+        }
+        return position;
     }
 }
