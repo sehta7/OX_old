@@ -13,7 +13,7 @@ public class BoardTest {
 
     @Test
     public void testIfBoardCanBeCreated() {
-        Board board = new Board();
+        Board board = new Board(new Size(0,0));
     }
 
     @Test(dataProviderClass = BoardDP.class, dataProvider = "sizes")
