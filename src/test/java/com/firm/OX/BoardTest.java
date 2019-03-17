@@ -2,6 +2,8 @@ package com.firm.OX;
 
 import org.testng.annotations.Test;
 
+import java.util.Random;
+
 /**
  *
  * @author Ola Podorska
@@ -25,5 +27,12 @@ public class BoardTest {
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void testIfBoardSizeCanNotBeZero() {
         Board board = new Board(new Size(0, 0));
+    }
+
+    @Test(dataProviderClass = BoardDP.class, dataProvider = "sizes")
+    public void testIfBoardIsInitializedByEmptyFields(Size size) {
+        Board board = new Board(size);
+        board.initialize();
+        assert (board.isInitialized()) : "Board doesn't have empty fields";
     }
 }
