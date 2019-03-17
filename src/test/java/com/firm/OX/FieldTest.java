@@ -15,4 +15,9 @@ public class FieldTest {
     public void testIfEmptyFieldCanBeCreated() {
         Field field = new EmptyField();
     }
+
+    @Test
+    public void testIfNotEmptyFieldCanBeCreated() {
+        Field field = new NotEmptyField();
+    }
 }
