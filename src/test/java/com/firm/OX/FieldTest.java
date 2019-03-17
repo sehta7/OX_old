@@ -32,12 +32,4 @@ public class FieldTest {
         Field field = new NotEmptyField(position);
         assert (field.getPosition().equals(position)) : "Not empty field has wrong position";
     }
-
-    @Test(dataProviderClass = FieldDP.class, dataProvider = "positions")
-    public void testIfEmptyFieldChangeAfterPlayerChoice(Position position) {
-        Field field = new EmptyField(position);
-        Player player = new Player();
-        player.choose(field);
-        assert (field instanceof NotEmptyField) : "Empty field didn't change after player choice";
-    }
 }
