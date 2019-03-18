@@ -24,11 +24,6 @@ public class BoardTest {
         assert (board.getSize().equals(size)) : "Size of board aren't set properly";
     }
 
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testIfBoardSizeCanNotBeZero() {
-        Board board = new Board(new Size(0, 0));
-    }
-
     @Test(dataProviderClass = BoardDP.class, dataProvider = "sizes")
     public void testIfBoardIsInitializedByEmptyFields(Size size) {
         Board board = new Board(size);
@@ -46,5 +41,10 @@ public class BoardTest {
         Field field = new EmptyField(new Position(random.nextInt(length), random.nextInt(height)));
         board.change(field);
         assert (board.findField(field) instanceof NotEmptyField) : "Board can't change empty field";
+    }
+
+    @Test(dataProviderClass = BoardDP.class, dataProvider = "illegalSizes", expectedExceptions = IllegalArgumentException.class)
+    public void testIfBoardSizeIsGreaterThanThree(Size size) {
+        Board board = new Board(size);
     }
 }
