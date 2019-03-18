@@ -35,4 +35,15 @@ public class BoardTest {
         board.initialize();
         assert (board.isInitialized()) : "Board doesn't have empty fields";
     }
+
+    @Test(invocationCount = 5)
+    public void testIfBoardCanChangeField() {
+        Random random = new Random();
+        int length = random.nextInt(4850);
+        int height = random.nextInt(4850);
+        Board board = new Board(new Size(length, height));
+        Field field = new EmptyField(new Position(random.nextInt(length), random.nextInt(height)));
+        board.change(field);
+        assert (field instanceof NotEmptyField) : "Board can't change empty field";
+    }
 }
