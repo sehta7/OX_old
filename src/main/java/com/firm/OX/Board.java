@@ -6,7 +6,7 @@ public class Board {
     private Field[][] board;
 
     public Board(Size size) {
-        if (size.equals(new Size(0, 0))){
+        if (size.lowerThan(3)){
             throw new IllegalArgumentException();
         }
         this.size = size;

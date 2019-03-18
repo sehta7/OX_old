@@ -33,4 +33,11 @@ public class Size {
     public int getHeight(){
         return height;
     }
+
+    public boolean lowerThan(int i) {
+        if (length < i || height < i){
+            return true;
+        }
+        return false;
+    }
 }
