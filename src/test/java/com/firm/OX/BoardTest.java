@@ -42,8 +42,9 @@ public class BoardTest {
         int length = random.nextInt(4850);
         int height = random.nextInt(4850);
         Board board = new Board(new Size(length, height));
+        board.initialize();
         Field field = new EmptyField(new Position(random.nextInt(length), random.nextInt(height)));
         board.change(field);
-        assert (field instanceof NotEmptyField) : "Board can't change empty field";
+        assert (board.findField(field) instanceof NotEmptyField) : "Board can't change empty field";
     }
 }

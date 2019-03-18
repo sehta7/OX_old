@@ -17,7 +17,7 @@ public class Board {
     }
 
     public void initialize() {
-        board = new EmptyField[size.getLength()][size.getHeight()];
+        board = new Field[size.getLength()][size.getHeight()];
         for (int x = 0; x < size.getLength(); x++){
             for (int y = 0; y < size.getHeight(); y++){
                 board[x][y] = new EmptyField(new Position(x, y));
@@ -38,5 +38,15 @@ public class Board {
 
         }
         return initialized;
+    }
+
+    public void change(Field field) {
+        Position position = field.getPosition();
+        board[position.getRow()][position.getColumn()] = new NotEmptyField(new Position(position.getRow(), position.getColumn()));
+    }
+
+    public Field findField(Field field) {
+        Position position = field.getPosition();
+        return board[position.getRow()][position.getColumn()];
     }
 }
