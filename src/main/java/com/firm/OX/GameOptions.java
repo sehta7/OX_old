@@ -9,6 +9,7 @@ import java.util.Map;
 public class GameOptions {
 
     private Map<String, Player> players;
+    private Size boardSize;
 
     public GameOptions(){
         players = new HashMap<>();
@@ -34,5 +35,13 @@ public class GameOptions {
 
     public void start(Player player) {
         assignPlayers(player, "O");
+    }
+
+    public void chosenSize(Size size) {
+        boardSize = size;
+    }
+
+    public Size sizeOfBoard() {
+        return boardSize;
     }
 }
