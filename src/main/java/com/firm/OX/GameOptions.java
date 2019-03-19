@@ -10,6 +10,7 @@ public class GameOptions {
 
     private Map<String, Player> players;
     private Size boardSize;
+    private int winningCharacters;
 
     public GameOptions(){
         players = new HashMap<>();
@@ -43,5 +44,13 @@ public class GameOptions {
 
     public Size sizeOfBoard() {
         return boardSize;
+    }
+
+    public void chosenCharacters(int numberOfCharacters) {
+        winningCharacters = numberOfCharacters;
+    }
+
+    public int numberOfCharacters() {
+        return winningCharacters;
     }
 }
