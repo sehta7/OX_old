@@ -23,20 +23,36 @@ public class BoardCreator {
 
     public boolean drawGridWithCoordinates() {
 
-        int n = 3;
-        for (int i = 0; i < 3; i++){
-            for (int j = 0; j < 3; j++){
-                String pause = "------";
-                String place = "|     ";
-                System.out.println(String.join("", Collections.nCopies(n, pause)));
-                for (int x = 0; x < n; x++){
-                    String coordinates = "|" + (i + x) + "," + (j + x) + "  ";
-                    System.out.print(coordinates);
-                }
-                System.out.println();
-                System.out.println(String.join("", Collections.nCopies(n, place)));
-            }
+        int n = 10;
+        int x = 0;
+        System.out.print(" ");
+        for (int i = 0; i < n; i++){
+            System.out.print("    " + i + " ");
         }
+        System.out.println();
+        for (int j = 0 ; j < n; j++){
+            String pause = "_____ ";
+            String place = "|     ";
+            String placeWithCoordinates = "|     ";
+            System.out.print("   ");
+            System.out.println(String.join("", Collections.nCopies(n, pause)));
+            System.out.print("  ");
+            System.out.print(String.join("", Collections.nCopies(n, place)));
+            System.out.println("|");
+            if (x < n){
+                System.out.print(x++ + " ");
+            }
+            System.out.print(String.join("", Collections.nCopies(n, placeWithCoordinates)));
+            System.out.println("|");
+            System.out.print("  ");
+            System.out.print(String.join("", Collections.nCopies(n, place)));
+            System.out.println("|");
+        }
+
+        String pause = "----- ";
+        System.out.print("   ");
+        System.out.println(String.join("", Collections.nCopies(n, pause)));
+
         return true;
     }
 }
