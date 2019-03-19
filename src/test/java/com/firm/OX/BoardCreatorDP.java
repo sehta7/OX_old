@@ -53,7 +53,7 @@ public class BoardCreatorDP {
     public static Queue<Position> randomPositions(){
         Random random = new Random();
         Queue<Position> positions = new PriorityQueue<>(10, new PositionComparator());
-        for (int i = 0; i < random.nextInt(10); i++){
+        for (int i = 0; i < random.nextInt(10) + 1; i++){
             positions.add(new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)));
         }
         return positions;

@@ -117,29 +117,29 @@ public class BoardCreator {
     }
 
     public boolean drawGridWithGivenPositionsAnSize(Queue<Position> positions, Size size) {
-        int x = size.getHeight(), y = size.getLength();
-        drawHeader(y);
-        Position position = positions.poll();
-        while (position != null){
-            int n = position.getRow(), m = position.getColumn();
-            for (int i = 0; i < x; i ++){
-                for (int j = 0; j < y; j++){
-
-                    if (j == 0){
-                        System.out.print(i + " ");
-                    }
-                    if (i == n && j == m){
-                        System.out.print("|  O  ");
-                    }else{
-                        System.out.print("|     ");
-                    }
+        int height = size.getHeight(), length = size.getLength(), row, column;
+        drawHeader(length);
+        Position position = positions.remove();
+        for (int y = 0; y < height; y ++){
+            for (int x = 0; x < length; x++){
+                row = position.getRow();
+                column = position.getColumn();
+                if (x == 0){
+                    System.out.print(y + " ");
                 }
-                System.out.println("|");
-                System.out.print("  ");
-                String pause = " _____";
-                System.out.println(String.join("", Collections.nCopies(y, pause)));
+                if (y == row && x == column){
+                    System.out.print("|  O  ");
+                    if (!positions.isEmpty()) {
+                        position = positions.remove();
+                    }
+                }else{
+                    System.out.print("|     ");
+                }
             }
-            position = positions.poll();
+            System.out.println("|");
+            System.out.print("  ");
+            String pause = " _____";
+            System.out.println(String.join("", Collections.nCopies(length, pause)));
         }
 
         return true;
