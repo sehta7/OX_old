@@ -2,7 +2,7 @@ package com.firm.OX;
 
 import org.testng.annotations.Test;
 
-import java.util.List;
+import java.util.Queue;
 
 @Test
 public class BoardCreatorTest {
@@ -19,20 +19,20 @@ public class BoardCreatorTest {
         assert (boardCreator.drawGridWithCoordinates()) : "Board creator didn't draw grid with coordinates";
     }
 
-    @Test(dataProviderClass = BoardCreatorDP.class, dataProvider = "positionsOnBoard")
+    @Test(dataProviderClass = BoardCreatorDP.class, dataProvider = "positionOnBoard")
     public void testIfBoardCreatorCanDrawGridWithGivenPosition(Position position) {
         BoardCreator boardCreator = new BoardCreator();
         assert (boardCreator.drawGridWithGivenPosition(position)) : "Board creator didn't draw grid with given position";
     }
 
-    @Test(dataProviderClass = BoardCreatorDP.class, dataProvider = "positionsWithBoardSize")
+    @Test(dataProviderClass = BoardCreatorDP.class, dataProvider = "positionWithBoardSize")
     public void testIfBoardCreatorCanDrawGridWithGivenSize(Position position, Size size) {
         BoardCreator boardCreator = new BoardCreator();
         assert (boardCreator.drawGridWithGivenPositionAnSize(position, size)) : "Board creator didn't draw grid with given position and size";
     }
 
     @Test(dataProviderClass = BoardCreatorDP.class, dataProvider = "positionsWithBoardSize")
-    public void testIfBoardCreatorCanDrawGridWithGivenSizeAndPositions(List<Position> positions, Size size) {
+    public void testIfBoardCreatorCanDrawGridWithGivenSizeAndPositions(Queue<Position> positions, Size size) {
         BoardCreator boardCreator = new BoardCreator();
         assert (boardCreator.drawGridWithGivenPositionsAnSize(positions, size)) : "Board creator didn't draw grid with given position and size";
     }
