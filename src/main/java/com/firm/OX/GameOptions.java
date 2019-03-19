@@ -39,6 +39,9 @@ public class GameOptions {
     }
 
     public void chosenSize(Size size) {
+        if (size.lowerThan(3)){
+            throw new IllegalArgumentException("Too small size of board");
+        }
         boardSize = size;
     }
 
