@@ -31,4 +31,8 @@ public class GameOptions {
         }
         return false;
     }
+
+    public void start(Player player) {
+        assignPlayers(player, "O");
+    }
 }
