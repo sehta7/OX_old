@@ -51,4 +51,16 @@ public class BoardDP {
         };
     }
 
+    @DataProvider
+    public static Object[][] fieldsToSave(){
+        Random random = new Random();
+        return new Object[][]{
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))}
+        };
+    }
+
 }

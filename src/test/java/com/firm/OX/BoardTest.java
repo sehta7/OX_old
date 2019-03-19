@@ -47,4 +47,14 @@ public class BoardTest {
     public void testIfBoardSizeIsGreaterThanThree(Size size) {
         Board board = new Board(size);
     }
+
+    @Test(dataProviderClass = BoardDP.class, dataProvider = "fieldsToSave")
+    public void testIfBoardCanSavePlayersChoices(int fieldsToSave, Position position) {
+        Board board = new Board(new Size(100, 100));
+        for (int i = 0; i < fieldsToSave; i++){
+            Field field = new EmptyField(position);
+            board.save(field);
+        }
+        assert (board.numberOfFields() == fieldsToSave) : "Board doesn't save all fields";
+    }
 }
