@@ -17,8 +17,8 @@ public class BoardCreatorTest {
         assert (boardCreator.drawGridWithCoordinates()) : "Board creator didn't draw grid with coordinates";
     }
 
-    @Test
-    public void testIfBoardCreatorCanDrawGridWithGivenPosition() {
+    @Test(dataProviderClass = BoardCreatorDP.class, dataProvider = "positionsOnBoard")
+    public void testIfBoardCreatorCanDrawGridWithGivenPosition(Position position) {
         BoardCreator boardCreator = new BoardCreator();
         assert (boardCreator.drawGridWithGivenPosition(position)) : "Board creator didn't draw grid with given position";
     }
