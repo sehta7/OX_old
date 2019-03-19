@@ -2,7 +2,7 @@ package com.firm.OX;
 
 import org.testng.annotations.DataProvider;
 
-import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Random;
 
@@ -52,9 +52,9 @@ public class BoardCreatorDP {
 
     public static Queue<Position> randomPositions(){
         Random random = new Random();
-        Queue<Position> positions = new LinkedList<>();
+        Queue<Position> positions = new PriorityQueue<>(10, new PositionComparator());
         for (int i = 0; i < random.nextInt(10); i++){
-            ((LinkedList<Position>) positions).add(new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)));
+            positions.add(new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)));
         }
         return positions;
     }
