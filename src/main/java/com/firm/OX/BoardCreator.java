@@ -1,6 +1,7 @@
 package com.firm.OX;
 
 import java.util.Collections;
+import java.util.Queue;
 
 public class BoardCreator {
 
@@ -112,6 +113,35 @@ public class BoardCreator {
             String pause = " _____";
             System.out.println(String.join("", Collections.nCopies(y, pause)));
         }
+        return true;
+    }
+
+    public boolean drawGridWithGivenPositionsAnSize(Queue<Position> positions, Size size) {
+        int x = size.getHeight(), y = size.getLength();
+        drawHeader(y);
+        Position position = positions.poll();
+        while (position != null){
+            int n = position.getRow(), m = position.getColumn();
+            for (int i = 0; i < x; i ++){
+                for (int j = 0; j < y; j++){
+
+                    if (j == 0){
+                        System.out.print(i + " ");
+                    }
+                    if (i == n && j == m){
+                        System.out.print("|  O  ");
+                    }else{
+                        System.out.print("|     ");
+                    }
+                }
+                System.out.println("|");
+                System.out.print("  ");
+                String pause = " _____";
+                System.out.println(String.join("", Collections.nCopies(y, pause)));
+            }
+            position = positions.poll();
+        }
+
         return true;
     }
 }
