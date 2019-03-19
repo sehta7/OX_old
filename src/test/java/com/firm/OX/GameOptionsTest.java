@@ -14,7 +14,8 @@ public class GameOptionsTest {
         Player playerOne = new Player();
         Player playerTwo = new Player();
         GameOptions gameOptions = new GameOptions();
-        gameOptions.assignPlayers(playerOne, playerTwo);
+        gameOptions.assignPlayers(playerOne, "O");
+        gameOptions.assignPlayers(playerTwo, "X");
         assert (playerOne.getCharacter().equals("O") && playerTwo.getCharacter().equals("X")) : "Bad players assignment";
     }
 }
