@@ -41,4 +41,10 @@ public class GameOptionsTest {
         gameOptions.chosenCharacters(numberOfCharacters);
         assert (gameOptions.numberOfCharacters() == numberOfCharacters) : "Number of winning characters are not the same as in options";
     }
+
+    @Test(dataProviderClass = GameOptionsDP.class, dataProvider = "illegalSizes", expectedExceptions = IllegalArgumentException.class)
+    public void testIfPlayerChoseTooLowSizeOfBoard(Size size) {
+        GameOptions gameOptions = new GameOptions();
+        gameOptions.chosenSize(size);
+    }
 }
