@@ -55,4 +55,37 @@ public class BoardCreator {
 
         return true;
     }
+
+    public boolean drawGridWithGivenPosition(Position position) {
+        drawHeader();
+        int n = position.getRow(), m = position.getColumn(), x = 10;
+        for (int i = 0; i < x; i ++){
+            for (int j = 0; j < x; j++){
+
+                if (j == 0){
+                    System.out.print(i + " ");
+                }
+                if (i == n && j == m){
+                    System.out.print("|  O  ");
+                }else{
+                    System.out.print("|     ");
+                }
+            }
+            System.out.println("|");
+            System.out.print("  ");
+            String pause = " _____";
+            System.out.println(String.join("", Collections.nCopies(x, pause)));
+        }
+        return true;
+    }
+
+    public void drawHeader(){
+        int n = 10;
+        System.out.print(" ");
+        for (int i = 0; i < n; i++){
+            System.out.print("    " + i + " ");
+        }
+        System.out.println();
+    }
+
 }
