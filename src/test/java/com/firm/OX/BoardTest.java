@@ -2,10 +2,7 @@ package com.firm.OX;
 
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
 
 /**
  *
@@ -49,13 +46,5 @@ public class BoardTest {
     @Test(dataProviderClass = BoardDP.class, dataProvider = "illegalSizes", expectedExceptions = IllegalArgumentException.class)
     public void testIfBoardSizeIsGreaterThanThree(Size size) {
         Board board = new Board(size);
-    }
-
-    @Test(dataProviderClass = BoardDP.class, dataProvider = "sort")
-    public void testIfBoardSortCharactersRelativeToPositions(Position p1, Position p2, int result) {
-        Board board = new Board(new Size(10, 10));
-        Queue<Position> positions = new LinkedList<>(Arrays.asList(p1, p2));
-        board.sort(positions);
-        assert (p1.lowerThan(p2) == result) : "Board doesn't sort positions";
     }
 }
