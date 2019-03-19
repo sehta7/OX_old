@@ -2,6 +2,8 @@ package com.firm.OX;
 
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 @Test
 public class BoardCreatorTest {
 
@@ -27,5 +29,11 @@ public class BoardCreatorTest {
     public void testIfBoardCreatorCanDrawGridWithGivenSize(Position position, Size size) {
         BoardCreator boardCreator = new BoardCreator();
         assert (boardCreator.drawGridWithGivenPositionAnSize(position, size)) : "Board creator didn't draw grid with given position and size";
+    }
+
+    @Test(dataProviderClass = BoardCreatorDP.class, dataProvider = "positionsWithBoardSize")
+    public void testIfBoardCreatorCanDrawGridWithGivenSizeAndPositions(List<Position> positions, Size size) {
+        BoardCreator boardCreator = new BoardCreator();
+        assert (boardCreator.drawGridWithGivenPositionsAnSize(positions, size)) : "Board creator didn't draw grid with given position and size";
     }
 }
