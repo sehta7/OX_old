@@ -1,15 +1,20 @@
 package com.firm.OX;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 public class Board {
 
     private Size size;
     private Field[][] board;
+    private Queue<Position> positions;
 
     public Board(Size size) {
         if (size.lowerThan(3)){
             throw new IllegalArgumentException();
         }
         this.size = size;
+        this.positions = new PriorityQueue<>(10, new PositionComparator());
     }
 
     public Size getSize() {
@@ -48,5 +53,13 @@ public class Board {
     public Field findField(Field field) {
         Position position = field.getPosition();
         return board[position.getRow()][position.getColumn()];
+    }
+
+    public void save(Field field) {
+        positions.add(field.getPosition());
+    }
+
+    public int numberOfFields() {
+        return positions.size();
     }
 }
