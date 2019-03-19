@@ -22,4 +22,10 @@ public class BoardCreatorTest {
         BoardCreator boardCreator = new BoardCreator();
         assert (boardCreator.drawGridWithGivenPosition(position)) : "Board creator didn't draw grid with given position";
     }
+
+    @Test(dataProviderClass = BoardCreatorDP.class, dataProvider = "positionsWithBoardSize")
+    public void testIfBoardCreatorCanDrawGridWithGivenSize(Position position, Size size) {
+        BoardCreator boardCreator = new BoardCreator();
+        assert (boardCreator.drawGridWithGivenPositionAnSize(position, size)) : "Board creator didn't draw grid with given position and size";
+    }
 }
