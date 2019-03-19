@@ -27,4 +27,11 @@ public class GameOptionsTest {
         gameOptions.start(player);
         assert (gameOptions.isPlayerO(player)) : "O always starts, but player is not O";
     }
+
+    @Test(dataProviderClass = GameOptionsDP.class, dataProvider = "sizes")
+    public void testIfPlayerCanChooseBoardSize(Size size) {
+        GameOptions gameOptions = new GameOptions();
+        gameOptions.chosenSize(size);
+        assert (size.equals(gameOptions.sizeOfBoard())) : "Size of board is not the same as in options";
+    }
 }
