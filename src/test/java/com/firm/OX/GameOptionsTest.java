@@ -34,4 +34,11 @@ public class GameOptionsTest {
         gameOptions.chosenSize(size);
         assert (size.equals(gameOptions.sizeOfBoard())) : "Size of board is not the same as in options";
     }
+
+    @Test
+    public void testIfPlayerCanChoseNumberOfWinningCharacters(int numberOfCharacters) {
+        GameOptions gameOptions = new GameOptions();
+        gameOptions.chosenCharacters(numberOfCharacters);
+        assert (gameOptions.numberOfCharacters() == numberOfCharacters) : "Number of winning characters are not the same as in options";
+    }
 }

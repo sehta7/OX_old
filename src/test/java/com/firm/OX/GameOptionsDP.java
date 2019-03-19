@@ -18,4 +18,16 @@ public class GameOptionsDP {
                 {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))}
         };
     }
+
+    @DataProvider
+    public static Object[][] characters(){
+        Random random = new Random();
+        return new Object[][]{
+                {random.nextInt(100)},
+                {random.nextInt(100)},
+                {random.nextInt(100)},
+                {random.nextInt(100)},
+                {random.nextInt(100)}
+        };
+    }
 }
