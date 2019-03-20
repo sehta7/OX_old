@@ -10,7 +10,12 @@ public class BoardCreator {
         int x = 0;
         System.out.print(" ");
         for (int i = 0; i < size.getLength(); i++){
-            System.out.print("    " + i + " ");
+            if (i < 10){
+                System.out.print("    " + i + " ");
+            } else{
+                System.out.print("   " + i + " ");
+            }
+
         }
         System.out.println();
         for (int j = 0 ; j < size.getHeight(); j++){
@@ -23,7 +28,12 @@ public class BoardCreator {
             System.out.print(String.join("", Collections.nCopies(size.getLength(), place)));
             System.out.println("|");
             if (x < size.getHeight()){
-                System.out.print(x++ + " ");
+                if (x < 10){
+                    System.out.print(x++ + " ");
+                } else{
+                    System.out.print(x++ + "");
+                }
+
             }
             System.out.print(String.join("", Collections.nCopies(size.getLength(), placeWithCoordinates)));
             System.out.println("|");
