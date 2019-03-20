@@ -28,14 +28,15 @@ public class Round {
                 positions = play(players.get("X"));
                 o = true;
             }
-            boardDrawer.drawGridWithGivenPositions(positions);
+            String history = boardDrawer.drawGridWithGivenPositions(positions);
         }
 
     }
 
-    Positions play(Player playerO) {
+    Positions play(Player player) {
         System.out.println("Choose field");
-        Position position = playerO.chooseField();
+        Position position = player.chooseField();
+        positions.linkPlayerWithPositions(player, position);
         positions.add(position);
         return positions;
     }

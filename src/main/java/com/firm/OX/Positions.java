@@ -1,7 +1,6 @@
 package com.firm.OX;
 
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Sorts positions by field coordinates - helpful when printing.
@@ -10,9 +9,11 @@ import java.util.Queue;
  */
 class Positions {
     Queue<Position> positions;
+    Map<Position, Player> playersPositions;
 
     Positions(int size, PositionComparator positionComparator) {
         positions = new PriorityQueue<> (size, positionComparator);
+        playersPositions = new HashMap<>();
     }
 
     void add(Position position) {
@@ -35,4 +36,13 @@ class Positions {
         }
         return copiedPositions;
     }
+
+    void linkPlayerWithPositions(Player player, Position position){
+        playersPositions.put(position, player);
+    }
+
+    Map<Position, Player> findplayerPositions(){
+        return playersPositions;
+    }
+
 }

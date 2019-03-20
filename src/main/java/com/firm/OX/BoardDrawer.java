@@ -1,6 +1,8 @@
 package com.firm.OX;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 class BoardDrawer {
 
@@ -53,7 +55,7 @@ class BoardDrawer {
         return true;
     }
 
-    boolean drawGridWithGivenPosition(Position position) {
+/*    boolean drawGridWithGivenPosition(Position position) {
         int n = position.getRow(), m = position.getColumn(), x = 60;
         drawHeader(m);
         for (int i = 0; i < x; i ++){
@@ -74,7 +76,7 @@ class BoardDrawer {
             System.out.println(String.join("", Collections.nCopies(x, pause)));
         }
         return true;
-    }
+    }*/
 
     private void drawHeader(int n){
         System.out.print(" ");
@@ -89,7 +91,7 @@ class BoardDrawer {
         System.out.println();
     }
 
-    boolean drawGridWithGivenPositionAnSize(Position position) {
+/*    boolean drawGridWithGivenPositionAnSize(Position position) {
         int n = position.getRow(), m = position.getColumn(), x = size.getHeight(), y = size.getLength();
         drawHeader(y);
         for (int i = 0; i < x; i ++){
@@ -110,35 +112,49 @@ class BoardDrawer {
             System.out.println(String.join("", Collections.nCopies(y, pause)));
         }
         return true;
-    }
+    }*/
 
-    boolean drawGridWithGivenPositions(Positions mainPositions) {
+    String drawGridWithGivenPositions(Positions mainPositions) {
+        StringBuilder stringBuilder = new StringBuilder();
         Positions positions = mainPositions.copy();
         int height = size.getHeight(), length = size.getLength(), row, column;
         drawHeader(length);
         Position position = positions.remove();
+        Map<Position, Player> playerMap = mainPositions.findplayerPositions();
         for (int y = 0; y < height; y ++){
             for (int x = 0; x < length; x++){
+                Player player = playerMap.get(position);
                 row = position.getRow();
                 column = position.getColumn();
                 if (x == 0){
                     System.out.print(y + " ");
+                    stringBuilder.append(y + " ");
                 }
                 if (y == row && x == column){
-                    System.out.print("|  O  ");
+                    if (player.isO()){
+                        System.out.print("|  O  ");
+                        stringBuilder.append("|  O  ");
+                    } else{
+                        System.out.print("|  X  ");
+                        stringBuilder.append("|  X  ");
+                    }
                     if (!positions.isEmpty()) {
                         position = positions.remove();
                     }
                 }else{
                     System.out.print("|     ");
+                    stringBuilder.append("|     ");
                 }
             }
             System.out.println("|");
+            stringBuilder.append("|\n");
             System.out.print("  ");
+            stringBuilder.append(" ");
             String pause = " _____";
             System.out.println(String.join("", Collections.nCopies(length, pause)));
+            stringBuilder.append(String.join("", Collections.nCopies(length, pause)) + "\n");
         }
 
-        return true;
+        return stringBuilder.toString();
     }
 }

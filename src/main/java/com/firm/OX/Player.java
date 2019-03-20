@@ -19,6 +19,7 @@ public class Player {
     public Player(String name, InputReader inputReader) {
         this.name = name;
         this.inputReader = inputReader;
+        this.points = 0;
     }
 
     @Override
@@ -38,5 +39,17 @@ public class Player {
 
     public Position chooseField() {
         return inputReader.readPosition();
+    }
+
+    public boolean isO() {
+        boolean firtst = (this.character == Characters.NAUGHT);
+        boolean second = (this.character.equals("O"));
+        boolean thirf = (this.character.equals(Characters.NAUGHT));
+        boolean fourth = (character.equals(Characters.NAUGHT));
+        return character.equals(Characters.NAUGHT);
+    }
+
+    void chooseCharacter(Characters character){
+        this.character = character;
     }
 }

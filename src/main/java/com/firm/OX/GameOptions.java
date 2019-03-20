@@ -23,8 +23,12 @@ public class GameOptions {
         Player player = players.get("O");
         if (player.equals(playerOne)){
             players.put("X", playerTwo);
+            playerOne.chooseCharacter(Characters.NAUGHT);
+            playerTwo.chooseCharacter(Characters.CROSS);
         } else{
             players.put("X", playerOne);
+            playerOne.chooseCharacter(Characters.CROSS);
+            playerTwo.chooseCharacter(Characters.NAUGHT);
         }
     }
 
