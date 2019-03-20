@@ -29,6 +29,9 @@ public class InputReader {
     public int readNumberOfCharacters() {
         Scanner sc = new Scanner(System.in);
         int numberOfCharacters = sc.nextInt();
+        if (numberOfCharacters < 3){
+            throw new IllegalArgumentException();
+        }
         return numberOfCharacters;
     }
 }
