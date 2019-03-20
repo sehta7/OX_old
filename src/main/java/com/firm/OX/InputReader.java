@@ -22,4 +22,10 @@ public class InputReader {
         Player startingPlayer = new Player(name);
         return startingPlayer;
     }
+
+    public int readNumberOfCharacters() {
+        Scanner sc = new Scanner(System.in);
+        int numberOfCharacters = sc.nextInt();
+        return numberOfCharacters;
+    }
 }
