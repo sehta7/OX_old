@@ -1,12 +1,16 @@
 package com.firm.OX;
 
 import java.util.Collections;
-import java.util.Queue;
 
-public class BoardCreator {
+class BoardDrawer {
 
-    public boolean drawGridWithCoordinates(Size size) {
+    private Size size;
 
+    BoardDrawer(Size sizeOfBoard) {
+        size = sizeOfBoard;
+    }
+
+    boolean drawGridWithCoordinates() {
         int x = 0;
         System.out.print(" ");
         for (int i = 0; i < size.getLength(); i++){
@@ -49,7 +53,7 @@ public class BoardCreator {
         return true;
     }
 
-    public boolean drawGridWithGivenPosition(Position position) {
+    boolean drawGridWithGivenPosition(Position position) {
         int n = position.getRow(), m = position.getColumn(), x = 60;
         drawHeader(m);
         for (int i = 0; i < x; i ++){
@@ -72,7 +76,7 @@ public class BoardCreator {
         return true;
     }
 
-    public void drawHeader(int n){
+    private void drawHeader(int n){
         System.out.print(" ");
         for (int i = 0; i < n; i++){
             if (i < 10){
@@ -85,7 +89,7 @@ public class BoardCreator {
         System.out.println();
     }
 
-    public boolean drawGridWithGivenPositionAnSize(Position position, Size size) {
+    boolean drawGridWithGivenPositionAnSize(Position position) {
         int n = position.getRow(), m = position.getColumn(), x = size.getHeight(), y = size.getLength();
         drawHeader(y);
         for (int i = 0; i < x; i ++){
@@ -108,7 +112,7 @@ public class BoardCreator {
         return true;
     }
 
-    public boolean drawGridWithGivenPositionsAnSize(Queue<Position> positions, Size size) {
+    boolean drawGridWithGivenPositions(Positions positions) {
         int height = size.getHeight(), length = size.getLength(), row, column;
         drawHeader(length);
         Position position = positions.remove();

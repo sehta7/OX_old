@@ -7,6 +7,10 @@ public class Size {
     private int length;
     private int height;
 
+    public Size() {
+        this(3,3);
+    }
+
     public Size(int length, int height) {
         this.length = length;
         this.height = height;

@@ -9,15 +9,18 @@ public class TicTacToe implements GameAPI {
 
     private GameOptions gameOptions;
     private InputReader inputReader;
+    private Game game;
 
     public TicTacToe() {
         gameOptions = new GameOptions();
         inputReader = new InputReader(new Scanner(System.in));
+        game = new Game(gameOptions);
     }
 
     public TicTacToe(InputReader inputReader) {
         this.inputReader = inputReader;
         this.gameOptions = new GameOptions();
+        game = new Game(gameOptions);
     }
 
     @Override
@@ -33,13 +36,8 @@ public class TicTacToe implements GameAPI {
     }
 
     @Override
-    public void  initializeBoard() {
-        gameOptions.initializeBoard();
-    }
-
-    @Override
     public void startGame() {
-
+        game.start();
     }
 
     @Override

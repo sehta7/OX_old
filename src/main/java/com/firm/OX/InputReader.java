@@ -26,7 +26,7 @@ public class InputReader {
 
     public Player readPlayer() {
         String name = sc.nextLine();
-        Player startingPlayer = new Player(name);
+        Player startingPlayer = new Player(name, new InputReader(new Scanner(System.in)));
         return startingPlayer;
     }
 
@@ -36,5 +36,12 @@ public class InputReader {
             throw new IllegalArgumentException();
         }
         return numberOfCharacters;
+    }
+
+    public Position readPosition(){
+        int column = sc.nextInt();
+        int row = sc.nextInt();
+        Position position = new Position(row, column);
+        return position;
     }
 }

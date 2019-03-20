@@ -24,7 +24,7 @@ public class InputReaderTest {
     @Test(dataProviderClass = InputReaderDP.class, dataProvider = "inputPlayers")
     public void testIfReaderCanAcceptWhoStartsGame(String input) {
         InputReader inputReader = new InputReader(new Scanner(System.in));
-        Player player = new Player(input);
+        Player player = new Player(input, new InputReader(new Scanner(System.in)));
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assert (inputReader.readPlayer().equals(player)) : "Input reader doesn't return starting player";

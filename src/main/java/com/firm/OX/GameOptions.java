@@ -11,11 +11,12 @@ public class GameOptions {
     private Map<String, Player> players;
     private Size boardSize;
     private int winningCharacters;
-    private BoardCreator boardCreator;
+    private BoardDrawer boardDrawer;
 
     public GameOptions(){
         players = new HashMap<>();
-        boardCreator = new BoardCreator();
+        //TODO: czy metoda chosenSize potem wołana nie nadpisze tej opcji? albo czy gdzieś nie podziałam na tej opcji, ZANIM zawołam chosenSize?
+        boardSize = new Size();
     }
 
     public void assignPlayers(Player playerOne, Player playerTwo) {
@@ -42,6 +43,7 @@ public class GameOptions {
     }
 
     public void start(Player player) {
+        //TODO: haczyk by zawsze było to O :D ;-)
         players.put("O", player);
     }
 
@@ -50,6 +52,7 @@ public class GameOptions {
             throw new IllegalArgumentException("Too small size of board");
         }
         boardSize = size;
+        boardDrawer = new BoardDrawer(boardSize);
     }
 
     public Size sizeOfBoard() {
@@ -73,6 +76,6 @@ public class GameOptions {
     }
 
     public void initializeBoard() {
-        boardCreator.drawGridWithCoordinates(boardSize);
+        boardDrawer.drawGridWithCoordinates();
     }
 }

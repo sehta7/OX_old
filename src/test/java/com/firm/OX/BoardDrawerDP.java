@@ -2,14 +2,12 @@ package com.firm.OX;
 
 import org.testng.annotations.DataProvider;
 
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Random;
 
 /**
  * @author Ola Podorska
  */
-public class BoardCreatorDP {
+public class BoardDrawerDP {
 
     private final static int MAX_ARRAY_SIZE = 10;
     private final static int MIN_ARRAY_SIZE = 5;
@@ -50,9 +48,9 @@ public class BoardCreatorDP {
         };
     }
 
-    public static Queue<Position> randomPositions(){
+    public static Positions randomPositions(){
         Random random = new Random();
-        Queue<Position> positions = new PriorityQueue<>(10, new PositionComparator());
+        Positions positions = new Positions(10, new PositionComparator());
         for (int i = 0; i < random.nextInt(10) + 1; i++){
             positions.add(new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)));
         }

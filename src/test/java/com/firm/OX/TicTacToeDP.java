@@ -3,6 +3,7 @@ package com.firm.OX;
 import org.testng.annotations.DataProvider;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -18,11 +19,11 @@ public class TicTacToeDP {
     public static Object[][] options(){
         Random random = new Random();
         return new Object[][]{
-                {new Player(randomName()), new Player(randomName()), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3},
-                {new Player(randomName()), new Player(randomName()), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3},
-                {new Player(randomName()), new Player(randomName()), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3},
-                {new Player(randomName()), new Player(randomName()), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3},
-                {new Player(randomName()), new Player(randomName()), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3}
+                {new Player(randomName(), new InputReader(new Scanner(System.in))), new Player(randomName(), new InputReader(new Scanner(System.in))), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3},
+                {new Player(randomName(), new InputReader(new Scanner(System.in))), new Player(randomName(), new InputReader(new Scanner(System.in))), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3},
+                {new Player(randomName(), new InputReader(new Scanner(System.in))), new Player(randomName(), new InputReader(new Scanner(System.in))), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3},
+                {new Player(randomName(), new InputReader(new Scanner(System.in))), new Player(randomName(), new InputReader(new Scanner(System.in))), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3},
+                {new Player(randomName(), new InputReader(new Scanner(System.in))), new Player(randomName(), new InputReader(new Scanner(System.in))), new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE)), random.nextInt(98) + 3}
         };
     }
 
