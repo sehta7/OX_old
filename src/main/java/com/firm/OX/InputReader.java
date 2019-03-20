@@ -11,6 +11,9 @@ public class InputReader {
         Scanner sc = new Scanner(System.in);
         int length = sc.nextInt();
         int height = sc.nextInt();
+        if (length < 3 || height < 3){
+            throw new IllegalArgumentException();
+        }
         Size size = new Size(length, height);
         return size;
     }
