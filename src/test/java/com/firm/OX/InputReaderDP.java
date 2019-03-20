@@ -77,4 +77,13 @@ public class InputReaderDP {
                 {"2 1"}
         };
     }
+
+    @DataProvider
+    public static Object[][] illegalCharacters(){
+        return new Object[][]{
+                {"0"},
+                {"1"},
+                {"2"},
+        };
+    }
 }

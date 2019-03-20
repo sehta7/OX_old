@@ -44,4 +44,12 @@ public class InputReaderTest {
         System.setIn(in);
         inputReader.readSize();
     }
+
+    @Test(dataProviderClass = InputReaderDP.class, dataProvider = "illegalCharacters", expectedExceptions = IllegalArgumentException.class)
+    public void testIfPlayerGiveWrongNumberOfCharacters(String input) {
+        InputReader inputReader = new InputReader();
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        inputReader.readNumberOfCharacters();
+    }
 }
