@@ -2,6 +2,9 @@ package com.firm.OX;
 
 import org.testng.annotations.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 /**
  * @author Ola Podorska
  */
@@ -9,9 +12,11 @@ import org.testng.annotations.Test;
 @Test
 public class InputReaderTest {
 
-    @Test(dataProviderClass = InputReaderDP.class, dataProvider = "sizes")
-    public void testIfReaderCanAcceptPlayerInput(Size size) {
+    @Test(dataProviderClass = InputReaderDP.class, dataProvider = "inputsSizes")
+    public void testIfReaderCanAcceptPlayerChosenSize(Size result, String input) {
         InputReader inputReader = new InputReader();
-        assert (inputReader.readSize(size).equals(size)) : "Input reader doesn't return proper size";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assert (inputReader.readSize().equals(result)) : "Input reader doesn't return proper size";
     }
 }
