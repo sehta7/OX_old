@@ -22,4 +22,13 @@ public class TicTacToeTest {
         assert (ticTacToe.gameOptions().players().containsValue(new Player("jacek")) && ticTacToe.gameOptions().players().containsValue(new Player("basia"))) : "Players wasn't save in game options";
         assert (ticTacToe.gameOptions().whoStarts().equals(new Player("jacek"))) : "Starting player wasn't save in game options";
     }
+
+    @Test
+    public void testIfBoardCanBeInitialized() {
+        String input = "jacek\nbasia\n15 10\n10\n";
+        InputReader inputReader = new InputReader(new Scanner(input));
+        TicTacToe ticTacToe = new TicTacToe(inputReader);
+        ticTacToe.setGameOptions();
+        ticTacToe.initializeBoard();
+    }
 }

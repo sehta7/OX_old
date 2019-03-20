@@ -11,9 +11,11 @@ public class GameOptions {
     private Map<String, Player> players;
     private Size boardSize;
     private int winningCharacters;
+    private BoardCreator boardCreator;
 
     public GameOptions(){
         players = new HashMap<>();
+        boardCreator = new BoardCreator();
     }
 
     public void assignPlayers(Player playerOne, Player playerTwo) {
@@ -68,5 +70,9 @@ public class GameOptions {
 
     public Player whoStarts() {
         return players.get("O");
+    }
+
+    public void initializeBoard() {
+        boardCreator.drawGridWithCoordinates(boardSize);
     }
 }

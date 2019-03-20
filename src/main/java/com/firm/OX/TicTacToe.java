@@ -10,11 +10,6 @@ public class TicTacToe implements GameAPI {
     private GameOptions gameOptions;
     private InputReader inputReader;
 
-
-    /*
-    Dependency injection vs Dependency inversion
-     */
-
     public TicTacToe() {
         gameOptions = new GameOptions();
         inputReader = new InputReader(new Scanner(System.in));
@@ -38,8 +33,8 @@ public class TicTacToe implements GameAPI {
     }
 
     @Override
-    public void initializeBoard() {
-
+    public void  initializeBoard() {
+        gameOptions.initializeBoard();
     }
 
     @Override
