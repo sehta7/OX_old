@@ -27,7 +27,7 @@ public class InputReaderTest {
         Player player = new Player(input);
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assert (inputReader.readStartingPlayer().equals(player)) : "Input reader doesn't return starting player";
+        assert (inputReader.readPlayer().equals(player)) : "Input reader doesn't return starting player";
     }
 
     @Test(dataProviderClass = InputReaderDP.class, dataProvider = "inputCharacterNumbers")

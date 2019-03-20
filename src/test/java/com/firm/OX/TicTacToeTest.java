@@ -2,6 +2,8 @@ package com.firm.OX;
 
 import org.testng.annotations.Test;
 
+import java.util.Scanner;
+
 /**
  * @author Ola Podorska
  */
@@ -9,14 +11,15 @@ import org.testng.annotations.Test;
 @Test
 public class TicTacToeTest {
 
-    @Test(dataProviderClass = TicTacToeDP.class, dataProvider = "options")
-    public void testIfChosenOptionsAreSaved(Player p1, Player p2, Size size, int numberOfCharacters) {
-        TicTacToe ticTacToe = new TicTacToe();
-        GameOptions gameOptions = new GameOptions();
-        ticTacToe.setGameOpotions(gameOptions);
-        assert (gameOptions.sizeOfBoard().equals(size)) : "Size of board wasn't save in game options";
-        assert (gameOptions.numberOfCharacters() == numberOfCharacters) : "Number of winning characters wasn't save in game options";
-        assert (gameOptions.players().containsValue(p1) && gameOptions.players().containsValue(p2)) : "Players wasn't save in game options";
-        assert (gameOptions.whoStarts().equals(p1)) : "Starting player wasn't save in game options";
+    @Test
+    public void testIfChosenOptionsAreSaved() {
+        String input = "jacek\nbasia\n100 100\n10\n";
+        InputReader inputReader = new InputReader(new Scanner(input));
+        TicTacToe ticTacToe = new TicTacToe(inputReader);
+        ticTacToe.setGameOptions();
+        assert (ticTacToe.gameOptions().sizeOfBoard().equals(new Size(100, 100))) : "Size of board wasn't save in game options";
+        assert (ticTacToe.gameOptions().numberOfCharacters() == 10) : "Number of winning characters wasn't save in game options";
+        assert (ticTacToe.gameOptions().players().containsValue(new Player("jacek")) && ticTacToe.gameOptions().players().containsValue(new Player("basia"))) : "Players wasn't save in game options";
+        assert (ticTacToe.gameOptions().whoStarts().equals(new Player("jacek"))) : "Starting player wasn't save in game options";
     }
 }

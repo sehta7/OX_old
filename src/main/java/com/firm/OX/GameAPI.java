@@ -5,8 +5,10 @@ package com.firm.OX;
  */
 public interface GameAPI {
 
-    void setGameOpotions();
+    void setGameOptions();
     void initializePlayers();
     void initializeBoard();
     void startGame();
+
+    GameOptions gameOptions();
 }

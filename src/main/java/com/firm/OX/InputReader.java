@@ -24,7 +24,7 @@ public class InputReader {
     }
 
 
-    public Player readStartingPlayer() {
+    public Player readPlayer() {
         String name = sc.nextLine();
         Player startingPlayer = new Player(name);
         return startingPlayer;
