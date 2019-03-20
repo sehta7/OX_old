@@ -38,11 +38,6 @@ public class TicTacToe implements GameAPI {
     }
 
     @Override
-    public void initializePlayers() {
-
-    }
-
-    @Override
     public void initializeBoard() {
 
     }

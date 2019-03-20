@@ -6,7 +6,6 @@ package com.firm.OX;
 public interface GameAPI {
 
     void setGameOptions();
-    void initializePlayers();
     void initializeBoard();
     void startGame();
 
