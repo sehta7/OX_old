@@ -26,6 +26,6 @@ public class InputReaderTest {
         Player player = new Player(input);
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assert (inputReader.readPlayers().equals(player));
+        assert (inputReader.readStartingPlayer().equals(player));
     }
 }
