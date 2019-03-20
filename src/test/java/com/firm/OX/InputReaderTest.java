@@ -26,6 +26,14 @@ public class InputReaderTest {
         Player player = new Player(input);
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assert (inputReader.readStartingPlayer().equals(player));
+        assert (inputReader.readStartingPlayer().equals(player)) : "Input reader doesn't return starting player";
+    }
+
+    @Test(dataProviderClass = InputReaderDP.class, dataProvider = "inputCharacterNumbers")
+    public void testIfReaderCanAcceptNumberOfWinningCharacters(int result, String input) {
+        InputReader inputReader = new InputReader();
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        assert (inputReader.readNumberOfCharacters() == result) : "Input reader doesn't return number of winning characters";
     }
 }

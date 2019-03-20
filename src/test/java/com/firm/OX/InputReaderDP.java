@@ -48,4 +48,18 @@ public class InputReaderDP {
         }
         return name.toString();
     }
+
+
+    @DataProvider
+    public static Object[][] inputCharacterNumbers(){
+        Random random = new Random();
+        int a;
+        return new Object[][]{
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a}
+        };
+    }
 }
