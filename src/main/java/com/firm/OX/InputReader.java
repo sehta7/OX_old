@@ -7,8 +7,13 @@ import java.util.Scanner;
  */
 public class InputReader {
 
+    private Scanner sc;
+
+    public InputReader(Scanner scanner) {
+        this.sc = scanner;
+    }
+
     public Size readSize() {
-        Scanner sc = new Scanner(System.in);
         int length = sc.nextInt();
         int height = sc.nextInt();
         if (length < 3 || height < 3){
@@ -20,14 +25,12 @@ public class InputReader {
 
 
     public Player readStartingPlayer() {
-        Scanner sc = new Scanner(System.in);
         String name = sc.nextLine();
         Player startingPlayer = new Player(name);
         return startingPlayer;
     }
 
     public int readNumberOfCharacters() {
-        Scanner sc = new Scanner(System.in);
         int numberOfCharacters = sc.nextInt();
         if (numberOfCharacters < 3){
             throw new IllegalArgumentException();
