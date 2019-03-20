@@ -112,7 +112,8 @@ class BoardDrawer {
         return true;
     }
 
-    boolean drawGridWithGivenPositions(Positions positions) {
+    boolean drawGridWithGivenPositions(Positions mainPositions) {
+        Positions positions = mainPositions.copy();
         int height = size.getHeight(), length = size.getLength(), row, column;
         drawHeader(length);
         Position position = positions.remove();

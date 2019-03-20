@@ -9,21 +9,30 @@ import java.util.Queue;
  * @author Ola Podorska
  */
 class Positions {
-    Queue<Position> q;
+    Queue<Position> positions;
 
     Positions(int size, PositionComparator positionComparator) {
-        q = new PriorityQueue<> (size, positionComparator);
+        positions = new PriorityQueue<> (size, positionComparator);
     }
 
     void add(Position position) {
-        q.add(position);
+        positions.add(position);
     }
 
     Position remove() {
-        return q.remove();
+        return positions.remove();
     }
 
     boolean isEmpty() {
-        return q.isEmpty();
+        return positions.isEmpty();
+    }
+
+    Positions copy() {
+        Positions copiedPositions = new Positions(10, new PositionComparator());
+        for (Position position: this.positions
+             ) {
+            copiedPositions.add(position);
+        }
+        return copiedPositions;
     }
 }
