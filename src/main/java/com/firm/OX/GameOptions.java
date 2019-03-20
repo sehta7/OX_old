@@ -16,8 +16,13 @@ public class GameOptions {
         players = new HashMap<>();
     }
 
-    public void assignPlayers(Player playerOne, String character) {
-        players.put(character, playerOne);
+    public void assignPlayers(Player playerOne, Player playerTwo) {
+        Player player = players.get("O");
+        if (player.equals(playerOne)){
+            players.put("X", playerTwo);
+        } else{
+            players.put("X", playerOne);
+        }
     }
 
     public boolean isPlayerO(Player player) {
@@ -35,7 +40,7 @@ public class GameOptions {
     }
 
     public void start(Player player) {
-        assignPlayers(player, "O");
+        players.put("O", player);
     }
 
     public void chosenSize(Size size) {
@@ -55,5 +60,13 @@ public class GameOptions {
 
     public int numberOfCharacters() {
         return winningCharacters;
+    }
+
+    public Map<String, Player> players() {
+        return players;
+    }
+
+    public Player whoStarts() {
+        return players.get("O");
     }
 }
