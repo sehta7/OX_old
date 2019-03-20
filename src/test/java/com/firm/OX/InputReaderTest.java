@@ -36,4 +36,12 @@ public class InputReaderTest {
         System.setIn(in);
         assert (inputReader.readNumberOfCharacters() == result) : "Input reader doesn't return number of winning characters";
     }
+
+    @Test(dataProviderClass = InputReaderDP.class, dataProvider = "illegalSizes", expectedExceptions = IllegalArgumentException.class)
+    public void testIfPlayerGiveWrongBoardSize(String input) {
+        InputReader inputReader = new InputReader();
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        inputReader.readSize();
+    }
 }
