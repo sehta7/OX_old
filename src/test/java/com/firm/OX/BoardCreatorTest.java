@@ -8,15 +8,9 @@ import java.util.Queue;
 public class BoardCreatorTest {
 
     @Test
-    public void testIfBoardCreatorCanDrawEmptyGrid() {
-        BoardCreator boardCreator = new BoardCreator();
-        assert (boardCreator.drawEmptyGrid()) : "Board creator didn't draw grid";
-    }
-
-    @Test
     public void testIfBoardCreatorCanDrawGridWithCoordinates() {
         BoardCreator boardCreator = new BoardCreator();
-        assert (boardCreator.drawGridWithCoordinates()) : "Board creator didn't draw grid with coordinates";
+        assert (boardCreator.drawGridWithCoordinates(new Size(10, 10))) : "Board creator didn't draw grid with coordinates";
     }
 
     @Test(dataProviderClass = BoardCreatorDP.class, dataProvider = "positionOnBoard")
