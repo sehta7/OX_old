@@ -16,6 +16,11 @@ public class Player {
     public Player() {
     }
 
+    public Player(String name, Characters character) {
+        this.name = name;
+        this.character = character;
+    }
+
     public Player(String name, InputReader inputReader) {
         this.name = name;
         this.inputReader = inputReader;
