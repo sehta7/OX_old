@@ -2,6 +2,9 @@ package com.firm.OX;
 
 import org.testng.annotations.Test;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 /**
  * @author Ola Podorska
  */
@@ -83,5 +86,29 @@ public class JudgeTest {
         positions.linkPlayerWithPositions(playerO, field2.getPosition());
         positions.linkPlayerWithPositions(playerO, field3.getPosition());
         assert (judge.foundSequence(field3, positions)) : "Judge doesn't find sequence with the same characters";
+    }
+
+    @Test
+    public void testIfJudgeFoundFieldsInRow() {
+        Judge judge = new Judge(new Size(10, 10), 5);
+        Field toCheck = new NotEmptyField(new Position(2,3));
+        Field one = new NotEmptyField(new Position(2, 4));
+        Field two = new NotEmptyField(new Position(2, 5));
+        Field three = new NotEmptyField(new Position(2, 6));
+        Field four = new NotEmptyField(new Position(2, 7));
+        Player player = new Player("o", Characters.NAUGHT);
+        Positions positions = new Positions(5, new PositionComparator());
+        positions.add(new Position(2, 3));
+        positions.add(new Position(2, 4));
+        positions.add(new Position(2, 5));
+        positions.add(new Position(2, 6));
+        positions.add(new Position(2, 7));
+        positions.linkPlayerWithPositions(player, new Position(2, 3));
+        positions.linkPlayerWithPositions(player, new Position(2, 4));
+        positions.linkPlayerWithPositions(player, new Position(2, 5));
+        positions.linkPlayerWithPositions(player, new Position(2, 6));
+        positions.linkPlayerWithPositions(player, new Position(2, 7));
+        judge.checkHorizontally(toCheck, positions);
+        assert (judge.checkHorizontally(toCheck, positions)) : "Judge didn't found winning sequence";
     }
 }

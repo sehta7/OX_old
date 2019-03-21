@@ -67,4 +67,15 @@ class Positions {
         }
         return false;
     }
+
+    public Queue<Position> findAllInRow(int row, Player player) {
+        Queue<Position> fields = new PriorityQueue<>(10, new PositionComparator());
+        for (Position position: positions
+             ) {
+            if (position.getRow() == row && playersPositions.get(position).equals(player)){
+                fields.add(position);
+            }
+        }
+        return fields;
+    }
 }

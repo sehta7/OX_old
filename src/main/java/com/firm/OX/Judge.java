@@ -1,6 +1,8 @@
 package com.firm.OX;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * @author Ola Podorska
@@ -26,155 +28,155 @@ class Judge {
         Field neighbour = field;
         Position position = field.getPosition();
         Map<Position, Player> playerMap = positions.findplayerPositions();
-        if (playerMap.containsKey(position)){
-            if (direction.equals(Direction.DOWN) || direction.equals(Direction.ALL)){
-            if (position.getRow() != size.getLength()){
+        if (playerMap.containsKey(position)) {
+            if (direction.equals(Direction.DOWN) || direction.equals(Direction.ALL)) {
+                if (position.getRow() != size.getLength()) {
 
-                    if (playerMap.containsKey((new Position((position.getRow() + 1), position.getColumn())))){
-                        if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() + 1),position.getColumn())), positions)){
+                    if (playerMap.containsKey((new Position((position.getRow() + 1), position.getColumn())))) {
+                        if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() + 1), position.getColumn())), positions)) {
                             hasNeighbour = true;
                             neighbours++;
-                            neighbour = new NotEmptyField(new Position((position.getRow() + 1),position.getColumn()));
+                            neighbour = new NotEmptyField(new Position((position.getRow() + 1), position.getColumn()));
                             direction = Direction.DOWN;
-                        }else {
+                        } else {
                             neighbour = new EmptyField(new Position(0, 0));
                         }
-                    }else {
+                    } else {
                         neighbour = new EmptyField(new Position(0, 0));
                     }
-                }else {
-                neighbour = new EmptyField(new Position(0, 0));
+                } else {
+                    neighbour = new EmptyField(new Position(0, 0));
+                }
             }
-            }
-            if (direction.equals(Direction.DOWN_RIGHT) || direction.equals(Direction.ALL)){
-            if(position.getRow() != size.getLength() && position.getColumn() != size.getHeight()){
+            if (direction.equals(Direction.DOWN_RIGHT) || direction.equals(Direction.ALL)) {
+                if (position.getRow() != size.getLength() && position.getColumn() != size.getHeight()) {
 
-                if (playerMap.containsKey(new Position((position.getRow() + 1), (position.getColumn() + 1)))) {
-                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() + 1), (position.getColumn() + 1))), positions)) {
-                        hasNeighbour = true;
-                        neighbours++;
-                        neighbour = new NotEmptyField(new Position((position.getRow() + 1), (position.getColumn() + 1)));
-                        direction = Direction.DOWN_RIGHT;
-                    }else {
+                    if (playerMap.containsKey(new Position((position.getRow() + 1), (position.getColumn() + 1)))) {
+                        if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() + 1), (position.getColumn() + 1))), positions)) {
+                            hasNeighbour = true;
+                            neighbours++;
+                            neighbour = new NotEmptyField(new Position((position.getRow() + 1), (position.getColumn() + 1)));
+                            direction = Direction.DOWN_RIGHT;
+                        } else {
+                            neighbour = new EmptyField(new Position(0, 0));
+                        }
+                    } else {
                         neighbour = new EmptyField(new Position(0, 0));
                     }
                 } else {
                     neighbour = new EmptyField(new Position(0, 0));
                 }
-                }else {
-                neighbour = new EmptyField(new Position(0, 0));
             }
-            }
-            if (direction.equals(Direction.DOWN_LEFT) || direction.equals(Direction.ALL)){
-            if (position.getRow() != size.getLength() && position.getColumn() != 0){
+            if (direction.equals(Direction.DOWN_LEFT) || direction.equals(Direction.ALL)) {
+                if (position.getRow() != size.getLength() && position.getColumn() != 0) {
 
-                if (playerMap.containsKey(new Position((position.getRow() + 1), (position.getColumn() - 1)))) {
-                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() + 1), (position.getColumn() - 1))), positions)) {
-                        hasNeighbour = true;
-                        neighbours++;
-                        neighbour = new NotEmptyField(new Position((position.getRow() + 1), (position.getColumn() - 1)));
-                        direction = Direction.DOWN_LEFT;
-                    }else {
+                    if (playerMap.containsKey(new Position((position.getRow() + 1), (position.getColumn() - 1)))) {
+                        if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() + 1), (position.getColumn() - 1))), positions)) {
+                            hasNeighbour = true;
+                            neighbours++;
+                            neighbour = new NotEmptyField(new Position((position.getRow() + 1), (position.getColumn() - 1)));
+                            direction = Direction.DOWN_LEFT;
+                        } else {
+                            neighbour = new EmptyField(new Position(0, 0));
+                        }
+                    } else {
                         neighbour = new EmptyField(new Position(0, 0));
                     }
                 } else {
                     neighbour = new EmptyField(new Position(0, 0));
                 }
-                }else {
-                neighbour = new EmptyField(new Position(0, 0));
             }
-            }
-            if (direction.equals(Direction.RIGHT) || direction.equals(Direction.ALL)){
-            if (position.getColumn() != size.getHeight()){
+            if (direction.equals(Direction.RIGHT) || direction.equals(Direction.ALL)) {
+                if (position.getColumn() != size.getHeight()) {
 
-                if (playerMap.containsKey(new Position(position.getRow(), (position.getColumn() + 1)))) {
-                    if (!isOtherPlayerField(field, new NotEmptyField(new Position(position.getRow(), (position.getColumn() + 1))), positions)) {
-                        hasNeighbour = true;
-                        neighbours++;
-                        neighbour = new NotEmptyField(new Position(position.getRow(), (position.getColumn() + 1)));
-                        direction = Direction.RIGHT;
-                    }else {
+                    if (playerMap.containsKey(new Position(position.getRow(), (position.getColumn() + 1)))) {
+                        if (!isOtherPlayerField(field, new NotEmptyField(new Position(position.getRow(), (position.getColumn() + 1))), positions)) {
+                            hasNeighbour = true;
+                            neighbours++;
+                            neighbour = new NotEmptyField(new Position(position.getRow(), (position.getColumn() + 1)));
+                            direction = Direction.RIGHT;
+                        } else {
+                            neighbour = new EmptyField(new Position(0, 0));
+                        }
+                    } else {
                         neighbour = new EmptyField(new Position(0, 0));
                     }
                 } else {
                     neighbour = new EmptyField(new Position(0, 0));
                 }
-                }else {
-                neighbour = new EmptyField(new Position(0, 0));
             }
-            }
-            if (direction.equals(Direction.LEFT) || direction.equals(Direction.ALL)){
-            if (position.getColumn() != 0){
+            if (direction.equals(Direction.LEFT) || direction.equals(Direction.ALL)) {
+                if (position.getColumn() != 0) {
 
-                if (playerMap.containsKey(new Position(position.getRow(), (position.getColumn() - 1)))) {
-                    if (!isOtherPlayerField(field, new NotEmptyField(new Position(position.getRow(), (position.getColumn() - 1))), positions)) {
-                        hasNeighbour = true;
-                        neighbours++;
-                        neighbour = new NotEmptyField(new Position(position.getRow(), (position.getColumn() - 1)));
-                        direction = Direction.LEFT;
-                    }else {
+                    if (playerMap.containsKey(new Position(position.getRow(), (position.getColumn() - 1)))) {
+                        if (!isOtherPlayerField(field, new NotEmptyField(new Position(position.getRow(), (position.getColumn() - 1))), positions)) {
+                            hasNeighbour = true;
+                            neighbours++;
+                            neighbour = new NotEmptyField(new Position(position.getRow(), (position.getColumn() - 1)));
+                            direction = Direction.LEFT;
+                        } else {
+                            neighbour = new EmptyField(new Position(0, 0));
+                        }
+                    } else {
                         neighbour = new EmptyField(new Position(0, 0));
                     }
                 } else {
                     neighbour = new EmptyField(new Position(0, 0));
                 }
-                }else {
-                neighbour = new EmptyField(new Position(0, 0));
             }
-            }
-            if (direction.equals(Direction.UP) || direction.equals(Direction.ALL)){
-            if (position.getRow() != 0){
+            if (direction.equals(Direction.UP) || direction.equals(Direction.ALL)) {
+                if (position.getRow() != 0) {
 
-                if (playerMap.containsKey(new Position((position.getRow() - 1), position.getColumn()))) {
-                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() - 1), position.getColumn())), positions)) {
-                        hasNeighbour = true;
-                        neighbours++;
-                        neighbour = new NotEmptyField(new Position((position.getRow() - 1), position.getColumn()));
-                        direction = Direction.UP;
-                    }else {
+                    if (playerMap.containsKey(new Position((position.getRow() - 1), position.getColumn()))) {
+                        if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() - 1), position.getColumn())), positions)) {
+                            hasNeighbour = true;
+                            neighbours++;
+                            neighbour = new NotEmptyField(new Position((position.getRow() - 1), position.getColumn()));
+                            direction = Direction.UP;
+                        } else {
+                            neighbour = new EmptyField(new Position(0, 0));
+                        }
+                    } else {
                         neighbour = new EmptyField(new Position(0, 0));
                     }
                 } else {
                     neighbour = new EmptyField(new Position(0, 0));
                 }
-                }else {
-                neighbour = new EmptyField(new Position(0, 0));
             }
-            }
-            if (direction.equals(Direction.UP_RIGHT) || direction.equals(Direction.ALL)){
-            if (position.getRow() != 0 && position.getColumn() != size.getHeight()){
+            if (direction.equals(Direction.UP_RIGHT) || direction.equals(Direction.ALL)) {
+                if (position.getRow() != 0 && position.getColumn() != size.getHeight()) {
 
-                if (playerMap.containsKey(new Position((position.getRow() - 1), (position.getColumn() + 1)))) {
-                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() - 1), (position.getColumn() + 1))), positions)) {
-                        hasNeighbour = true;
-                        neighbours++;
-                        neighbour = new NotEmptyField(new Position((position.getRow() - 1), (position.getColumn() + 1)));
-                        direction = Direction.UP_RIGHT;
-                    }else {
+                    if (playerMap.containsKey(new Position((position.getRow() - 1), (position.getColumn() + 1)))) {
+                        if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() - 1), (position.getColumn() + 1))), positions)) {
+                            hasNeighbour = true;
+                            neighbours++;
+                            neighbour = new NotEmptyField(new Position((position.getRow() - 1), (position.getColumn() + 1)));
+                            direction = Direction.UP_RIGHT;
+                        } else {
+                            neighbour = new EmptyField(new Position(0, 0));
+                        }
+                    } else {
                         neighbour = new EmptyField(new Position(0, 0));
                     }
                 } else {
                     neighbour = new EmptyField(new Position(0, 0));
                 }
-                }else {
-                neighbour = new EmptyField(new Position(0, 0));
             }
-            }
-            if (direction.equals(Direction.UP_LEFT) || direction.equals(Direction.ALL)){
-                if (position.getRow() != 0 && position.getColumn() != 0){
-                if (playerMap.containsKey(new Position((position.getRow() - 1), (position.getColumn() - 1)))) {
-                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() - 1), (position.getColumn() - 1))), positions)) {
-                        hasNeighbour = true;
-                        neighbours++;
-                        neighbour = new NotEmptyField(new Position((position.getRow() - 1), (position.getColumn() - 1)));
-                        direction = Direction.UP_LEFT;
-                    }else {
+            if (direction.equals(Direction.UP_LEFT) || direction.equals(Direction.ALL)) {
+                if (position.getRow() != 0 && position.getColumn() != 0) {
+                    if (playerMap.containsKey(new Position((position.getRow() - 1), (position.getColumn() - 1)))) {
+                        if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() - 1), (position.getColumn() - 1))), positions)) {
+                            hasNeighbour = true;
+                            neighbours++;
+                            neighbour = new NotEmptyField(new Position((position.getRow() - 1), (position.getColumn() - 1)));
+                            direction = Direction.UP_LEFT;
+                        } else {
+                            neighbour = new EmptyField(new Position(0, 0));
+                        }
+                    } else {
                         neighbour = new EmptyField(new Position(0, 0));
                     }
                 } else {
-                    neighbour = new EmptyField(new Position(0, 0));
-                }
-                }else {
                     neighbour = new EmptyField(new Position(0, 0));
                 }
             }
@@ -187,7 +189,7 @@ class Judge {
         Map<Position, Player> playerMap = positions.findplayerPositions();
         Player player1 = playerMap.get(field1.getPosition());
         Player player2 = playerMap.get(field2.getPosition());
-        if (player1.equals(player2)){
+        if (player1.equals(player2)) {
             return false;
         }
         return true;
@@ -203,18 +205,18 @@ class Judge {
         int counter = 0;
         boolean more = true;
         Field lastOne = field;
-        while (more){
+        while (more) {
             counter++;
             lastOne = field;
             field = checkNeighbours(lastOne, positions);
-            if (field instanceof EmptyField){
+            if (field instanceof EmptyField) {
                 more = false;
             }
         }
-        if (counter == numberOfCharacters){
+        if (counter == numberOfCharacters) {
             return true;
-        } else{
-            if (!checkOnce){
+        } else {
+            if (!checkOnce) {
                 checkOnce = true;
                 return checkOtherDirection(lastOne, positions);
             }
@@ -224,9 +226,39 @@ class Judge {
         return false;
     }
 
-    private boolean checkOtherDirection(Field field, Positions positions){
+    boolean checkHorizontally(Field field, Positions positions) {
+        int row = field.getPosition().getRow();
+        boolean winningSequence = false;
+        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Position position = field.getPosition();
+        Player player = playerMap.get(field.getPosition());
+        Queue<Position> fieldsInRow = positions.findAllInRow(row, player);
+        int numberOfFields = checkInLine(fieldsInRow);
+        if (numberOfFields == numberOfCharacters) {
+            winningSequence = true;
+        }
+        return winningSequence;
+    }
+
+    private int checkInLine(Queue<Position> fieldsInRow) {
+        int inRow = 1;
+        while (!fieldsInRow.isEmpty() && inRow < numberOfCharacters) {
+            Position position = fieldsInRow.poll();
+            if (position != null){
+                if (position.hasNext(fieldsInRow.element())) {
+                    inRow++;
+                } else {
+                    inRow = 1;
+                }
+            }
+        }
+        return inRow;
+    }
+
+
+    private boolean checkOtherDirection(Field field, Positions positions) {
         Direction currentDirection = direction;
-        switch (currentDirection){
+        switch (currentDirection) {
             case UP:
                 direction = Direction.DOWN;
                 return foundSequence(field, positions);
@@ -257,21 +289,21 @@ class Judge {
     }
 
     public boolean checkIfWinRound(Player winner) {
-        if (winner.checkPoints() %3 == 0){
+        if (winner.checkPoints() % 3 == 0) {
             return true;
         }
         return false;
     }
 
     public boolean checkDraw(Positions positions, GameOptions gameOptions) {
-        if (positions.howMuchChosenFields() == gameOptions.availableFields()){
+        if (positions.howMuchChosenFields() == gameOptions.availableFields()) {
             return true;
         }
         return false;
     }
 
     public boolean isPositionGood(Position position, Positions positions) {
-        if (position.getRow() > size.getLength() || position.getColumn() > size.getHeight() || positions.hasPosition(position)){
+        if (position.getRow() > size.getLength() || position.getColumn() > size.getHeight() || positions.hasPosition(position)) {
             return false;
         }
         return true;

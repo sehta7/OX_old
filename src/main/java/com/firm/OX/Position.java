@@ -45,4 +45,8 @@ public class Position {
         }
         return false;
     }
+
+    public boolean hasNext(Position element) {
+        return ((this.column + 1) == element.getColumn());
+    }
 }
