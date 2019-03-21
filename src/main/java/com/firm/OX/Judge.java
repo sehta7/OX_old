@@ -262,4 +262,11 @@ class Judge {
         }
         return false;
     }
+
+    public boolean checkDraw(Positions positions, GameOptions gameOptions) {
+        if (positions.howMuchChosenFields() == gameOptions.availableFields()){
+            return true;
+        }
+        return false;
+    }
 }

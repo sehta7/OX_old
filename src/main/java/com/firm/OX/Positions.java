@@ -56,4 +56,8 @@ class Positions {
     public Player findPlayer(Field field) {
         return playersPositions.get(field.getPosition());
     }
+
+    public int howMuchChosenFields() {
+        return positions.size();
+    }
 }

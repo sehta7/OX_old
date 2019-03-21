@@ -41,6 +41,11 @@ public class Round {
             }
             String history = boardDrawer.drawGridWithGivenPositions(positions);
             if (positions.enoughToCheck()){
+                if (judge.checkDraw(positions, gameOptions)){
+                    System.out.println("No one win");
+                    cleanBoard();
+                    gameOptions.initializeBoard();
+                }
                 if (judge.foundSequence(chosenField, positions)){
                     smallWinner = positions.findPlayer(chosenField);
                     smallWinner.addPoint();

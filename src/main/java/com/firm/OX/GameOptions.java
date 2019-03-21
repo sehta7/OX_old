@@ -82,4 +82,8 @@ public class GameOptions {
     public void initializeBoard() {
         boardDrawer.drawGridWithCoordinates();
     }
+
+    public int availableFields() {
+        return boardSize.getLength() * boardSize.getHeight();
+    }
 }
