@@ -11,7 +11,7 @@ public class JudgeTest {
 
     @Test
     public void testIfJudgeDoesNotSeekNeighbours() {
-        Judge judge = new Judge(new Size(15, 15));
+        Judge judge = new Judge(new Size(15, 15), 3);
         Field field = new NotEmptyField(new Position(1,1));
         Positions positions = new Positions(10, new PositionComparator());
         positions.add(field.getPosition());
@@ -22,7 +22,7 @@ public class JudgeTest {
 
     @Test
     public void testIfJudgeSeeNeighbours() {
-        Judge judge = new Judge(new Size(15, 15));
+        Judge judge = new Judge(new Size(15, 15), 3);
         Field field1 = new NotEmptyField(new Position(1, 1));
         Field field2 = new NotEmptyField(new Position(0 ,0));
         Positions positions = new Positions(10, new PositionComparator());
@@ -36,7 +36,7 @@ public class JudgeTest {
 
     @Test
     public void testIfJudgeDistinguishesPlayers() {
-        Judge judge = new Judge(new Size(15, 15));
+        Judge judge = new Judge(new Size(15, 15), 3);
         Field field1 = new NotEmptyField(new Position(1, 1));
         Field field2 = new NotEmptyField(new Position(0 ,0));
         Positions positions = new Positions(10, new PositionComparator());
@@ -51,7 +51,7 @@ public class JudgeTest {
 
     @Test
     public void testIfJudgeCheckOnlyTheSameCharacters() {
-        Judge judge = new Judge(new Size(15, 15));
+        Judge judge = new Judge(new Size(15, 15), 3);
         Field field1 = new NotEmptyField(new Position(1, 1));
         Field field2 = new NotEmptyField(new Position(0 ,0));
         Field field3 = new NotEmptyField(new Position(0, 1));
@@ -70,7 +70,7 @@ public class JudgeTest {
 
     @Test
     public void testIfJudgeFindTheSameNeighbourSearchItNeighbours() {
-        Judge judge = new Judge(new Size(15, 15));
+        Judge judge = new Judge(new Size(15, 15), 3);
         Field field1 = new NotEmptyField(new Position(1, 1));
         Field field2 = new NotEmptyField(new Position(0 ,0));
         Field field3 = new NotEmptyField(new Position(2, 2));
@@ -82,6 +82,6 @@ public class JudgeTest {
         positions.linkPlayerWithPositions(playerO, field1.getPosition());
         positions.linkPlayerWithPositions(playerO, field2.getPosition());
         positions.linkPlayerWithPositions(playerO, field3.getPosition());
-        assert (judge.foundSequence(field3, positions, 3)) : "Judge doesn't find sequence with the same characters";
+        assert (judge.foundSequence(field3, positions)) : "Judge doesn't find sequence with the same characters";
     }
 }

@@ -57,4 +57,13 @@ public class Player {
     void chooseCharacter(Characters character){
         this.character = character;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", character=" + character +
+                ", points=" + points +
+                '}';
+    }
 }

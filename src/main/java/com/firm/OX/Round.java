@@ -10,35 +10,45 @@ public class Round {
     private Player winner;
     private BoardDrawer boardDrawer;
     private Positions positions;
+    private Judge judge;
 
-    Round(BoardDrawer boardDrawer) {
+    Round(BoardDrawer boardDrawer, Judge judge) {
         this.boardDrawer = boardDrawer;
         positions = new Positions(10, new PositionComparator());
+        this.judge = judge;
     }
 
     void start(Map<String, Player> players) {
         boolean noWinner = true;
         boolean o = true;
+        Field chosenField;
 
         while (noWinner){
             if (o){
-                positions = play(players.get("O"));
+                chosenField = play(players.get("O"));
                 o = false;
             } else{
-                positions = play(players.get("X"));
+                chosenField = play(players.get("X"));
                 o = true;
             }
             String history = boardDrawer.drawGridWithGivenPositions(positions);
+            if (positions.enoughToCheck()){
+                if (judge.foundSequence(chosenField, positions)){
+                    winner = positions.findPlayer(chosenField);
+                    noWinner = false;
+                    System.out.println("Win " + winner);
+                }
+            }
         }
 
     }
 
-    Positions play(Player player) {
+    Field play(Player player) {
         System.out.println("Choose field");
         Position position = player.chooseField();
         positions.linkPlayerWithPositions(player, position);
         positions.add(position);
-        return positions;
+        return new NotEmptyField(position);
     }
 
     public Player whoIsWinner(){

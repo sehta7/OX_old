@@ -45,4 +45,15 @@ class Positions {
         return playersPositions;
     }
 
+    public boolean enoughToCheck() {
+        int size = positions.size();
+        if (positions.size() > 4){
+            return true;
+        }
+        return false;
+    }
+
+    public Player findPlayer(Field field) {
+        return playersPositions.get(field.getPosition());
+    }
 }

@@ -10,12 +10,12 @@ public class Game {
 
     public Game(GameOptions gameOptions) {
         this.gameOptions = gameOptions;
-        round = new Round(new BoardDrawer(gameOptions.sizeOfBoard()));
     }
 
     public void start() {
-        gameOptions.initializeBoard();
+        round = new Round(new BoardDrawer(gameOptions.sizeOfBoard()), new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters()));
         for (int i = 0; i < 3; i++){
+            gameOptions.initializeBoard();
             round.start(gameOptions.players());
         }
     }
