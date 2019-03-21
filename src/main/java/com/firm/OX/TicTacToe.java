@@ -1,5 +1,6 @@
 package com.firm.OX;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -14,13 +15,13 @@ public class TicTacToe implements GameAPI {
     public TicTacToe() {
         gameOptions = new GameOptions();
         inputReader = new InputReader(new Scanner(System.in));
-        game = new Game(gameOptions);
+        game = new Game(gameOptions, new HashMap<>());
     }
 
     public TicTacToe(InputReader inputReader) {
         this.inputReader = inputReader;
         this.gameOptions = new GameOptions();
-        game = new Game(gameOptions);
+        game = new Game(gameOptions, new HashMap<>());
     }
 
     @Override

@@ -7,10 +7,11 @@ import java.util.Map;
  */
 public class Round {
 
-    private Player winner;
+    private Player roundWinner;
     private BoardDrawer boardDrawer;
     private Positions positions;
     private Judge judge;
+    private GameOptions gameOptions;
 
     Round(BoardDrawer boardDrawer, Judge judge) {
         this.boardDrawer = boardDrawer;
@@ -18,11 +19,18 @@ public class Round {
         this.judge = judge;
     }
 
-    void start(Map<String, Player> players) {
+    public Round(GameOptions gameOptions) {
+        this.gameOptions = gameOptions;
+        this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
+        positions = new Positions(10, new PositionComparator());
+        this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
+    }
+
+    Player start(Map<String, Player> players) {
         boolean noWinner = true;
         boolean o = true;
         Field chosenField;
-
+        Player smallWinner;
         while (noWinner){
             if (o){
                 chosenField = play(players.get("O"));
@@ -34,18 +42,29 @@ public class Round {
             String history = boardDrawer.drawGridWithGivenPositions(positions);
             if (positions.enoughToCheck()){
                 if (judge.foundSequence(chosenField, positions)){
-                    winner = positions.findPlayer(chosenField);
-                    noWinner = false;
-                    winner.addPoint();
-                    if (judge.checkIfWinRound(winner)){
+                    smallWinner = positions.findPlayer(chosenField);
+                    smallWinner.addPoint();
+                    if (judge.checkIfWinRound(smallWinner)){
+                        roundWinner = smallWinner;
                         System.out.println("End of round!");
-                        System.out.println("Win " + winner);
+                        System.out.println("Win " + roundWinner);
+                        noWinner = false;
                     }
-                    System.out.println("Win " + winner);
+                    System.out.println("Win " + smallWinner);
+                    cleanBoard();
+                    gameOptions.initializeBoard();
                 }
             }
         }
 
+        return roundWinner;
+    }
+
+    private void cleanBoard() {
+        this.gameOptions = gameOptions;
+        this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
+        positions = new Positions(10, new PositionComparator());
+        this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
     }
 
     Field play(Player player) {
@@ -57,6 +76,6 @@ public class Round {
     }
 
     public Player whoIsWinner(){
-        return winner;
+        return roundWinner;
     }
 }
