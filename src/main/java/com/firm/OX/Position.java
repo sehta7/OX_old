@@ -6,10 +6,15 @@ public class Position {
 
     private int row;
     private int column;
+    private String end;
 
     public Position(int row, int column) {
         this.row = row;
         this.column = column;
+    }
+
+    public Position(String end) {
+        this.end = end;
     }
 
     public int getRow() {
@@ -32,5 +37,12 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(row, column);
+    }
+
+    public boolean hasEnd() {
+        if (end != null){
+            return true;
+        }
+        return false;
     }
 }

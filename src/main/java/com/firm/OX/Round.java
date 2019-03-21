@@ -75,6 +75,9 @@ public class Round {
     Field play(Player player) {
         System.out.println("Choose field");
         Position position = player.chooseField();
+        if (position.hasEnd()){
+            System.exit(0);
+        }
         positions.linkPlayerWithPositions(player, position);
         positions.add(position);
         return new NotEmptyField(position);
