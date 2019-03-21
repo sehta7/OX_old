@@ -8,9 +8,11 @@ import java.util.Map;
 class Judge {
 
     Size size;
+    int neighbours;
 
     public Judge(Size size) {
         this.size = size;
+        neighbours = 0;
     }
 
     public boolean checkNeighbours(Field field, Positions positions) {
@@ -21,41 +23,49 @@ class Judge {
             if (position.getRow() != size.getLength()){
                 if (playerMap.containsKey((new Position((position.getRow() + 1), position.getColumn())))){
                     hasNeighbour = true;
+                    neighbours++;
                 }
             }
             if (position.getRow() != size.getLength() && position.getColumn() != size.getHeight()){
                 if (playerMap.containsKey(new Position((position.getRow() + 1), (position.getColumn() + 1)))){
                     hasNeighbour = true;
+                    neighbours++;
                 }
             }
             if (position.getRow() != size.getLength() && position.getColumn() != 0){
                 if (playerMap.containsKey(new Position((position.getRow() + 1), (position.getColumn() - 1)))){
                     hasNeighbour = true;
+                    neighbours++;
                 }
             }
             if (position.getColumn() != size.getHeight()){
                 if (playerMap.containsKey(new Position(position.getRow(), (position.getColumn() + 1)))){
                     hasNeighbour = true;
+                    neighbours++;
                 }
             }
             if (position.getColumn() != 0){
                 if (playerMap.containsKey(new Position(position.getRow(), (position.getColumn() - 1)))){
                     hasNeighbour = true;
+                    neighbours++;
                 }
             }
             if (position.getRow() != 0){
                 if (playerMap.containsKey(new Position((position.getRow() - 1), position.getColumn()))){
                     hasNeighbour = true;
+                    neighbours++;
                 }
             }
             if (position.getRow() != 0 && position.getColumn() != size.getHeight()){
                 if (playerMap.containsKey(new Position((position.getRow() - 1), (position.getColumn() + 1)))){
                     hasNeighbour = true;
+                    neighbours++;
                 }
             }
             if (position.getRow() != 0 && position.getColumn() != 0){
                 if (playerMap.containsKey(new Position((position.getRow() - 1), (position.getColumn() - 1)))){
                     hasNeighbour = true;
+                    neighbours++;
                 }
             }
         }
@@ -70,5 +80,10 @@ class Judge {
             return false;
         }
         return true;
+    }
+
+    public int howManyNeighbours(Field field, Positions positions) {
+        checkNeighbours(field, positions);
+        return neighbours;
     }
 }
