@@ -39,11 +39,11 @@ public class InputReader {
     }
 
     public Position readPosition(){
-        String whatIsTahat = sc.next();
-        if (whatIsTahat.toLowerCase().equals("q")){
+        String whatIsThat = sc.next();
+        if (whatIsThat.toLowerCase().equals("q")){
             return new Position("end of game");
         } else{
-            int column = Integer.valueOf(whatIsTahat);
+            int column = Integer.valueOf(whatIsThat);
             int row = sc.nextInt();
             Position position = new Position(row, column);
             return position;

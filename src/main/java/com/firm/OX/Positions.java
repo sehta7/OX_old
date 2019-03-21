@@ -60,4 +60,11 @@ class Positions {
     public int howMuchChosenFields() {
         return positions.size();
     }
+
+    public boolean hasPosition(Position position) {
+        if (positions.contains(position)){
+            return true;
+        }
+        return false;
+    }
 }

@@ -78,8 +78,13 @@ public class Round {
         if (position.hasEnd()){
             System.exit(0);
         }
-        positions.linkPlayerWithPositions(player, position);
-        positions.add(position);
+        if (judge.isPositionGood(position, positions)){
+            positions.linkPlayerWithPositions(player, position);
+            positions.add(position);
+        } else{
+            System.out.println("Give proper value");
+            play(player);
+        }
         return new NotEmptyField(position);
     }
 

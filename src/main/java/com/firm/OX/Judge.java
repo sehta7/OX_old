@@ -269,4 +269,11 @@ class Judge {
         }
         return false;
     }
+
+    public boolean isPositionGood(Position position, Positions positions) {
+        if (position.getRow() > size.getLength() || position.getColumn() > size.getHeight() || positions.hasPosition(position)){
+            return false;
+        }
+        return true;
+    }
 }
