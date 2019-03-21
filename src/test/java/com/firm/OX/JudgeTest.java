@@ -67,4 +67,21 @@ public class JudgeTest {
         int neighbours = judge.howManyNeighbours(field1, positions);
         assert (neighbours == 1) : "Judge count all characters";
     }
+
+    @Test
+    public void testIfJudgeFindTheSameNeighbourSearchItNeighbours() {
+        Judge judge = new Judge(new Size(15, 15));
+        Field field1 = new NotEmptyField(new Position(1, 1));
+        Field field2 = new NotEmptyField(new Position(0 ,0));
+        Field field3 = new NotEmptyField(new Position(2, 2));
+        Positions positions = new Positions(10, new PositionComparator());
+        positions.add(field1.getPosition());
+        positions.add(field2.getPosition());
+        positions.add(field3.getPosition());
+        Player playerO = new Player("O", Characters.NAUGHT);
+        positions.linkPlayerWithPositions(playerO, field1.getPosition());
+        positions.linkPlayerWithPositions(playerO, field2.getPosition());
+        positions.linkPlayerWithPositions(playerO, field3.getPosition());
+        assert (judge.foundSequence(3)) : "Judge doesn't find sequence with the same characters";
+    }
 }
