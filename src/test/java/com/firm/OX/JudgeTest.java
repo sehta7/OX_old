@@ -64,7 +64,7 @@ public class JudgeTest {
         positions.linkPlayerWithPositions(playerO, field1.getPosition());
         positions.linkPlayerWithPositions(playerX, field2.getPosition());
         positions.linkPlayerWithPositions(playerO, field3.getPosition());
-        int neighbours = judge.howManyNeighbours(field2, positions);
+        int neighbours = judge.howManyNeighbours(field1, positions);
         assert (neighbours == 1) : "Judge count all characters";
     }
 }

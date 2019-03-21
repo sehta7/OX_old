@@ -22,50 +22,66 @@ class Judge {
         if (playerMap.containsKey(position)){
             if (position.getRow() != size.getLength()){
                 if (playerMap.containsKey((new Position((position.getRow() + 1), position.getColumn())))){
-                    hasNeighbour = true;
-                    neighbours++;
+                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() + 1),position.getColumn())), positions)){
+                        hasNeighbour = true;
+                        neighbours++;
+                    }
                 }
             }
             if (position.getRow() != size.getLength() && position.getColumn() != size.getHeight()){
                 if (playerMap.containsKey(new Position((position.getRow() + 1), (position.getColumn() + 1)))){
-                    hasNeighbour = true;
-                    neighbours++;
+                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() + 1),(position.getColumn() + 1))), positions)) {
+                        hasNeighbour = true;
+                        neighbours++;
+                    }
                 }
             }
             if (position.getRow() != size.getLength() && position.getColumn() != 0){
                 if (playerMap.containsKey(new Position((position.getRow() + 1), (position.getColumn() - 1)))){
-                    hasNeighbour = true;
-                    neighbours++;
+                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() + 1),(position.getColumn() - 1))), positions)) {
+                        hasNeighbour = true;
+                        neighbours++;
+                    }
                 }
             }
             if (position.getColumn() != size.getHeight()){
                 if (playerMap.containsKey(new Position(position.getRow(), (position.getColumn() + 1)))){
-                    hasNeighbour = true;
-                    neighbours++;
+                    if (!isOtherPlayerField(field, new NotEmptyField(new Position(position.getRow(),(position.getColumn() + 1))), positions)) {
+                        hasNeighbour = true;
+                        neighbours++;
+                    }
                 }
             }
             if (position.getColumn() != 0){
                 if (playerMap.containsKey(new Position(position.getRow(), (position.getColumn() - 1)))){
-                    hasNeighbour = true;
-                    neighbours++;
+                    if (!isOtherPlayerField(field, new NotEmptyField(new Position(position.getRow(),(position.getColumn() - 1))), positions)) {
+                        hasNeighbour = true;
+                        neighbours++;
+                    }
                 }
             }
             if (position.getRow() != 0){
                 if (playerMap.containsKey(new Position((position.getRow() - 1), position.getColumn()))){
-                    hasNeighbour = true;
-                    neighbours++;
+                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() - 1),position.getColumn())), positions)) {
+                        hasNeighbour = true;
+                        neighbours++;
+                    }
                 }
             }
             if (position.getRow() != 0 && position.getColumn() != size.getHeight()){
                 if (playerMap.containsKey(new Position((position.getRow() - 1), (position.getColumn() + 1)))){
-                    hasNeighbour = true;
-                    neighbours++;
+                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() - 1),(position.getColumn() + 1))), positions)) {
+                        hasNeighbour = true;
+                        neighbours++;
+                    }
                 }
             }
             if (position.getRow() != 0 && position.getColumn() != 0){
                 if (playerMap.containsKey(new Position((position.getRow() - 1), (position.getColumn() - 1)))){
-                    hasNeighbour = true;
-                    neighbours++;
+                    if (!isOtherPlayerField(field, new NotEmptyField(new Position((position.getRow() - 1),(position.getColumn() - 1))), positions)) {
+                        hasNeighbour = true;
+                        neighbours++;
+                    }
                 }
             }
         }
