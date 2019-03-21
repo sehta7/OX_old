@@ -1,6 +1,8 @@
 package com.firm.OX;
 
+import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Ola Podorska
@@ -18,6 +20,7 @@ public class Game {
 
     public void start() {
         for (int i = 0; i < 3; i++){
+            System.out.println("New round");
             round = new Round(gameOptions);
             gameOptions.initializeBoard();
             Player player = round.start(gameOptions.players());
@@ -27,5 +30,12 @@ public class Game {
                 points.put(player, 1);
             }
         }
+        
+        Player player = checkWinner();
+        System.out.println("Game win: " + player);
+    }
+
+    private Player checkWinner() {
+        return Collections.max(points.entrySet(), (entry1, entry2) -> entry1.getValue() - entry2.getValue()).getKey();
     }
 }

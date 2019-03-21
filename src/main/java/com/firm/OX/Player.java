@@ -74,4 +74,8 @@ public class Player {
     public int checkPoints() {
         return points;
     }
+
+    public void resetPoints() {
+        points = 0;
+    }
 }
