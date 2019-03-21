@@ -255,4 +255,11 @@ class Judge {
                 return false;
         }
     }
+
+    public boolean checkIfWinRound(Player winner) {
+        if (winner.checkPoints() == 3){
+            return true;
+        }
+        return false;
+    }
 }

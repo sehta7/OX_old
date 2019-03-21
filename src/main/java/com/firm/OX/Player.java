@@ -66,4 +66,12 @@ public class Player {
                 ", points=" + points +
                 '}';
     }
+
+    public void addPoint() {
+        points++;
+    }
+
+    public int checkPoints() {
+        return points;
+    }
 }

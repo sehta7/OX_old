@@ -36,6 +36,11 @@ public class Round {
                 if (judge.foundSequence(chosenField, positions)){
                     winner = positions.findPlayer(chosenField);
                     noWinner = false;
+                    winner.addPoint();
+                    if (judge.checkIfWinRound(winner)){
+                        System.out.println("End of round!");
+                        System.out.println("Win " + winner);
+                    }
                     System.out.println("Win " + winner);
                 }
             }
