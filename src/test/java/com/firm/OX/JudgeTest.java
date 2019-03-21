@@ -46,6 +46,6 @@ public class JudgeTest {
         Player playerX = new Player("X", Characters.CROSS);
         positions.linkPlayerWithPositions(playerO, field1.getPosition());
         positions.linkPlayerWithPositions(playerX, field2.getPosition());
-        assert (judge.isOtherPlayerField()) : "Judge doesn't see difference between players";
+        assert (judge.isOtherPlayerField(field1, field2, positions)) : "Judge doesn't see difference between players";
     }
 }

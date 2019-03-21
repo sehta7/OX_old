@@ -61,4 +61,14 @@ class Judge {
         }
         return hasNeighbour;
     }
+
+    public boolean isOtherPlayerField(Field field1, Field field2, Positions positions) {
+        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Player player1 = playerMap.get(field1.getPosition());
+        Player player2 = playerMap.get(field2.getPosition());
+        if (player1.equals(player2)){
+            return false;
+        }
+        return true;
+    }
 }
