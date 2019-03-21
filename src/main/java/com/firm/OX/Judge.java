@@ -241,20 +241,17 @@ class Judge {
     }
 
     private int checkInLine(Queue<Position> fieldsInRow) {
-        int inRow = 1;
-        while (!fieldsInRow.isEmpty() && inRow < numberOfCharacters) {
+        int inLine = 1;
+        while (fieldsInRow.size() > 1 && inLine < numberOfCharacters) {
             Position position = fieldsInRow.poll();
-            if (position != null){
-                if (position.hasNext(fieldsInRow.element())) {
-                    inRow++;
-                } else {
-                    inRow = 1;
-                }
+            if (position.hasNext(fieldsInRow.element())) {
+                inLine++;
+            } else {
+                inLine = 1;
             }
         }
-        return inRow;
+        return inLine;
     }
-
 
     private boolean checkOtherDirection(Field field, Positions positions) {
         Direction currentDirection = direction;
