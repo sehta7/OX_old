@@ -78,4 +78,15 @@ class Positions {
         }
         return fields;
     }
+
+    public Queue<Position> findAllInColumn(int column, Player player) {
+        Queue<Position> fields = new PriorityQueue<>(10, new PositionComparator());
+        for (Position position: positions
+        ) {
+            if (position.getColumn() == column && playersPositions.get(position).equals(player)){
+                fields.add(position);
+            }
+        }
+        return fields;
+    }
 }

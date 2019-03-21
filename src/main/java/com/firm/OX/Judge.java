@@ -1,6 +1,5 @@
 package com.firm.OX;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
@@ -230,21 +229,46 @@ class Judge {
         int row = field.getPosition().getRow();
         boolean winningSequence = false;
         Map<Position, Player> playerMap = positions.findplayerPositions();
-        Position position = field.getPosition();
         Player player = playerMap.get(field.getPosition());
         Queue<Position> fieldsInRow = positions.findAllInRow(row, player);
-        int numberOfFields = checkInLine(fieldsInRow);
+        int numberOfFields = checkInRowLine(fieldsInRow);
         if (numberOfFields == numberOfCharacters) {
             winningSequence = true;
         }
         return winningSequence;
     }
 
-    private int checkInLine(Queue<Position> fieldsInRow) {
+    private int checkInRowLine(Queue<Position> fields) {
         int inLine = 1;
-        while (fieldsInRow.size() > 1 && inLine < numberOfCharacters) {
-            Position position = fieldsInRow.poll();
-            if (position.hasNext(fieldsInRow.element())) {
+        while (fields.size() > 1 && inLine < numberOfCharacters) {
+            Position position = fields.poll();
+            if (position.hasNextInRow(fields.element())) {
+                inLine++;
+            } else {
+                inLine = 1;
+            }
+        }
+        return inLine;
+    }
+
+    boolean checkVertically(Field field, Positions positions) {
+        int column = field.getPosition().getColumn();
+        boolean winningSequence = false;
+        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Player player = playerMap.get(field.getPosition());
+        Queue<Position> fieldsInColumn = positions.findAllInColumn(column, player);
+        int numberOfFields = checkInColumnLine(fieldsInColumn);
+        if (numberOfFields == numberOfCharacters) {
+            winningSequence = true;
+        }
+        return winningSequence;
+    }
+
+    private int checkInColumnLine(Queue<Position> fields) {
+        int inLine = 1;
+        while (fields.size() > 1 && inLine < numberOfCharacters) {
+            Position position = fields.poll();
+            if (position.hasNextInColumn(fields.element())) {
                 inLine++;
             } else {
                 inLine = 1;

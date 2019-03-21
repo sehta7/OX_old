@@ -154,6 +154,75 @@ public class JudgeTest {
         positions.linkPlayerWithPositions(player, two);
         positions.linkPlayerWithPositions(player, three);
         positions.linkPlayerWithPositions(player, four);
-        assert (!judge.checkHorizontally(toCheck, positions)) : "Judge didn't found winning sequence";
+        assert (!judge.checkHorizontally(toCheck, positions)) : "Judge found winning sequence";
+    }
+
+    @Test
+    public void testIfJudgeFoundFieldsInColumn() {
+        Judge judge = new Judge(new Size(10, 10), 5);
+        Field toCheck = new NotEmptyField(new Position(3,2));
+        Position one = new Position(4, 2);
+        Position two = new Position(5, 2);
+        Position three = new Position(6, 2);
+        Position four = new Position(7, 2);
+        Player player = new Player("o", Characters.NAUGHT);
+        Positions positions = new Positions(5, new PositionComparator());
+        positions.add(new Position(3, 2));
+        positions.add(one);
+        positions.add(two);
+        positions.add(three);
+        positions.add(four);
+        positions.linkPlayerWithPositions(player, new Position(3, 2));
+        positions.linkPlayerWithPositions(player, one);
+        positions.linkPlayerWithPositions(player, two);
+        positions.linkPlayerWithPositions(player, three);
+        positions.linkPlayerWithPositions(player, four);
+        assert (judge.checkVertically(toCheck, positions)) : "Judge didn't found winning sequence";
+    }
+
+    @Test
+    public void testIfJudgeFoundFewFieldsInColumn() {
+        Judge judge = new Judge(new Size(10, 10), 3);
+        Field toCheck = new NotEmptyField(new Position(2,2));
+        Position one = new Position(4, 2);
+        Position two = new Position(5, 2);
+        Position three = new Position(6, 2);
+        Position four = new Position(9, 2);
+        Player player = new Player("o", Characters.NAUGHT);
+        Positions positions = new Positions(5, new PositionComparator());
+        positions.add(new Position(2, 2));
+        positions.add(one);
+        positions.add(two);
+        positions.add(three);
+        positions.add(four);
+        positions.linkPlayerWithPositions(player, new Position(2, 2));
+        positions.linkPlayerWithPositions(player, one);
+        positions.linkPlayerWithPositions(player, two);
+        positions.linkPlayerWithPositions(player, three);
+        positions.linkPlayerWithPositions(player, four);
+        assert (judge.checkVertically(toCheck, positions)) : "Judge didn't found winning sequence";
+    }
+
+    @Test
+    public void testIfJudgeDoesNotFoundFieldsInColumn() {
+        Judge judge = new Judge(new Size(10, 10), 5);
+        Field toCheck = new NotEmptyField(new Position(2,2));
+        Position one = new Position(3, 2);
+        Position two = new Position(5, 2);
+        Position three = new Position(7, 2);
+        Position four = new Position(9, 2);
+        Player player = new Player("o", Characters.NAUGHT);
+        Positions positions = new Positions(5, new PositionComparator());
+        positions.add(new Position(2, 2));
+        positions.add(one);
+        positions.add(two);
+        positions.add(three);
+        positions.add(four);
+        positions.linkPlayerWithPositions(player, new Position(2, 2));
+        positions.linkPlayerWithPositions(player, one);
+        positions.linkPlayerWithPositions(player, two);
+        positions.linkPlayerWithPositions(player, three);
+        positions.linkPlayerWithPositions(player, four);
+        assert (!judge.checkHorizontally(toCheck, positions)) : "Judge found winning sequence";
     }
 }

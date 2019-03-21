@@ -46,7 +46,11 @@ public class Position {
         return false;
     }
 
-    public boolean hasNext(Position element) {
+    public boolean hasNextInRow(Position element) {
         return ((this.column + 1) == element.getColumn());
+    }
+
+    public boolean hasNextInColumn(Position element) {
+        return ((this.row + 1) == element.getRow());
     }
 }
