@@ -53,4 +53,8 @@ public class Position {
     public boolean hasNextInColumn(Position element) {
         return ((this.row + 1) == element.getRow());
     }
+
+    public boolean hasNextInDiagonal(Position element) {
+        return ((this.row - 1) == element.getRow() && ((this.column + 1) == element.getColumn()));
+    }
 }

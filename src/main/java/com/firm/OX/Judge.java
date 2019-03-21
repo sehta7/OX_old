@@ -264,6 +264,33 @@ class Judge {
         return winningSequence;
     }
 
+    boolean checkDiagonalUpToRight(Field field, Positions positions) {
+        int column = field.getPosition().getColumn();
+        int row = field.getPosition().getRow();
+        boolean winningSequence = false;
+        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Player player = playerMap.get(field.getPosition());
+        Queue<Position> fieldsInDiagonal = positions.findAllInDiagonal(row, column, player, size);
+        int numberOfFields = checkInDiagonalLine(fieldsInDiagonal);
+        if (numberOfFields == numberOfCharacters) {
+            winningSequence = true;
+        }
+        return winningSequence;
+    }
+
+    private int checkInDiagonalLine(Queue<Position> fields) {
+        int inLine = 1;
+        while (fields.size() > 1 && inLine < numberOfCharacters) {
+            Position position = fields.poll();
+            if (position.hasNextInDiagonal(fields.element())) {
+                inLine++;
+            } else {
+                inLine = 1;
+            }
+        }
+        return inLine;
+    }
+
     private int checkInColumnLine(Queue<Position> fields) {
         int inLine = 1;
         while (fields.size() > 1 && inLine < numberOfCharacters) {

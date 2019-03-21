@@ -2,9 +2,6 @@ package com.firm.OX;
 
 import org.testng.annotations.Test;
 
-import java.util.PriorityQueue;
-import java.util.Queue;
-
 /**
  * @author Ola Podorska
  */
@@ -224,5 +221,29 @@ public class JudgeTest {
         positions.linkPlayerWithPositions(player, three);
         positions.linkPlayerWithPositions(player, four);
         assert (!judge.checkHorizontally(toCheck, positions)) : "Judge found winning sequence";
+    }
+
+    @Test
+    public void testIfJudgeFoundFieldsInDiagonal() {
+        Judge judge = new Judge(new Size(5, 5), 5);
+        Position zero = new Position(3, 2);
+        Position one = new Position(4, 1);
+        Position two = new Position(2, 3);
+        Position three = new Position(1, 4);
+        Position four = new Position(0, 5);
+        Player player = new Player("o", Characters.NAUGHT);
+        Field toCheck = new NotEmptyField(zero);
+        Positions positions = new Positions(5, new PositionComparator());
+        positions.add(zero);
+        positions.add(one);
+        positions.add(two);
+        positions.add(three);
+        positions.add(four);
+        positions.linkPlayerWithPositions(player, zero);
+        positions.linkPlayerWithPositions(player, one);
+        positions.linkPlayerWithPositions(player, two);
+        positions.linkPlayerWithPositions(player, three);
+        positions.linkPlayerWithPositions(player, four);
+        assert (judge.checkDiagonalUpToRight(toCheck, positions)) : "Judge didn't found winning sequence";
     }
 }
