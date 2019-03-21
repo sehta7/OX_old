@@ -15,7 +15,7 @@ public class InputReaderTest {
 
     @Test(dataProviderClass = InputReaderDP.class, dataProvider = "inputSizes")
     public void testIfReaderCanAcceptPlayerChosenSize(Size result, String input) {
-        InputReader inputReader = new InputReader(new Scanner(System.in));
+        InputReader inputReader = new InputReader(new Scanner(input));
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
         assert (inputReader.readSize().equals(result)) : "Input reader doesn't return proper size";
@@ -23,7 +23,7 @@ public class InputReaderTest {
 
     @Test(dataProviderClass = InputReaderDP.class, dataProvider = "inputPlayers")
     public void testIfReaderCanAcceptWhoStartsGame(String input) {
-        InputReader inputReader = new InputReader(new Scanner(System.in));
+        InputReader inputReader = new InputReader(new Scanner(input));
         Player player = new Player(input, new InputReader(new Scanner(System.in)));
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);

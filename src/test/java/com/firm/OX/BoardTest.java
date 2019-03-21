@@ -13,10 +13,10 @@ import java.util.*;
 @Test
 public class BoardTest {
 
-    @Test
+    /*@Test
     public void testIfBoardCanBeCreated() {
         Board board = new Board(new Size(1,1));
-    }
+    }*/
 
     @Test(dataProviderClass = BoardDP.class, dataProvider = "sizes")
     public void testIfBoardHasSizeGivenByUser(Size size) {
