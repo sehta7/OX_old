@@ -90,8 +90,8 @@ class Positions {
         return fields;
     }
 
-    public Queue<Position> findAllInDiagonal(int row, int column, Player player, Size size) {
-        Queue<Position> fields = new PriorityQueue<>(10, new PositionComparator());
+    public Set<Position> findAllInDiagonal(int row, int column, Player player, Size size) {
+        Set<Position> fields = new TreeSet<>(new PositionComparator());
         int max = 0;
         if (size.getHeight() > size.getLength()){
             max = size.getLength();
@@ -102,7 +102,13 @@ class Positions {
         ) {
             for (int x = 0; x < max - 2; x++){
                 if (position.getRow() == row + x && position.getColumn() == column - x ||
-                        position.getRow() == column - x && position.getColumn() == row + x){
+                        position.getRow() == row - x && position.getColumn() == column + x ||
+                        position.getRow() == row + x && position.getColumn() == column + x ||
+                        position.getRow() == row - x && position.getColumn() == column - x ||
+                        position.getRow() == column - x && position.getColumn() == row + x ||
+                        position.getRow() == column - x && position.getColumn() == row - x ||
+                        position.getRow() == column + x && position.getColumn() == row + x ||
+                        position.getRow() == column + x && position.getColumn() == row - x){
                     if (playersPositions.get(position).equals(player)){
                         fields.add(position);
                     }

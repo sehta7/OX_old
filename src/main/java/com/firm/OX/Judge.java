@@ -2,6 +2,7 @@ package com.firm.OX;
 
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 
 /**
  * @author Ola Podorska
@@ -270,19 +271,48 @@ class Judge {
         boolean winningSequence = false;
         Map<Position, Player> playerMap = positions.findplayerPositions();
         Player player = playerMap.get(field.getPosition());
-        Queue<Position> fieldsInDiagonal = positions.findAllInDiagonal(row, column, player, size);
-        int numberOfFields = checkInDiagonalLine(fieldsInDiagonal);
+        Set<Position> fieldsInDiagonal = positions.findAllInDiagonal(row, column, player, size);
+        int numberOfFields = checkInDiagonalLineUp(fieldsInDiagonal);
         if (numberOfFields == numberOfCharacters) {
             winningSequence = true;
         }
         return winningSequence;
     }
 
-    private int checkInDiagonalLine(Queue<Position> fields) {
+    boolean checkDiagonalDownToRight(Field field, Positions positions) {
+        int column = field.getPosition().getColumn();
+        int row = field.getPosition().getRow();
+        boolean winningSequence = false;
+        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Player player = playerMap.get(field.getPosition());
+        Set<Position> fieldsInDiagonal = positions.findAllInDiagonal(row, column, player, size);
+        int numberOfFields = checkInDiagonalLineDown(fieldsInDiagonal);
+        if (numberOfFields == numberOfCharacters) {
+            winningSequence = true;
+        }
+        return winningSequence;
+    }
+
+    private int checkInDiagonalLineDown(Set<Position> fields) {
         int inLine = 1;
         while (fields.size() > 1 && inLine < numberOfCharacters) {
-            Position position = fields.poll();
-            if (position.hasNextInDiagonal(fields.element())) {
+            Position position = fields.iterator().next();
+            fields.remove(position);
+            if (position.hasNextInDiagonalLeft(fields.iterator().next())) {
+                inLine++;
+            } else {
+                inLine = 1;
+            }
+        }
+        return inLine;
+    }
+
+    private int checkInDiagonalLineUp(Set<Position> fields) {
+        int inLine = 1;
+        while (fields.size() > 1 && inLine < numberOfCharacters) {
+            Position position = fields.iterator().next();
+            fields.remove(position);
+            if (position.hasNextInDiagonalRight(fields.iterator().next())) {
                 inLine++;
             } else {
                 inLine = 1;

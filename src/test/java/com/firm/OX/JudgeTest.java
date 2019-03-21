@@ -224,7 +224,7 @@ public class JudgeTest {
     }
 
     @Test
-    public void testIfJudgeFoundFieldsInDiagonal() {
+    public void testIfJudgeFoundFieldsInDiagonalRight() {
         Judge judge = new Judge(new Size(5, 5), 5);
         Position zero = new Position(3, 2);
         Position one = new Position(4, 1);
@@ -245,5 +245,26 @@ public class JudgeTest {
         positions.linkPlayerWithPositions(player, three);
         positions.linkPlayerWithPositions(player, four);
         assert (judge.checkDiagonalUpToRight(toCheck, positions)) : "Judge didn't found winning sequence";
+    }
+
+    @Test
+    public void testIfJudgeFoundFieldsInDiagonalLeft() {
+        Judge judge = new Judge(new Size(5, 5), 4);
+        Position zero = new Position(3, 2);
+        Position one = new Position(4, 3);
+        Position three = new Position(1, 0);
+        Position four = new Position(2, 1);
+        Player player = new Player("o", Characters.NAUGHT);
+        Field toCheck = new NotEmptyField(zero);
+        Positions positions = new Positions(5, new PositionComparator());
+        positions.add(zero);
+        positions.add(one);
+        positions.add(three);
+        positions.add(four);
+        positions.linkPlayerWithPositions(player, zero);
+        positions.linkPlayerWithPositions(player, one);
+        positions.linkPlayerWithPositions(player, three);
+        positions.linkPlayerWithPositions(player, four);
+        assert (judge.checkDiagonalDownToRight(toCheck, positions)) : "Judge didn't found winning sequence";
     }
 }
