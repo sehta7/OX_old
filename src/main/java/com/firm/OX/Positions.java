@@ -105,7 +105,7 @@ class Positions {
         }
         for (Position position: positions
         ) {
-            for (int x = 0; x < max - 2; x++){
+            for (int x = 0; x < max; x++){
                 if (position.getRow() == row + x && position.getColumn() == column - x ||
                         position.getRow() == row - x && position.getColumn() == column + x ||
                         position.getRow() == row + x && position.getColumn() == column + x ||

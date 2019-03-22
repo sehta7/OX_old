@@ -12,6 +12,9 @@ public class Round {
     private Positions positions;
     private Judge judge;
     private GameOptions gameOptions;
+    private Player startingPlayer;
+    private Player nextPlayer;
+    private boolean startO;
 
     Round(BoardDrawer boardDrawer, Judge judge) {
         this.boardDrawer = boardDrawer;
@@ -24,41 +27,50 @@ public class Round {
         this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
         positions = new Positions(10, new PositionComparator());
         this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
+        startingPlayer = gameOptions.whoStarts();
+        startO = true;
     }
 
     Player start(Map<String, Player> players) {
         boolean noWinner = true;
-        boolean o = true;
         Field chosenField;
         Player smallWinner;
-        while (noWinner){
-            if (o){
+
+        if (startingPlayer.equals(players.get("O"))) {
+            nextPlayer = players.get("X");
+        } else {
+            nextPlayer = players.get("0");
+        }
+
+        while (noWinner) {
+
+            if (startO) {
                 chosenField = play(players.get("O"));
-                o = false;
-            } else{
+                startO = false;
+            } else {
                 chosenField = play(players.get("X"));
-                o = true;
+                startO = true;
             }
             Positions draw = new Positions(10, new DrawerComparator());
             positions.copyTo(draw);
             String history = boardDrawer.drawGridWithGivenPositions(draw);
-            if (positions.enoughToCheck()){
-                if (judge.checkDraw(positions, gameOptions)){
+            if (positions.enoughToCheck()) {
+                if (judge.checkDraw(positions, gameOptions)) {
                     System.out.println("No one win");
-                    cleanBoard();
+                    cleanBoard(players);
                     gameOptions.initializeBoard();
                 }
-                if (judge.foundSequence(chosenField, positions)){
+                if (judge.foundSequence(chosenField, positions)) {
                     smallWinner = positions.findPlayer(chosenField);
                     smallWinner.addPoint();
-                    if (judge.checkIfWinRound(smallWinner)){
+                    if (judge.checkIfWinRound(smallWinner)) {
                         roundWinner = smallWinner;
                         System.out.println("End of round!");
                         System.out.println("Win " + roundWinner);
                         noWinner = false;
                     }
                     System.out.println("Win " + smallWinner);
-                    cleanBoard();
+                    cleanBoard(players);
                     gameOptions.initializeBoard();
                 }
             }
@@ -67,30 +79,38 @@ public class Round {
         return roundWinner;
     }
 
-    private void cleanBoard() {
-        this.gameOptions = gameOptions;
+    private void cleanBoard(Map<String, Player> players) {
         this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
         positions = new Positions(10, new PositionComparator());
         this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
+        if (startingPlayer.equals(players.get("O"))) {
+            startingPlayer = players.get("X");
+            nextPlayer = players.get("O");
+            startO = false;
+        } else {
+            startingPlayer = players.get("O");
+            nextPlayer = players.get("X");
+            startO = true;
+        }
     }
 
     Field play(Player player) {
         System.out.println("Choose field");
         Position position = player.chooseField();
-        if (position.hasEnd()){
+        if (position.hasEnd()) {
             System.exit(0);
         }
-        if (judge.isPositionGood(position, positions)){
+        if (judge.isPositionGood(position, positions)) {
             positions.linkPlayerWithPositions(player, position);
             positions.add(position);
-        } else{
+        } else {
             System.out.println("Give proper value");
             play(player);
         }
         return new NotEmptyField(position);
     }
 
-    public Player whoIsWinner(){
+    public Player whoIsWinner() {
         return roundWinner;
     }
 }
