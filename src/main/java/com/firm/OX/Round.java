@@ -39,7 +39,9 @@ public class Round {
                 chosenField = play(players.get("X"));
                 o = true;
             }
-            String history = boardDrawer.drawGridWithGivenPositions(positions);
+            Positions draw = new Positions(10, new DrawerComparator());
+            positions.copyTo(draw);
+            String history = boardDrawer.drawGridWithGivenPositions(draw);
             if (positions.enoughToCheck()){
                 if (judge.checkDraw(positions, gameOptions)){
                     System.out.println("No one win");

@@ -1,7 +1,6 @@
 package com.firm.OX;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 class BoardDrawer {
@@ -116,11 +115,11 @@ class BoardDrawer {
 
     String drawGridWithGivenPositions(Positions mainPositions) {
         StringBuilder stringBuilder = new StringBuilder();
-        Positions positions = mainPositions.copy();
+        Positions positions = mainPositions.copyPositions();
         int height = size.getHeight(), length = size.getLength(), row, column;
         drawHeader(length);
         Position position = positions.remove();
-        Map<Position, Player> playerMap = mainPositions.findplayerPositions();
+        Map<Position, Player> playerMap = mainPositions.findPlayerPositions();
         for (int y = 0; y < height; y ++){
             for (int x = 0; x < length; x++){
                 Player player = playerMap.get(position);

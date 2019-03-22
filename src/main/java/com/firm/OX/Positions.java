@@ -16,6 +16,11 @@ class Positions {
         playersPositions = new HashMap<>();
     }
 
+    Positions(int size, DrawerComparator drawerComparator) {
+        positions = new PriorityQueue<> (size, drawerComparator);
+        playersPositions = new HashMap<>();
+    }
+
     void add(Position position) {
         positions.add(position);
     }
@@ -28,7 +33,7 @@ class Positions {
         return positions.isEmpty();
     }
 
-    Positions copy() {
+    Positions copyPositions() {
         Positions copiedPositions = new Positions(10, new PositionComparator());
         for (Position position: this.positions
              ) {
@@ -41,7 +46,7 @@ class Positions {
         playersPositions.put(position, player);
     }
 
-    Map<Position, Player> findplayerPositions(){
+    Map<Position, Player> findPlayerPositions(){
         return playersPositions;
     }
 
@@ -116,5 +121,20 @@ class Positions {
             }
         }
         return fields;
+    }
+
+    public Queue<Position>  positions() {
+        return positions;
+    }
+
+    public void copyTo(Positions draw) {
+        for (Position position: positions
+        ) {
+            draw.add(position);
+        }
+        for (Map.Entry<Position, Player> entry : playersPositions.entrySet()
+        ) {
+            draw.playersPositions.put(entry.getKey(), entry.getValue());
+        }
     }
 }

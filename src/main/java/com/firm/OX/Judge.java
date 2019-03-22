@@ -27,7 +27,7 @@ class Judge {
         boolean hasNeighbour = false;
         Field neighbour = field;
         Position position = field.getPosition();
-        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Map<Position, Player> playerMap = positions.findPlayerPositions();
         if (playerMap.containsKey(position)) {
             if (direction.equals(Direction.DOWN) || direction.equals(Direction.ALL)) {
                 if (position.getRow() != size.getLength()) {
@@ -186,7 +186,7 @@ class Judge {
     }
 
     public boolean isOtherPlayerField(Field field1, Field field2, Positions positions) {
-        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Map<Position, Player> playerMap = positions.findPlayerPositions();
         Player player1 = playerMap.get(field1.getPosition());
         Player player2 = playerMap.get(field2.getPosition());
         if (player1.equals(player2)) {
@@ -201,7 +201,7 @@ class Judge {
     }
 
     public boolean foundSequence(Field field, Positions positions) {
-        Map<Position, Player> playerMap = positions.findplayerPositions();
+       /* Map<Position, Player> playerMap = positions.findPlayerPositions();
         int counter = 0;
         boolean more = true;
         Field lastOne = field;
@@ -222,14 +222,22 @@ class Judge {
             }
         }
         direction = Direction.ALL;
-        checkOnce = false;
+        checkOnce = false;*/
+        boolean horizontally = checkHorizontally(field, positions);
+        boolean vertically = checkVertically(field, positions);
+        boolean diagonalDownToRight = checkDiagonalDownToRight(field, positions);
+        boolean diagonalUpToRight = checkDiagonalUpToRight(field, positions);
+
+        if (horizontally || vertically || diagonalDownToRight || diagonalUpToRight){
+            return true;
+        }
         return false;
     }
 
     boolean checkHorizontally(Field field, Positions positions) {
         int row = field.getPosition().getRow();
         boolean winningSequence = false;
-        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Map<Position, Player> playerMap = positions.findPlayerPositions();
         Player player = playerMap.get(field.getPosition());
         Queue<Position> fieldsInRow = positions.findAllInRow(row, player);
         int numberOfFields = checkInRowLine(fieldsInRow);
@@ -255,7 +263,7 @@ class Judge {
     boolean checkVertically(Field field, Positions positions) {
         int column = field.getPosition().getColumn();
         boolean winningSequence = false;
-        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Map<Position, Player> playerMap = positions.findPlayerPositions();
         Player player = playerMap.get(field.getPosition());
         Queue<Position> fieldsInColumn = positions.findAllInColumn(column, player);
         int numberOfFields = checkInColumnLine(fieldsInColumn);
@@ -269,7 +277,7 @@ class Judge {
         int column = field.getPosition().getColumn();
         int row = field.getPosition().getRow();
         boolean winningSequence = false;
-        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Map<Position, Player> playerMap = positions.findPlayerPositions();
         Player player = playerMap.get(field.getPosition());
         Set<Position> fieldsInDiagonal = positions.findAllInDiagonal(row, column, player, size);
         int numberOfFields = checkInDiagonalLineUp(fieldsInDiagonal);
@@ -283,7 +291,7 @@ class Judge {
         int column = field.getPosition().getColumn();
         int row = field.getPosition().getRow();
         boolean winningSequence = false;
-        Map<Position, Player> playerMap = positions.findplayerPositions();
+        Map<Position, Player> playerMap = positions.findPlayerPositions();
         Player player = playerMap.get(field.getPosition());
         Set<Position> fieldsInDiagonal = positions.findAllInDiagonal(row, column, player, size);
         int numberOfFields = checkInDiagonalLineDown(fieldsInDiagonal);

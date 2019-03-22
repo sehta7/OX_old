@@ -61,4 +61,12 @@ public class Position {
     public boolean hasNextInDiagonalLeft(Position element) {
         return ((this.row + 1) == element.getRow() && ((this.column + 1) == element.getColumn()));
     }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "row=" + row +
+                ", column=" + column +
+                '}';
+    }
 }
