@@ -155,7 +155,7 @@ class Judge {
     }
 
     public boolean checkIfWinRound(Player winner) {
-        if (winner.checkPoints() % 3 == 0) {
+        if (winner.checkPoints() == 3) {
             return true;
         }
         return false;

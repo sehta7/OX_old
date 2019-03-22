@@ -68,6 +68,8 @@ public class Round {
                         System.out.println("End of round!");
                         System.out.println("Win " + roundWinner);
                         noWinner = false;
+                        startingPlayer.resetPoints();
+                        nextPlayer.resetPoints();
                     }
                     System.out.println("Win " + smallWinner);
                     cleanBoard(players);
