@@ -11,15 +11,17 @@ public class Game {
     private Round round;
     private GameOptions gameOptions;
     private Map<Player, Integer> points;
+    private Displayer displayer;
 
-    public Game(GameOptions gameOptions, Map<Player, Integer> points) {
+    public Game(GameOptions gameOptions, Map<Player, Integer> points, Displayer displayer) {
         this.gameOptions = gameOptions;
         this.points = points;
+        this.displayer = displayer;
     }
 
     public void start() {
         for (int i = 0; i < 3; i++){
-            System.out.println("New round");
+            displayer.displayNewRound();
             round = new Round(gameOptions);
             gameOptions.initializeBoard();
             Player player = round.start(gameOptions.players());
@@ -30,8 +32,8 @@ public class Game {
             }
         }
         
-        Player player = checkWinner();
-        System.out.println("Game win: " + player);
+        Player winner = checkWinner();
+        displayer.displayWhoWin(winner);
     }
 
     private Player checkWinner() {

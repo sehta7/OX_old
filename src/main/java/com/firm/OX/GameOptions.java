@@ -12,6 +12,7 @@ public class GameOptions {
     private Size boardSize;
     private int winningCharacters;
     private BoardDrawer boardDrawer;
+    private Language language;
 
     public GameOptions(){
         players = new HashMap<>();
@@ -85,5 +86,9 @@ public class GameOptions {
 
     public int availableFields() {
         return boardSize.getLength() * boardSize.getHeight();
+    }
+
+    public void assignLanguage(Language language) {
+        this.language = language;
     }
 }

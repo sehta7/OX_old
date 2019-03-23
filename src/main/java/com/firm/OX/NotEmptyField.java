@@ -8,6 +8,10 @@ public class NotEmptyField implements Field {
         this.position = position;
     }
 
+    public NotEmptyField() {
+        position = new Position(0,0);
+    }
+
     @Override
     public Position getPosition() {
         if(position == null){

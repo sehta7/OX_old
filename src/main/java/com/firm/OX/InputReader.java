@@ -13,6 +13,10 @@ public class InputReader {
         this.sc = scanner;
     }
 
+    String readLanguage(){
+        return sc.nextLine();
+    }
+
     public Size readSize() {
         int length = sc.nextInt();
         int height = sc.nextInt();
@@ -26,7 +30,7 @@ public class InputReader {
 
     public Player readPlayer() {
         String name = sc.nextLine();
-        Player startingPlayer = new Player(name, new InputReader(new Scanner(System.in)));
+        Player startingPlayer = new Player(name, new InputReader(sc));
         return startingPlayer;
     }
 

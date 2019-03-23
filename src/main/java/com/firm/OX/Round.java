@@ -15,11 +15,13 @@ public class Round {
     private Player startingPlayer;
     private Player nextPlayer;
     private boolean startO;
+    private Displayer displayer;
 
-    Round(BoardDrawer boardDrawer, Judge judge) {
+    Round(BoardDrawer boardDrawer, Judge judge, Displayer displayer) {
         this.boardDrawer = boardDrawer;
         positions = new Positions(10, new PositionComparator());
         this.judge = judge;
+        this.displayer = displayer;
     }
 
     public Round(GameOptions gameOptions) {
@@ -29,6 +31,7 @@ public class Round {
         this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
         startingPlayer = gameOptions.whoStarts();
         startO = true;
+        this.displayer = new Displayer(new Language("pl"));
     }
 
     Player start(Map<String, Player> players) {
@@ -56,7 +59,7 @@ public class Round {
             String history = boardDrawer.drawGridWithGivenPositions(draw);
             if (positions.enoughToCheck()) {
                 if (judge.checkDraw(positions, gameOptions)) {
-                    System.out.println("No one win");
+                    displayer.displayDraw();
                     cleanBoard(players);
                     gameOptions.initializeBoard();
                 }
@@ -65,13 +68,12 @@ public class Round {
                     smallWinner.addPoint();
                     if (judge.checkIfWinRound(smallWinner)) {
                         roundWinner = smallWinner;
-                        System.out.println("End of round!");
-                        System.out.println("Win " + roundWinner);
+                        displayer.displayScores(roundWinner);
                         noWinner = false;
                         startingPlayer.resetPoints();
                         nextPlayer.resetPoints();
                     }
-                    System.out.println("Win " + smallWinner);
+                    displayer.displayScores(smallWinner);
                     cleanBoard(players);
                     gameOptions.initializeBoard();
                 }
@@ -97,7 +99,7 @@ public class Round {
     }
 
     Field play(Player player) {
-        System.out.println("Choose field");
+        displayer.displayQuestionAboutField();
         Position position = player.chooseField();
         if (position.hasEnd()) {
             System.exit(0);
