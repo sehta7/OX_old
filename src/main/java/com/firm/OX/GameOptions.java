@@ -1,5 +1,6 @@
 package com.firm.OX;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,11 +14,13 @@ public class GameOptions {
     private int winningCharacters;
     private BoardDrawer boardDrawer;
     private Language language;
+    private String pathToFile;
 
     public GameOptions(){
         players = new HashMap<>();
         //TODO: czy metoda chosenSize potem wołana nie nadpisze tej opcji? albo czy gdzieś nie podziałam na tej opcji, ZANIM zawołam chosenSize?
         boardSize = new Size();
+        pathToFile = "C:\\Users\\Olka\\Desktop\\";
     }
 
     public void assignPlayers(Player playerOne, Player playerTwo) {
@@ -50,6 +53,10 @@ public class GameOptions {
     public void start(Player player) {
         //TODO: haczyk by zawsze było to O :D ;-)
         players.put("O", player);
+    }
+
+    void chosenPath(String path){
+        this.pathToFile = path;
     }
 
     public void chosenSize(Size size) {
@@ -90,5 +97,9 @@ public class GameOptions {
 
     public void assignLanguage(Language language) {
         this.language = language;
+    }
+
+    public String getPath() {
+        return pathToFile;
     }
 }

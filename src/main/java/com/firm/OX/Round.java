@@ -16,22 +16,35 @@ public class Round {
     private Player nextPlayer;
     private boolean startO;
     private Displayer displayer;
+    private Registrar registrar;
 
-    Round(BoardDrawer boardDrawer, Judge judge, Displayer displayer) {
+    Round(BoardDrawer boardDrawer, Judge judge, Displayer displayer, Registrar registrar) {
         this.boardDrawer = boardDrawer;
         positions = new Positions(10, new PositionComparator());
         this.judge = judge;
         this.displayer = displayer;
+        this.registrar = registrar;
     }
 
-    public Round(GameOptions gameOptions) {
+    public Round(GameOptions gameOptions, Displayer displayer) {
         this.gameOptions = gameOptions;
         this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
-        positions = new Positions(10, new PositionComparator());
+        this.displayer = displayer;
         this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
+        positions = new Positions(10, new PositionComparator());
         startingPlayer = gameOptions.whoStarts();
         startO = true;
-        this.displayer = new Displayer(new Language("pl"));
+    }
+
+    public Round(GameOptions gameOptions, Displayer displayer, Registrar registrar) {
+        this.gameOptions = gameOptions;
+        this.displayer = displayer;
+        this.registrar = registrar;
+        this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
+        this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
+        positions = new Positions(10, new PositionComparator());
+        startingPlayer = gameOptions.whoStarts();
+        startO = true;
     }
 
     Player start(Map<String, Player> players) {
@@ -56,7 +69,8 @@ public class Round {
             }
             Positions draw = new Positions(10, new DrawerComparator());
             positions.copyTo(draw);
-            String history = boardDrawer.drawGridWithGivenPositions(draw);
+            String move = boardDrawer.drawGridWithGivenPositions(draw);
+            registrar.saveMove(move);
             if (positions.enoughToCheck()) {
                 if (judge.checkDraw(positions, gameOptions)) {
                     displayer.displayDraw();

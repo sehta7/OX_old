@@ -146,12 +146,13 @@ class BoardDrawer {
                 }
             }
             System.out.println("|");
-            stringBuilder.append("|\n");
+            stringBuilder.append(System.getProperty("line.separator"));
             System.out.print("  ");
             stringBuilder.append(" ");
             String pause = " _____";
             System.out.println(String.join("", Collections.nCopies(length, pause)));
-            stringBuilder.append(String.join("", Collections.nCopies(length, pause)) + "\n");
+            stringBuilder.append(String.join("", Collections.nCopies(length, pause)));
+            stringBuilder.append(System.getProperty("line.separator"));
         }
 
         return stringBuilder.toString();

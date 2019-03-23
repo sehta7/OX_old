@@ -22,7 +22,7 @@ public class Game {
     public void start() {
         for (int i = 0; i < 3; i++){
             displayer.displayNewRound();
-            round = new Round(gameOptions);
+            round = new Round(gameOptions, displayer, new Registrar(gameOptions));
             gameOptions.initializeBoard();
             Player player = round.start(gameOptions.players());
             if (points.containsKey(player)){

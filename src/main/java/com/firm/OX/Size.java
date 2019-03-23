@@ -44,4 +44,9 @@ public class Size {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return length + "_" + height;
+    }
 }
