@@ -9,13 +9,13 @@ import java.util.Scanner;
  */
 
 @Test
-public class TicTacToeTest {
+public class GameTest {
 
     @Test
     public void testIfChosenOptionsAreSaved() {
         String input = "jacek\nbasia\n100 100\n10\n";
         InputReader inputReader = new InputReader(new Scanner(input));
-        TicTacToe ticTacToe = new TicTacToe(inputReader);
+        Game ticTacToe = new Game(inputReader);
         ticTacToe.setGameOptions();
         assert (ticTacToe.gameOptions().sizeOfBoard().equals(new Size(100, 100))) : "Size of board wasn't save in game options";
         assert (ticTacToe.gameOptions().numberOfCharacters() == 10) : "Number of winning characters wasn't save in game options";
@@ -27,7 +27,7 @@ public class TicTacToeTest {
     public void testIfBoardCanBeInitialized() {
         String input = "jacek\nbasia\n15 10\n10\n";
         InputReader inputReader = new InputReader(new Scanner(input));
-        TicTacToe ticTacToe = new TicTacToe(inputReader);
+        Game ticTacToe = new Game(inputReader);
         ticTacToe.setGameOptions();
     }
 }

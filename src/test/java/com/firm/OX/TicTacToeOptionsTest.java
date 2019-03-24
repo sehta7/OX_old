@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
  */
 
 @Test
-public class GameOptionsTest {
+public class TicTacToeOptionsTest {
 
     @Test
     public void testIfPlayerCanChooseCharacter() {
@@ -16,8 +16,8 @@ public class GameOptionsTest {
         GameOptions gameOptions = new GameOptions();
         gameOptions.start(playerOne);
         gameOptions.assignPlayers(playerOne, playerTwo);
-        assert (gameOptions.isPlayerO(playerOne)) : "Bad players assignment for O";
-        assert (gameOptions.isPlayerX(playerTwo)) : "Bad players assignment for X";
+        assert (gameOptions.isPlayerNaught(playerOne)) : "Bad players assignment for O";
+        assert (gameOptions.isPlayerCross(playerTwo)) : "Bad players assignment for X";
     }
 
     @Test
@@ -25,7 +25,7 @@ public class GameOptionsTest {
         GameOptions gameOptions = new GameOptions();
         Player player = new Player();
         gameOptions.start(player);
-        assert (gameOptions.isPlayerO(player)) : "O always starts, but player is not O";
+        assert (gameOptions.isPlayerNaught(player)) : "O always starts, but player is not O";
     }
 
     @Test(dataProviderClass = GameOptionsDP.class, dataProvider = "sizes")
