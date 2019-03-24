@@ -1,13 +1,12 @@
 package com.firm.OX;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Ola Podorska
  */
-public class GameOptions {
+class GameOptions {
 
     private Map<String, Player> players;
     private Size boardSize;
@@ -16,14 +15,14 @@ public class GameOptions {
     private Language language;
     private String pathToFile;
 
-    public GameOptions(){
+    GameOptions(){
         players = new HashMap<>();
         //TODO: czy metoda chosenSize potem wołana nie nadpisze tej opcji? albo czy gdzieś nie podziałam na tej opcji, ZANIM zawołam chosenSize?
         boardSize = new Size();
         pathToFile = "C:\\Users\\Olka\\Desktop\\";
     }
 
-    public void assignPlayers(Player playerOne, Player playerTwo) {
+    void assignPlayers(Player playerOne, Player playerTwo) {
         Player player = players.get("O");
         if (player.equals(playerOne)){
             players.put("X", playerTwo);
@@ -36,21 +35,21 @@ public class GameOptions {
         }
     }
 
-    public boolean isPlayerO(Player player) {
+    boolean isPlayerO(Player player) {
         if (player.equals(players.get("O"))){
             return true;
         }
         return false;
     }
 
-    public boolean isPlayerX(Player player) {
+    boolean isPlayerX(Player player) {
         if (player.equals(players.get("X"))){
             return true;
         }
         return false;
     }
 
-    public void start(Player player) {
+    void start(Player player) {
         //TODO: haczyk by zawsze było to O :D ;-)
         players.put("O", player);
     }
@@ -59,7 +58,7 @@ public class GameOptions {
         this.pathToFile = path;
     }
 
-    public void chosenSize(Size size) {
+    void chosenSize(Size size) {
         if (size.lowerThan(3)){
             throw new IllegalArgumentException("Too small size of board");
         }
@@ -67,39 +66,39 @@ public class GameOptions {
         boardDrawer = new BoardDrawer(boardSize);
     }
 
-    public Size sizeOfBoard() {
+    Size sizeOfBoard() {
         return boardSize;
     }
 
-    public void chosenCharacters(int numberOfCharacters) {
+    void chosenCharacters(int numberOfCharacters) {
         winningCharacters = numberOfCharacters;
     }
 
-    public int numberOfCharacters() {
+    int numberOfCharacters() {
         return winningCharacters;
     }
 
-    public Map<String, Player> players() {
+    Map<String, Player> players() {
         return players;
     }
 
-    public Player whoStarts() {
+    Player whoStarts() {
         return players.get("O");
     }
 
-    public void initializeBoard() {
+    void initializeBoard() {
         boardDrawer.drawGridWithCoordinates();
     }
 
-    public int availableFields() {
+    int availableFields() {
         return boardSize.getLength() * boardSize.getHeight();
     }
 
-    public void assignLanguage(Language language) {
+    void assignLanguage(Language language) {
         this.language = language;
     }
 
-    public String getPath() {
+    String getPath() {
         return pathToFile;
     }
 }

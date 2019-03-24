@@ -1,14 +1,14 @@
 package com.firm.OX;
 
-public class NotEmptyField implements Field {
+class NotEmptyField implements Field {
 
     private Position position;
 
-    public NotEmptyField(Position position) {
+    NotEmptyField(Position position) {
         this.position = position;
     }
 
-    public NotEmptyField() {
+    NotEmptyField() {
         position = new Position(0,0);
     }
 

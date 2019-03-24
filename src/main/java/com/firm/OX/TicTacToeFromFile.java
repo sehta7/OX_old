@@ -7,13 +7,13 @@ import java.util.HashMap;
 /**
  * @author Ola Podorska
  */
-public class TicTacToeFromFile implements GameAPI {
+class TicTacToeFromFile implements GameAPI {
 
     private GameOptions gameOptions;
     private FromFileReader fileReader;
     private Game game;
 
-    public TicTacToeFromFile(File file) throws FileNotFoundException {
+    TicTacToeFromFile(File file) throws FileNotFoundException {
         this.gameOptions = new GameOptions();
         this.fileReader = new FromFileReader(gameOptions, file);
     }

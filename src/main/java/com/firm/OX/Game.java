@@ -5,26 +5,26 @@ import java.util.*;
 /**
  * @author Ola Podorska
  */
-public class Game {
+class Game {
 
     private Round round;
     private GameOptions gameOptions;
     private Map<Player, Integer> points;
     private Displayer displayer;
 
-    public Game(GameOptions gameOptions, Map<Player, Integer> points, Displayer displayer) {
+    Game(GameOptions gameOptions, Map<Player, Integer> points, Displayer displayer) {
         this.gameOptions = gameOptions;
         this.points = points;
         this.displayer = displayer;
     }
 
-    public Game(GameOptions gameOptions, HashMap<Player, Integer> points) {
+    Game(GameOptions gameOptions, HashMap<Player, Integer> points) {
         this.gameOptions = gameOptions;
         this.points = points;
         this.displayer = new Displayer(new Language("en"));
     }
 
-    public void start() {
+    void start() {
         for (int i = 0; i < 3; i++){
             displayer.displayNewRound();
             round = new Round(gameOptions, displayer, new Registrar(gameOptions));

@@ -1,6 +1,6 @@
 package com.firm.OX;
 
-public class EmptyField implements Field {
+class EmptyField implements Field {
 
     private Position position;
 

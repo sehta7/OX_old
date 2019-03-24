@@ -15,7 +15,7 @@ class Judge {
     int numberOfCharacters;
     boolean checkOnce;
 
-    public Judge(Size size, int numberOfCharacters) {
+    Judge(Size size, int numberOfCharacters) {
         this.size = size;
         neighbours = 0;
         direction = Direction.ALL;
@@ -24,7 +24,7 @@ class Judge {
     }
 
 
-    public boolean isOtherPlayerField(Field field1, Field field2, Positions positions) {
+    boolean isOtherPlayerField(Field field1, Field field2, Positions positions) {
         Map<Position, Player> playerMap = positions.findPlayerPositions();
         Player player1 = playerMap.get(field1.getPosition());
         Player player2 = playerMap.get(field2.getPosition());
@@ -34,7 +34,7 @@ class Judge {
         return true;
     }
 
-    public boolean foundSequence(Field field, Positions positions) {
+    boolean foundSequence(Field field, Positions positions) {
         boolean horizontally = checkHorizontally(field, positions);
         boolean vertically = checkVertically(field, positions);
         boolean diagonalDownToRight = checkDiagonalDownToRight(field, positions);
@@ -154,21 +154,21 @@ class Judge {
         return inLine;
     }
 
-    public boolean checkIfWinRound(Player winner) {
+    boolean checkIfWinRound(Player winner) {
         if (winner.checkPoints() == 3) {
             return true;
         }
         return false;
     }
 
-    public boolean checkDraw(Positions positions, GameOptions gameOptions) {
+    boolean checkDraw(Positions positions, GameOptions gameOptions) {
         if (positions.howMuchChosenFields() == gameOptions.availableFields()) {
             return true;
         }
         return false;
     }
 
-    public boolean isPositionGood(Position position, Positions positions) {
+    boolean isPositionGood(Position position, Positions positions) {
         if (position.getRow() > size.getLength() || position.getColumn() > size.getHeight() || positions.hasPosition(position)) {
             return false;
         }

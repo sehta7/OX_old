@@ -3,7 +3,7 @@ package com.firm.OX;
 /**
  * @author Ola Podorska
  */
-public enum Direction {
+enum Direction {
 
     ALL("A"), UP("U"), DOWN("D"), RIGHT("R"), LEFT("L"), UP_LEFT("UL"), UP_RIGHT("UR"), DOWN_LEFT("DL"), DOWN_RIGHT("DR");
 
@@ -14,7 +14,7 @@ public enum Direction {
         this.direction = direction;
     }
 
-    public String getDirection() {
+    String getDirection() {
         return direction;
     }
 

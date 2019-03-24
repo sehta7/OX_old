@@ -6,19 +6,19 @@ import java.util.Scanner;
 /**
  * @author Ola Podorska
  */
-public class TicTacToe implements GameAPI {
+class TicTacToe implements GameAPI {
 
     private GameOptions gameOptions;
     private InputReader inputReader;
     private Game game;
     private Displayer displayer;
 
-    public TicTacToe() {
+    TicTacToe() {
         gameOptions = new GameOptions();
         inputReader = new InputReader(new Scanner(System.in));
     }
 
-    public TicTacToe(InputReader inputReader) {
+    TicTacToe(InputReader inputReader) {
         this.inputReader = inputReader;
         this.gameOptions = new GameOptions();
     }

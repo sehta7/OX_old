@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @author Ola Podorska
  */
-public class Round {
+class Round {
 
     private Player roundWinner;
     private BoardDrawer boardDrawer;
@@ -29,7 +29,7 @@ public class Round {
         this.registrar = registrar;
     }
 
-    public Round(GameOptions gameOptions, Displayer displayer) {
+    Round(GameOptions gameOptions, Displayer displayer) {
         this.gameOptions = gameOptions;
         this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
         this.displayer = displayer;
@@ -40,7 +40,7 @@ public class Round {
         startO = true;
     }
 
-    public Round(GameOptions gameOptions, Displayer displayer, Registrar registrar) {
+    Round(GameOptions gameOptions, Displayer displayer, Registrar registrar) {
         this.gameOptions = gameOptions;
         this.displayer = displayer;
         this.registrar = registrar;
@@ -133,11 +133,11 @@ public class Round {
         return new NotEmptyField(position);
     }
 
-    public Player whoIsWinner() {
+    Player whoIsWinner() {
         return roundWinner;
     }
 
-    public Player startFromFile(Map<String, Player> players, List<Position> positionList) {
+    Player startFromFile(Map<String, Player> players, List<Position> positionList) {
 
         boolean noWinner = true;
         Player smallWinner;

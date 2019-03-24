@@ -5,11 +5,11 @@ import java.util.Scanner;
 /**
  * @author Ola Podorska
  */
-public class InputReader implements Reader{
+class InputReader implements Reader{
 
     private Scanner sc;
 
-    public InputReader(Scanner scanner) {
+    InputReader(Scanner scanner) {
         this.sc = scanner;
     }
 

@@ -6,22 +6,22 @@ import java.util.Scanner;
 /**
  * @author Ola Podorska
  */
-public class Player {
+class Player {
 
     private String name;
     private Characters character;
     private int points;
     private InputReader inputReader;
 
-    public Player() {
+    Player() {
     }
 
-    public Player(String name, Characters character) {
+    Player(String name, Characters character) {
         this.name = name;
         this.character = character;
     }
 
-    public Player(String name, InputReader inputReader) {
+    Player(String name, InputReader inputReader) {
         this.name = name;
         this.inputReader = inputReader;
         this.points = 0;
@@ -42,11 +42,11 @@ public class Player {
         return Objects.hash(name, character, points);
     }
 
-    public Position chooseField() {
+    Position chooseField() {
         return inputReader.readPosition();
     }
 
-    public boolean isO() {
+    boolean isO() {
         boolean firtst = (this.character == Characters.NAUGHT);
         boolean second = (this.character.equals("O"));
         boolean thirf = (this.character.equals(Characters.NAUGHT));
@@ -67,15 +67,15 @@ public class Player {
                 '}';
     }
 
-    public void addPoint() {
+    void addPoint() {
         points++;
     }
 
-    public int checkPoints() {
+    int checkPoints() {
         return points;
     }
 
-    public void resetPoints() {
+    void resetPoints() {
         points = 0;
     }
 }

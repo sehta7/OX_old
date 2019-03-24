@@ -50,7 +50,7 @@ class Positions {
         return playersPositions;
     }
 
-    public boolean enoughToCheck() {
+    boolean enoughToCheck() {
         int size = positions.size();
         if (positions.size() > 4){
             return true;
@@ -58,22 +58,22 @@ class Positions {
         return false;
     }
 
-    public Player findPlayer(Field field) {
+    Player findPlayer(Field field) {
         return playersPositions.get(field.getPosition());
     }
 
-    public int howMuchChosenFields() {
+    int howMuchChosenFields() {
         return positions.size();
     }
 
-    public boolean hasPosition(Position position) {
+    boolean hasPosition(Position position) {
         if (positions.contains(position)){
             return true;
         }
         return false;
     }
 
-    public Queue<Position> findAllInRow(int row, Player player) {
+    Queue<Position> findAllInRow(int row, Player player) {
         Queue<Position> fields = new PriorityQueue<>(10, new PositionComparator());
         for (Position position: positions
              ) {
@@ -84,7 +84,7 @@ class Positions {
         return fields;
     }
 
-    public Queue<Position> findAllInColumn(int column, Player player) {
+    Queue<Position> findAllInColumn(int column, Player player) {
         Queue<Position> fields = new PriorityQueue<>(10, new PositionComparator());
         for (Position position: positions
         ) {
@@ -95,7 +95,7 @@ class Positions {
         return fields;
     }
 
-    public Set<Position> findAllInDiagonal(int row, int column, Player player, Size size) {
+    Set<Position> findAllInDiagonal(int row, int column, Player player, Size size) {
         Set<Position> fields = new TreeSet<>(new PositionComparator());
         int max = 0;
         if (size.getHeight() > size.getLength()){
@@ -123,11 +123,11 @@ class Positions {
         return fields;
     }
 
-    public Queue<Position>  positions() {
+    Queue<Position>  positions() {
         return positions;
     }
 
-    public void copyTo(Positions draw) {
+    void copyTo(Positions draw) {
         for (Position position: positions
         ) {
             draw.add(position);

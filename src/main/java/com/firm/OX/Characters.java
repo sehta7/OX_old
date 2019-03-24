@@ -1,6 +1,6 @@
 package com.firm.OX;
 
-public enum Characters {
+enum Characters {
 
     NAUGHT ("O"), CROSS("X");
 
@@ -10,7 +10,7 @@ public enum Characters {
         this.character = character;
     }
 
-    public String getCharacter(){
+    String getCharacter(){
         return character;
     }
 

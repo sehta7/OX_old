@@ -2,16 +2,16 @@ package com.firm.OX;
 
 import java.util.Objects;
 
-public class Size {
+class Size {
 
     private int length;
     private int height;
 
-    public Size() {
+    Size() {
         this(3,3);
     }
 
-    public Size(int length, int height) {
+    Size(int length, int height) {
         this.length = length;
         this.height = height;
     }

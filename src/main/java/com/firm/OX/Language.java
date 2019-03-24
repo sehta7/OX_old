@@ -9,7 +9,7 @@ class Language {
     private static final String PATH = "language";
     private ResourceBundle bundle;
 
-    public Language(String language) {
+    Language(String language) {
         this.language = language;
     }
 

@@ -11,13 +11,13 @@ class FromFileReader implements Reader {
     private File file;
     private BufferedReader bufferedReader;
 
-    public FromFileReader(GameOptions gameOptions, File file) throws FileNotFoundException {
+    FromFileReader(GameOptions gameOptions, File file) throws FileNotFoundException {
         this.gameOptions = gameOptions;
         this.file = file;
         bufferedReader = new BufferedReader(new FileReader(file));
     }
 
-    public void readOptions() {
+    void readOptions() {
         Player startingPlayer = readPlayer();
         gameOptions.start(startingPlayer);
         gameOptions.assignPlayers(startingPlayer, readPlayer());
@@ -25,7 +25,7 @@ class FromFileReader implements Reader {
         gameOptions.chosenCharacters(readNumberOfCharacters());
     }
 
-    public List<Position> readMove() {
+    List<Position> readMove() {
         List<Position> positions = new ArrayList<>();
         Position position;
         try {
