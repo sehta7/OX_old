@@ -22,7 +22,7 @@ class VerticallyChecker implements Checker{
         boolean winningSequence = false;
         Map<Position, Player> playerMap = positions.findPlayerPositions();
         Player player = playerMap.get(field.getPosition());
-        Queue<Position> fieldsInColumn = positions.findAllInLine(column, player);
+        Queue<Position> fieldsInColumn = positions.findAllInColumn(column, player);
         int numberOfFields = checkInLine(fieldsInColumn);
         if (numberOfFields == gameOptions.numberOfCharacters()) {
             winningSequence = true;

@@ -22,7 +22,7 @@ class HorizontallyChecker implements Checker{
         boolean winningSequence = false;
         Map<Position, Player> playerMap = positions.findPlayerPositions();
         Player player = playerMap.get(field.getPosition());
-        Queue<Position> fieldsInRow = positions.findAllInLine(row, player);
+        Queue<Position> fieldsInRow = positions.findAllInRow(row, player);
         int numberOfFields = checkInLine(fieldsInRow);
         if (numberOfFields == gameOptions.numberOfCharacters()) {
             winningSequence = true;
