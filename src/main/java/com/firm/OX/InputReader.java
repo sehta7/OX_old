@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * @author Ola Podorska
  */
-public class InputReader {
+public class InputReader implements Reader{
 
     private Scanner sc;
 

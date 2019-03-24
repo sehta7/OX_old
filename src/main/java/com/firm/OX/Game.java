@@ -1,7 +1,6 @@
 package com.firm.OX;
 
-import java.util.Collections;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Ola Podorska
@@ -19,6 +18,12 @@ public class Game {
         this.displayer = displayer;
     }
 
+    public Game(GameOptions gameOptions, HashMap<Player, Integer> points) {
+        this.gameOptions = gameOptions;
+        this.points = points;
+        this.displayer = new Displayer(new Language("en"));
+    }
+
     public void start() {
         for (int i = 0; i < 3; i++){
             displayer.displayNewRound();
@@ -34,6 +39,20 @@ public class Game {
         
         Player winner = checkWinner();
         displayer.displayWhoWin(winner);
+    }
+
+    void autoGame(List<Position> positions){
+
+        round = new Round(gameOptions, displayer, new Registrar(gameOptions));
+        gameOptions.initializeBoard();
+        while (!positions.isEmpty()) {
+            Player player = round.startFromFile(gameOptions.players(), positions);
+            if (points.containsKey(player)) {
+                points.put(player, (points.get(player) + 1));
+            } else {
+                points.put(player, 1);
+            }
+        }
     }
 
     private Player checkWinner() {

@@ -1,5 +1,6 @@
 package com.firm.OX;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,10 +18,12 @@ public class Round {
     private boolean startO;
     private Displayer displayer;
     private Registrar registrar;
+    private Positions draw;
 
     Round(BoardDrawer boardDrawer, Judge judge, Displayer displayer, Registrar registrar) {
         this.boardDrawer = boardDrawer;
         positions = new Positions(10, new PositionComparator());
+        draw = new Positions(10, new DrawerComparator());
         this.judge = judge;
         this.displayer = displayer;
         this.registrar = registrar;
@@ -32,6 +35,7 @@ public class Round {
         this.displayer = displayer;
         this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
         positions = new Positions(10, new PositionComparator());
+        draw = new Positions(10, new DrawerComparator());
         startingPlayer = gameOptions.whoStarts();
         startO = true;
     }
@@ -99,7 +103,8 @@ public class Round {
 
     private void cleanBoard(Map<String, Player> players) {
         this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
-        positions = new Positions(10, new PositionComparator());
+        this.positions = new Positions(10, new PositionComparator());
+        this.draw = new Positions(10, new DrawerComparator());
         this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
         if (startingPlayer.equals(players.get("O"))) {
             startingPlayer = players.get("X");
@@ -129,6 +134,67 @@ public class Round {
     }
 
     public Player whoIsWinner() {
+        return roundWinner;
+    }
+
+    public Player startFromFile(Map<String, Player> players, List<Position> positionList) {
+
+        boolean noWinner = true;
+        Player smallWinner;
+
+        if (startingPlayer.equals(players.get("O"))) {
+            nextPlayer = players.get("X");
+        } else {
+            nextPlayer = players.get("0");
+        }
+
+        this.draw = new Positions(10, new DrawerComparator());
+
+        while (noWinner) {
+            while (!positionList.isEmpty()) {
+                Position position = positionList.get(0);
+                positionList.remove(0);
+                Field field = new NotEmptyField(position);
+                draw.add(position);
+                if (startO) {
+                    draw.linkPlayerWithPositions(startingPlayer, position);
+                    startO = false;
+                } else {
+                    draw.linkPlayerWithPositions(nextPlayer, position);
+                    startO = true;
+                }
+                String move = boardDrawer.drawGridWithGivenPositions(draw);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (draw.enoughToCheck()) {
+                    if (judge.checkDraw(draw, gameOptions)) {
+                        displayer.displayDraw();
+                        cleanBoard(players);
+                        gameOptions.initializeBoard();
+                    }
+                    if (judge.foundSequence(field, draw)) {
+                        smallWinner = draw.findPlayer(field);
+                        smallWinner.addPoint();
+                        if (judge.checkIfWinRound(smallWinner)) {
+                            roundWinner = smallWinner;
+                            displayer.displayScores(roundWinner);
+                            noWinner = false;
+                            startingPlayer.resetPoints();
+                            nextPlayer.resetPoints();
+                        }
+                        displayer.displayScores(smallWinner);
+                        cleanBoard(players);
+                        gameOptions.initializeBoard();
+                    }
+                }
+            }
+
+            return roundWinner;
+        }
+
         return roundWinner;
     }
 }
