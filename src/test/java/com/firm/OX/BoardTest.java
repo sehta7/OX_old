@@ -43,7 +43,7 @@ public class BoardTest {
         assert (board.findField(field) instanceof NotEmptyField) : "Board can't change empty field";
     }
 
-    @Test(dataProviderClass = BoardDP.class, dataProvider = "illegalSizes", expectedExceptions = IllegalArgumentException.class)
+    @Test(dataProviderClass = BoardDP.class, dataProvider = "illegalSizes", expectedExceptions = BoardSizeException.class)
     public void testIfBoardSizeIsGreaterThanThree(Size size) {
         Board board = new Board(size);
     }

@@ -62,7 +62,7 @@ class Displayer {
         System.out.println(language.getSentence("bad_size"));
     }
 
-    public void displayChosenFieldError() {
+    void displayChosenFieldError() {
         System.out.println(language.getSentence("bad_field"));
     }
 }

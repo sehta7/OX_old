@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
  */
 
 @Test
-public class TicTacToeOptionsTest {
+public class GameOptionsTest {
 
     @Test
     public void testIfPlayerCanChooseCharacter() {

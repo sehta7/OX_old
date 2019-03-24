@@ -20,6 +20,11 @@ public class BoardDrawerDP {
                 {new Position(random.nextInt(10), random.nextInt(10))},
                 {new Position(random.nextInt(10), random.nextInt(10))},
                 {new Position(random.nextInt(10), random.nextInt(10))},
+                {new Position(random.nextInt(10), random.nextInt(10))},
+                {new Position(random.nextInt(10), random.nextInt(10))},
+                {new Position(random.nextInt(10), random.nextInt(10))},
+                {new Position(random.nextInt(10), random.nextInt(10))},
+                {new Position(random.nextInt(10), random.nextInt(10))},
                 {new Position(random.nextInt(10), random.nextInt(10))}
         };
     }
@@ -32,6 +37,11 @@ public class BoardDrawerDP {
                 {new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
                 {new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
                 {new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
+                {new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
+                {new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
+                {new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
+                {new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
+                {new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
                 {new Position(random.nextInt(MIN_ARRAY_SIZE), random.nextInt(MIN_ARRAY_SIZE)), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)}
         };
     }
@@ -40,6 +50,11 @@ public class BoardDrawerDP {
     public static Object[][] positionsWithBoardSize(){
         Random random = new Random();
         return new Object[][]{
+                {randomPositions(), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
+                {randomPositions(), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
+                {randomPositions(), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
+                {randomPositions(), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
+                {randomPositions(), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
                 {randomPositions(), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
                 {randomPositions(), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},
                 {randomPositions(), new Size(random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE, random.nextInt((MAX_ARRAY_SIZE - MIN_ARRAY_SIZE) + 1) + MIN_ARRAY_SIZE)},

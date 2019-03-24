@@ -23,6 +23,11 @@ public class InputReaderDP {
                 {new Size( a = random.nextInt(MAX_ARRAY_SIZE), b = random.nextInt(MAX_ARRAY_SIZE)), a + " " + b},
                 {new Size( a = random.nextInt(MAX_ARRAY_SIZE), b = random.nextInt(MAX_ARRAY_SIZE)), a + " " + b},
                 {new Size( a = random.nextInt(MAX_ARRAY_SIZE), b = random.nextInt(MAX_ARRAY_SIZE)), a + " " + b},
+                {new Size( a = random.nextInt(MAX_ARRAY_SIZE), b = random.nextInt(MAX_ARRAY_SIZE)), a + " " + b},
+                {new Size( a = random.nextInt(MAX_ARRAY_SIZE), b = random.nextInt(MAX_ARRAY_SIZE)), a + " " + b},
+                {new Size( a = random.nextInt(MAX_ARRAY_SIZE), b = random.nextInt(MAX_ARRAY_SIZE)), a + " " + b},
+                {new Size( a = random.nextInt(MAX_ARRAY_SIZE), b = random.nextInt(MAX_ARRAY_SIZE)), a + " " + b},
+                {new Size( a = random.nextInt(MAX_ARRAY_SIZE), b = random.nextInt(MAX_ARRAY_SIZE)), a + " " + b},
                 {new Size( a = random.nextInt(MAX_ARRAY_SIZE), b = random.nextInt(MAX_ARRAY_SIZE)), a + " " + b}
         };
     }
@@ -55,6 +60,11 @@ public class InputReaderDP {
         Random random = new Random();
         int a;
         return new Object[][]{
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
+                {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
                 {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
                 {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},
                 {a = random.nextInt(MAX_ARRAY_SIZE), "" + a},

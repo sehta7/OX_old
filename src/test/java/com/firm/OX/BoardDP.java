@@ -21,6 +21,11 @@ public class BoardDP {
                 {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))},
                 {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))},
                 {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))},
+                {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))},
+                {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))},
+                {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))},
+                {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))},
+                {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))},
                 {new Size(random.nextInt(MAX_ARRAY_SIZE), random.nextInt(MAX_ARRAY_SIZE))}
         };
     }
@@ -55,6 +60,11 @@ public class BoardDP {
     public static Object[][] fieldsToSave(){
         Random random = new Random();
         return new Object[][]{
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
+                {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
                 {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
                 {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
                 {random.nextInt(20), new Position(random.nextInt(100), random.nextInt(100))},
