@@ -73,7 +73,8 @@ class Round {
         if (judge.checkIfWinRound(smallWinner)) {
             finishRound(smallWinner);
         }
-        displayer.displayScores(smallWinner);
+        displayer.displayScore(gameOptions.players());
+        displayer.displaySeparator();
         cleanBoard(players);
         gameOptions.initializeBoard();
     }
@@ -121,6 +122,7 @@ class Round {
     }
 
     Field play(Player player) {
+        displayer.displaySeparator();
         displayer.displayQuestionAboutField();
         Position position = player.chooseField();
         if (position.hasEnd()) {
@@ -143,22 +145,15 @@ class Round {
     }
 
     Player startFromFile(Map<String, Player> players, List<Position> positionList) {
-
         boolean noWinner = true;
-        Player smallWinner;
-
         chosePlayerOrder(players);
-
         this.draw = new Positions(10, new DrawerComparator());
-
         while (noWinner) {
             while (!positionList.isEmpty()) {
                 checkNextPosition(players, positionList);
             }
-
             return roundWinner;
         }
-
         return roundWinner;
     }
 

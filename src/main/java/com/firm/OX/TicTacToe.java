@@ -31,6 +31,7 @@ class TicTacToe {
         for (int i = 0; i < 3; i++){
             displayer.displaySeparator();
             displayer.displayNewRound();
+            displayer.displaySeparator();
             round = new Round(gameOptions, displayer, new Registrar(gameOptions));
             gameOptions.initializeBoard();
             Player player = round.start(gameOptions.players());

@@ -63,11 +63,7 @@ class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", character=" + character +
-                ", points=" + points +
-                '}';
+        return name + " (" + character.getCharacter() + ")";
     }
 
     void addPoint() {

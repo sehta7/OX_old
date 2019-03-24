@@ -1,5 +1,7 @@
 package com.firm.OX;
 
+import java.util.Map;
+
 /**
  * Shows communicates on console
  *
@@ -64,5 +66,12 @@ class Displayer {
 
     void displayChosenFieldError() {
         System.out.println(language.getSentence("bad_field"));
+    }
+
+    void displayScore(Map<String, Player> players) {
+        for (Map.Entry<String, Player> entry : players.entrySet()
+             ) {
+            System.out.println(entry.getValue() + " " + language.getSentence("score")  + " " + entry.getValue().checkPoints());
+        }
     }
 }

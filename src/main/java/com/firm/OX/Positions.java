@@ -72,11 +72,22 @@ class Positions {
         return false;
     }
 
-    Queue<Position> findAllInLine(int placeNumber, Player player) {
+    Queue<Position> findAllInRow(int placeNumber, Player player) {
         Queue<Position> fields = new PriorityQueue<>(10, new PositionComparator());
         for (Position position : positions
         ) {
             if (position.getRow() == placeNumber && playersPositions.get(position).equals(player)) {
+                fields.add(position);
+            }
+        }
+        return fields;
+    }
+
+    Queue<Position> findAllInColumn(int placeNumber, Player player) {
+        Queue<Position> fields = new PriorityQueue<>(10, new PositionComparator());
+        for (Position position : positions
+        ) {
+            if (position.getColumn() == placeNumber && playersPositions.get(position).equals(player)) {
                 fields.add(position);
             }
         }
