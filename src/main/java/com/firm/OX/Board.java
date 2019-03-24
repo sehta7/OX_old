@@ -3,6 +3,11 @@ package com.firm.OX;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+/**
+ * Contains information about board
+ *
+ * @author Ola Podorska
+ */
 class Board {
 
     private Size size;
@@ -10,9 +15,6 @@ class Board {
     private Queue<Position> positions;
 
     Board(Size size) {
-        if (size.lowerThan(3)){
-            throw new IllegalArgumentException();
-        }
         this.size = size;
         this.positions = new PriorityQueue<>(10, new PositionComparator());
     }
@@ -23,8 +25,8 @@ class Board {
 
     void initialize() {
         board = new Field[size.getLength()][size.getHeight()];
-        for (int x = 0; x < size.getLength(); x++){
-            for (int y = 0; y < size.getHeight(); y++){
+        for (int x = 0; x < size.getLength(); x++) {
+            for (int y = 0; y < size.getHeight(); y++) {
                 board[x][y] = new EmptyField(new Position(x, y));
             }
         }
@@ -32,11 +34,11 @@ class Board {
 
     boolean isInitialized() {
         boolean initialized = false;
-        for (Field[] fieldsRow: board
-             ) {
-            for (Field field: fieldsRow
-                 ) {
-                if (field instanceof EmptyField){
+        for (Field[] fieldsRow : board
+        ) {
+            for (Field field : fieldsRow
+            ) {
+                if (field instanceof EmptyField) {
                     initialized = true;
                 }
             }

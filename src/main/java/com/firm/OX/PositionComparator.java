@@ -3,6 +3,9 @@ package com.firm.OX;
 import java.util.Comparator;
 
 /**
+ * Compares two positions and changes if first value of row is smaller than second,
+ * useful to searching winning sequence
+ *
  * @author Ola Podorska
  */
 class PositionComparator implements Comparator<Position> {

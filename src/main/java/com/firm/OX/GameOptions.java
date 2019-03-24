@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Contains basic information about game:
+ * players list, board size, number of winning characters, language
+ *
  * @author Ola Podorska
  */
 class GameOptions {
@@ -35,14 +38,14 @@ class GameOptions {
         }
     }
 
-    boolean isPlayerO(Player player) {
+    boolean isPlayerNaught(Player player) {
         if (player.equals(players.get("O"))){
             return true;
         }
         return false;
     }
 
-    boolean isPlayerX(Player player) {
+    boolean isPlayerCross(Player player) {
         if (player.equals(players.get("X"))){
             return true;
         }
@@ -58,9 +61,9 @@ class GameOptions {
         this.pathToFile = path;
     }
 
-    void chosenSize(Size size) {
-        if (size.lowerThan(3)){
-            throw new IllegalArgumentException("Too small size of board");
+    void chosenSize(Size size) throws BoardSizeException{
+        if (size.lowerThan(3, 3)) {
+            throw new BoardSizeException("Board must have size greater than 3x3");
         }
         boardSize = size;
         boardDrawer = new BoardDrawer(boardSize);
@@ -71,7 +74,7 @@ class GameOptions {
     }
 
     void chosenCharacters(int numberOfCharacters) {
-        winningCharacters = numberOfCharacters;
+        this.winningCharacters = numberOfCharacters;
     }
 
     int numberOfCharacters() {

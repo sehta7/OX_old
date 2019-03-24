@@ -2,19 +2,28 @@ package com.firm.OX;
 
 import java.util.Objects;
 
+/**
+ * Contains position of field in board
+ *
+ * @author Ola Podorska
+ */
 class Position {
 
     private int row;
     private int column;
-    private String end;
+
+    /**
+     * The {@link String} useful only in special case - condition for ending program
+     */
+    private String special;
 
     Position(int row, int column) {
         this.row = row;
         this.column = column;
     }
 
-    Position(String end) {
-        this.end = end;
+    Position(String special) {
+        this.special = special;
     }
 
     int getRow() {
@@ -40,7 +49,7 @@ class Position {
     }
 
     public boolean hasEnd() {
-        if (end != null){
+        if (special != null){
             return true;
         }
         return false;

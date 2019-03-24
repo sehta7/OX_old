@@ -1,10 +1,15 @@
 package com.firm.OX;
 
+/**
+ * Shows communicates on console
+ *
+ * @author Ola Podorska
+ */
 class Displayer {
 
     private Language language;
 
-    public Displayer(Language language) {
+    Displayer(Language language) {
         this.language = language;
         language.loadLanguage();
     }
@@ -49,7 +54,15 @@ class Displayer {
         System.out.println(language.getSentence("draw"));
     }
 
-    void displaySeparato(){
+    void displaySeparator(){
         System.out.println(language.getSentence("separator"));
+    }
+
+    void displayBoardSizeError() {
+        System.out.println(language.getSentence("bad_size"));
+    }
+
+    public void displayChosenFieldError() {
+        System.out.println(language.getSentence("bad_field"));
     }
 }

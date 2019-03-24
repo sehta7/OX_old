@@ -3,6 +3,11 @@ package com.firm.OX;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * Draws board with given size
+ *
+ * @author Ola Podorska
+ */
 class BoardDrawer {
 
     private Size size;
@@ -54,70 +59,27 @@ class BoardDrawer {
         return true;
     }
 
-/*    boolean drawGridWithGivenPosition(Position position) {
-        int n = position.getRow(), m = position.getColumn(), x = 60;
-        drawHeader(m);
-        for (int i = 0; i < x; i ++){
-            for (int j = 0; j < x; j++){
-
-                if (j == 0){
-                    System.out.print(i + " ");
-                }
-                if (i == n && j == m){
-                    System.out.print("|  O  ");
-                }else{
-                    System.out.print("|     ");
-                }
-            }
-            System.out.println("|");
-            System.out.print("  ");
-            String pause = " _____";
-            System.out.println(String.join("", Collections.nCopies(x, pause)));
-        }
-        return true;
-    }*/
-
-    private void drawHeader(int n){
+    private void drawHeader(int n, StringBuilder stringBuilder){
         System.out.print(" ");
+        stringBuilder.append(" ");
         for (int i = 0; i < n; i++){
             if (i < 10){
                 System.out.print("    " + i + " ");
+                stringBuilder.append("    " + i + " ");
             } else{
                 System.out.print("   " + i  + " ");
+                stringBuilder.append("   " + i  + " ");
             }
-
         }
         System.out.println();
+        stringBuilder.append(System.getProperty("line.separator"));
     }
-
-/*    boolean drawGridWithGivenPositionAnSize(Position position) {
-        int n = position.getRow(), m = position.getColumn(), x = size.getHeight(), y = size.getLength();
-        drawHeader(y);
-        for (int i = 0; i < x; i ++){
-            for (int j = 0; j < y; j++){
-
-                if (j == 0){
-                    System.out.print(i + " ");
-                }
-                if (i == n && j == m){
-                    System.out.print("|  O  ");
-                }else{
-                    System.out.print("|     ");
-                }
-            }
-            System.out.println("|");
-            System.out.print("  ");
-            String pause = " _____";
-            System.out.println(String.join("", Collections.nCopies(y, pause)));
-        }
-        return true;
-    }*/
 
     String drawGridWithGivenPositions(Positions mainPositions) {
         StringBuilder stringBuilder = new StringBuilder();
         Positions positions = mainPositions.copyPositions();
         int height = size.getHeight(), length = size.getLength(), row, column;
-        drawHeader(length);
+        drawHeader(length, stringBuilder);
         Position position = positions.remove();
         Map<Position, Player> playerMap = mainPositions.findPlayerPositions();
         for (int y = 0; y < height; y ++){
@@ -130,7 +92,7 @@ class BoardDrawer {
                     stringBuilder.append(y + " ");
                 }
                 if (y == row && x == column){
-                    if (player.isO()){
+                    if (player.isNaught()){
                         System.out.print("|  O  ");
                         stringBuilder.append("|  O  ");
                     } else{
@@ -154,6 +116,7 @@ class BoardDrawer {
             stringBuilder.append(String.join("", Collections.nCopies(length, pause)));
             stringBuilder.append(System.getProperty("line.separator"));
         }
+
 
         return stringBuilder.toString();
     }

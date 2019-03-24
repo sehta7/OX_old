@@ -3,6 +3,12 @@ package com.firm.OX;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * Loads language for game,
+ * available: polish, english
+ *
+ * @author Ola Podorska
+ */
 class Language {
 
     private String language;

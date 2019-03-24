@@ -1,9 +1,10 @@
 package com.firm.OX;
 
 import java.util.Objects;
-import java.util.Scanner;
 
 /**
+ * Container for information about player
+ *
  * @author Ola Podorska
  */
 class Player {
@@ -14,6 +15,8 @@ class Player {
     private InputReader inputReader;
 
     Player() {
+        this.name = "player";
+        this.points = 0;
     }
 
     Player(String name, Characters character) {
@@ -46,11 +49,7 @@ class Player {
         return inputReader.readPosition();
     }
 
-    boolean isO() {
-        boolean firtst = (this.character == Characters.NAUGHT);
-        boolean second = (this.character.equals("O"));
-        boolean thirf = (this.character.equals(Characters.NAUGHT));
-        boolean fourth = (character.equals(Characters.NAUGHT));
+    boolean isNaught() {
         return character.equals(Characters.NAUGHT);
     }
 

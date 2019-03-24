@@ -1,5 +1,10 @@
 package com.firm.OX;
 
+/**
+ * Available characters to play
+ *
+ * @author Ola Podorska
+ */
 enum Characters {
 
     NAUGHT ("O"), CROSS("X");

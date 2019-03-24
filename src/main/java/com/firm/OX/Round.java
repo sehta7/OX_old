@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Perform one round starting with first move to last, when player win having three points
+ *
  * @author Ola Podorska
  */
 class Round {
@@ -33,7 +35,7 @@ class Round {
         this.gameOptions = gameOptions;
         this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
         this.displayer = displayer;
-        this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
+        this.judge = new Judge(gameOptions);
         positions = new Positions(10, new PositionComparator());
         draw = new Positions(10, new DrawerComparator());
         startingPlayer = gameOptions.whoStarts();
@@ -44,7 +46,7 @@ class Round {
         this.gameOptions = gameOptions;
         this.displayer = displayer;
         this.registrar = registrar;
-        this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
+        this.judge = new Judge(gameOptions);
         this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
         positions = new Positions(10, new PositionComparator());
         startingPlayer = gameOptions.whoStarts();
@@ -81,7 +83,7 @@ class Round {
                     cleanBoard(players);
                     gameOptions.initializeBoard();
                 }
-                if (judge.foundSequence(chosenField, positions)) {
+                if (judge.isWinningSequence(chosenField, positions)) {
                     smallWinner = positions.findPlayer(chosenField);
                     smallWinner.addPoint();
                     if (judge.checkIfWinRound(smallWinner)) {
@@ -105,7 +107,7 @@ class Round {
         this.boardDrawer = new BoardDrawer(gameOptions.sizeOfBoard());
         this.positions = new Positions(10, new PositionComparator());
         this.draw = new Positions(10, new DrawerComparator());
-        this.judge = new Judge(gameOptions.sizeOfBoard(), gameOptions.numberOfCharacters());
+        this.judge = new Judge(gameOptions);
         if (startingPlayer.equals(players.get("O"))) {
             startingPlayer = players.get("X");
             nextPlayer = players.get("O");
@@ -123,13 +125,15 @@ class Round {
         if (position.hasEnd()) {
             System.exit(0);
         }
-        if (judge.isPositionGood(position, positions)) {
+        try{
+            judge.isPositionGood(position, positions);
             positions.linkPlayerWithPositions(player, position);
             positions.add(position);
-        } else {
-            System.out.println("Give proper value");
+        } catch (ChosenFieldException e){
+            displayer.displayChosenFieldError();
             play(player);
         }
+
         return new NotEmptyField(position);
     }
 
@@ -175,7 +179,7 @@ class Round {
                         cleanBoard(players);
                         gameOptions.initializeBoard();
                     }
-                    if (judge.foundSequence(field, draw)) {
+                    if (judge.isWinningSequence(field, draw)) {
                         smallWinner = draw.findPlayer(field);
                         smallWinner.addPoint();
                         if (judge.checkIfWinRound(smallWinner)) {

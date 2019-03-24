@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *Reads data form file,
+ * useful to auto game
+ *
+ * @author Ola Podorska
+ */
 class FromFileReader implements Reader {
 
     private GameOptions gameOptions;
@@ -25,7 +31,7 @@ class FromFileReader implements Reader {
         gameOptions.chosenCharacters(readNumberOfCharacters());
     }
 
-    List<Position> readMove() {
+    List<Position> readMoves() {
         List<Position> positions = new ArrayList<>();
         Position position;
         try {
@@ -49,7 +55,7 @@ class FromFileReader implements Reader {
             length = Integer.parseInt(bufferedReader.readLine());
             height = Integer.parseInt(bufferedReader.readLine());
             if (length < 3 || height < 3) {
-                throw new IllegalArgumentException();
+                throw new BoardSizeException("Board must have size greater than 3x3");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -81,7 +87,7 @@ class FromFileReader implements Reader {
         try {
             numberOfCharacters = Integer.parseInt(bufferedReader.readLine());
             if (numberOfCharacters < 3) {
-                throw new IllegalArgumentException();
+                throw new CharactersNumberException("Winning characters must be greater than 3");
             }
         } catch (IOException e) {
             e.printStackTrace();

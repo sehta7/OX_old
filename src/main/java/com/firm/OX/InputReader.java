@@ -3,6 +3,8 @@ package com.firm.OX;
 import java.util.Scanner;
 
 /**
+ * Reads data form console
+ *
  * @author Ola Podorska
  */
 class InputReader implements Reader{
@@ -17,11 +19,11 @@ class InputReader implements Reader{
         return sc.nextLine();
     }
 
-    public Size readSize() {
+    public Size readSize() throws BoardSizeException{
         int length = sc.nextInt();
         int height = sc.nextInt();
         if (length < 3 || height < 3){
-            throw new IllegalArgumentException();
+            throw new BoardSizeException("Board must have size greater than 3x3");
         }
         Size size = new Size(length, height);
         return size;
@@ -37,7 +39,7 @@ class InputReader implements Reader{
     public int readNumberOfCharacters() {
         int numberOfCharacters = sc.nextInt();
         if (numberOfCharacters < 3){
-            throw new IllegalArgumentException();
+            throw new CharactersNumberException("Winning characters must be greater than 3");
         }
         return numberOfCharacters;
     }

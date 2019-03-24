@@ -4,6 +4,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
+/**
+ * Save moves in file
+ *
+ * @author Ola Podorska
+ */
 class Registrar {
 
     private File file;

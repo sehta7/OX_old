@@ -5,15 +5,18 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 /**
+ * Container on tic-tac-toe to play auto game from file,
+ * available: setting options, start game
+ *
  * @author Ola Podorska
  */
-class TicTacToeFromFile implements GameAPI {
+class GameFromFile implements GameAPI {
 
     private GameOptions gameOptions;
     private FromFileReader fileReader;
-    private Game game;
+    private TicTacToe ticTacToe;
 
-    TicTacToeFromFile(File file) throws FileNotFoundException {
+    GameFromFile(File file) throws FileNotFoundException {
         this.gameOptions = new GameOptions();
         this.fileReader = new FromFileReader(gameOptions, file);
     }
@@ -25,8 +28,8 @@ class TicTacToeFromFile implements GameAPI {
 
     @Override
     public void startGame() {
-        game = new Game(gameOptions, new HashMap<>());
-        game.autoGame(fileReader.readMove());
+        ticTacToe = new TicTacToe(gameOptions, new HashMap<>());
+        ticTacToe.startAutoGame(fileReader.readMoves());
     }
 
     @Override

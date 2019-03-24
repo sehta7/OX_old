@@ -1,5 +1,10 @@
 package com.firm.OX;
 
+/**
+ *Contains position of one empty field from board
+ *
+ * @author Ola Podorska
+ */
 class EmptyField implements Field {
 
     private Position position;

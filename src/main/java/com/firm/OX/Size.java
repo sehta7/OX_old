@@ -2,6 +2,11 @@ package com.firm.OX;
 
 import java.util.Objects;
 
+/**
+ * Contains size of board
+ *
+ * @author Ola Podorska
+ */
 class Size {
 
     private int length;
@@ -38,8 +43,11 @@ class Size {
         return height;
     }
 
-    public boolean lowerThan(int i) {
-        if (length < i || height < i){
+    /**
+     * @return boolean if board size is proper
+     */
+    public boolean lowerThan(int length, int height) {
+        if (this.length < length || this.height < height){
             return true;
         }
         return false;

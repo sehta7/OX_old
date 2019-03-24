@@ -3,6 +3,9 @@ package com.firm.OX;
 import java.util.Comparator;
 
 /**
+ * Compares two positions and changes if first value of column is smaller than second,
+ * useful to draw board with sorted positions
+ *
  * @author Ola Podorska
  */
 class DrawerComparator implements Comparator<Position> {

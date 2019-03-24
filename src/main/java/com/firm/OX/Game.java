@@ -1,61 +1,66 @@
 package com.firm.OX;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Scanner;
 
 /**
+ * Container on tic-tac-toe to play game in console,
+ * available: setting options, start game
+ *
  * @author Ola Podorska
  */
-class Game {
+class Game implements GameAPI {
 
-    private Round round;
     private GameOptions gameOptions;
-    private Map<Player, Integer> points;
+    private InputReader inputReader;
+    private TicTacToe ticTacToe;
     private Displayer displayer;
 
-    Game(GameOptions gameOptions, Map<Player, Integer> points, Displayer displayer) {
-        this.gameOptions = gameOptions;
-        this.points = points;
-        this.displayer = displayer;
+    Game() {
+        gameOptions = new GameOptions();
+        inputReader = new InputReader(new Scanner(System.in));
     }
 
-    Game(GameOptions gameOptions, HashMap<Player, Integer> points) {
-        this.gameOptions = gameOptions;
-        this.points = points;
-        this.displayer = new Displayer(new Language("en"));
+    Game(InputReader inputReader) {
+        this.inputReader = inputReader;
+        this.gameOptions = new GameOptions();
     }
 
-    void start() {
-        for (int i = 0; i < 3; i++){
-            displayer.displayNewRound();
-            round = new Round(gameOptions, displayer, new Registrar(gameOptions));
-            gameOptions.initializeBoard();
-            Player player = round.start(gameOptions.players());
-            if (points.containsKey(player)){
-                points.put(player, (points.get(player) + 1));
-            } else{
-                points.put(player, 1);
-            }
+    @Override
+    public void setGameOptions() {
+        System.out.println("Select language: en or pl");
+        Language language = new Language(inputReader.readLanguage());
+        language.loadLanguage();
+        displayer = new Displayer(language);
+        displayer.displayQuestionWhoStarts();
+        Player startingPlayer = inputReader.readPlayer();
+        displayer.displayQuestionAboutPlayer();
+        Player player = inputReader.readPlayer();
+        displayer.displayQuestionAboutBoardSize();
+        Size size;
+        try{
+            size = inputReader.readSize();
+        } catch (BoardSizeException e){
+            displayer.displayBoardSizeError();
+            size = inputReader.readSize();
         }
-        
-        Player winner = checkWinner();
-        displayer.displayWhoWin(winner);
+        displayer.displayQuestionAboutCharacter();
+        int numberOfCharacters = inputReader.readNumberOfCharacters();
+        gameOptions.chosenSize(size);
+        gameOptions.chosenCharacters(numberOfCharacters);
+        gameOptions.start(startingPlayer);
+        gameOptions.assignPlayers(startingPlayer, player);
+        gameOptions.assignLanguage(language);
     }
 
-    void autoGame(List<Position> positions){
-
-        round = new Round(gameOptions, displayer, new Registrar(gameOptions));
-        gameOptions.initializeBoard();
-        while (!positions.isEmpty()) {
-            Player player = round.startFromFile(gameOptions.players(), positions);
-            if (points.containsKey(player)) {
-                points.put(player, (points.get(player) + 1));
-            } else {
-                points.put(player, 1);
-            }
-        }
+    @Override
+    public void startGame() {
+        ticTacToe = new TicTacToe(gameOptions, new HashMap<>(), displayer);
+        ticTacToe.startConsoleGame();
     }
 
-    private Player checkWinner() {
-        return Collections.max(points.entrySet(), (entry1, entry2) -> entry1.getValue() - entry2.getValue()).getKey();
+    @Override
+    public GameOptions gameOptions() {
+        return gameOptions;
     }
 }

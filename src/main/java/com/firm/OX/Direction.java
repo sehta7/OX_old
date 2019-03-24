@@ -1,6 +1,8 @@
 package com.firm.OX;
 
 /**
+ * Available directions to check by HorizontallyChecker
+ *
  * @author Ola Podorska
  */
 enum Direction {
