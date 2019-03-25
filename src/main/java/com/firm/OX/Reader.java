@@ -1,5 +1,7 @@
 package com.firm.OX;
 
+import java.io.IOException;
+
 /**
  * Provides methods to read data
  *
@@ -7,7 +9,7 @@ package com.firm.OX;
  */
 public interface Reader {
 
-    Size readSize();
+    Size readSize() throws IOException;
     Player readPlayer();
     int readNumberOfCharacters();
     Position readPosition();

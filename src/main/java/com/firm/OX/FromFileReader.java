@@ -2,6 +2,7 @@ package com.firm.OX;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,7 +28,11 @@ class FromFileReader implements Reader {
         Player startingPlayer = readPlayer();
         gameOptions.start(startingPlayer);
         gameOptions.assignPlayers(startingPlayer, readPlayer());
-        gameOptions.chosenSize(readSize());
+        try {
+            gameOptions.chosenSize(readSize());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         gameOptions.chosenCharacters(readNumberOfCharacters());
     }
 
@@ -49,14 +54,19 @@ class FromFileReader implements Reader {
         return positions;
     }
 
-    public Size readSize() {
+    public Size readSize() throws IOException {
         int length = 0, height = 0;
+
         try {
             length = Integer.parseInt(bufferedReader.readLine());
             height = Integer.parseInt(bufferedReader.readLine());
             if (length < 3 || height < 3) {
                 throw new BoardSizeException("Board must have size greater than 3x3");
             }
+        } catch (InputMismatchException e) {
+            System.out.println("Number please..");
+            length = Integer.parseInt(bufferedReader.readLine());
+            height = Integer.parseInt(bufferedReader.readLine());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package com.firm.OX;
 
 import java.util.HashMap;
+import java.util.MissingResourceException;
 import java.util.Scanner;
 
 /**
@@ -29,7 +30,7 @@ class Game implements GameAPI {
     @Override
     public void setGameOptions() {
         System.out.println("Select language: en or pl");
-        Language language = new Language(inputReader.readLanguage());
+        Language language = new Language(askAboutLanguage());
         language.loadLanguage();
         displayer = new Displayer(language);
         displayer.displayQuestionWhoStarts();
@@ -38,12 +39,7 @@ class Game implements GameAPI {
         Player player = inputReader.readPlayer();
         displayer.displayQuestionAboutBoardSize();
         Size size;
-        try{
-            size = inputReader.readSize();
-        } catch (BoardSizeException e){
-            displayer.displayBoardSizeError();
-            size = inputReader.readSize();
-        }
+        size = getSizeWithException();
         displayer.displayQuestionAboutCharacter();
         int numberOfCharacters = inputReader.readNumberOfCharacters();
         gameOptions.chosenSize(size);
@@ -51,6 +47,30 @@ class Game implements GameAPI {
         gameOptions.start(startingPlayer);
         gameOptions.assignPlayers(startingPlayer, player);
         gameOptions.assignLanguage(language);
+    }
+
+    private String askAboutLanguage() {
+        while (true){
+            try{
+                return inputReader.readLanguage();
+            } catch (LanguageException e){
+                System.out.println("Choose only available language");
+            }
+        }
+    }
+
+    private Size getSizeWithException() {
+        while (true) {
+            try {
+                return inputReader.readSize();
+            } catch (BoardSizeException e) {
+                displayer.displayBoardSizeError();
+            }
+            catch (NumberFormatException e){
+                System.out.println("Number please..");
+                displayer.displayChosenFieldError();
+            }
+        }
     }
 
     @Override

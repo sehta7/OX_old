@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static org.testng.Assert.*;
 
@@ -31,6 +32,8 @@ public class FromFileReaderTest {
             Reader reader = new FromFileReader(new GameOptions(), file);
             readSize = reader.readSize();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         Size size = new Size(10, 10);
