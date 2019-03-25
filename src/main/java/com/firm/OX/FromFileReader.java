@@ -17,11 +17,13 @@ class FromFileReader implements Reader {
     private GameOptions gameOptions;
     private File file;
     private BufferedReader bufferedReader;
+    private Displayer displayer;
 
-    FromFileReader(GameOptions gameOptions, File file) throws FileNotFoundException {
+    FromFileReader(GameOptions gameOptions, File file, Displayer displayer) throws FileNotFoundException {
         this.gameOptions = gameOptions;
         this.file = file;
         bufferedReader = new BufferedReader(new FileReader(file));
+        this.displayer = displayer;
     }
 
     void readOptions() {
@@ -85,7 +87,7 @@ class FromFileReader implements Reader {
 
         Player startingPlayer = null;
         try {
-            startingPlayer = new Player(name, new InputReader(new Scanner(file)));
+            startingPlayer = new Player(name, new InputReader(new Scanner(file), displayer));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

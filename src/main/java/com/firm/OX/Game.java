@@ -1,7 +1,6 @@
 package com.firm.OX;
 
 import java.util.HashMap;
-import java.util.MissingResourceException;
 import java.util.Scanner;
 
 /**
@@ -19,7 +18,7 @@ class Game implements GameAPI {
 
     Game() {
         gameOptions = new GameOptions();
-        inputReader = new InputReader(new Scanner(System.in));
+        inputReader = new InputReader(new Scanner(System.in), new Displayer(new Language("en")));
     }
 
     Game(InputReader inputReader) {
@@ -54,7 +53,7 @@ class Game implements GameAPI {
             try{
                 return inputReader.readLanguage();
             } catch (LanguageException e){
-                System.out.println("Choose only available language");
+                displayer.displayLanguageError();
             }
         }
     }
@@ -67,7 +66,6 @@ class Game implements GameAPI {
                 displayer.displayBoardSizeError();
             }
             catch (NumberFormatException e){
-                System.out.println("Number please..");
                 displayer.displayChosenFieldError();
             }
         }

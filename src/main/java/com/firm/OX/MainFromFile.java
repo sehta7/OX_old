@@ -9,7 +9,8 @@ public class MainFromFile {
 
     public static void main(String[] args) {
 
-        File all3 = new File("\\home\\ola\\Desktop\\3_3_3_h.txt");
+        //File file = new File("C:\\Users\\Olka\\Desktop\\3_3_3.txt");
+        File all3 = new File("C:\\Users\\Olka\\Desktop\\3_3_3_h.txt");
 
         try (FileWriter fw = new FileWriter(all3)) {
             fw.write("player1");

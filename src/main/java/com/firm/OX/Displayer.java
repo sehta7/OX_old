@@ -74,4 +74,12 @@ class Displayer {
             System.out.println(entry.getValue() + " " + language.getSentence("score")  + " " + entry.getValue().checkPoints());
         }
     }
+
+    void displayLanguageError() {
+        System.out.println(language.getSentence("bad_lang"));
+    }
+
+    void displayNumberError() {
+        System.out.println(language.getSentence("bad_num"));
+    }
 }

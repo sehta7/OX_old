@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static org.testng.Assert.*;
-
 public class FromFileReaderTest {
 
     @Test
@@ -15,7 +13,7 @@ public class FromFileReaderTest {
         Player readPlayer = new Player();
         try {
             File file = new File("C:\\Users\\Olka\\Desktop\\test_player.txt");
-            Reader reader = new FromFileReader(new GameOptions(), file);
+            Reader reader = new FromFileReader(new GameOptions(), file, new Displayer(new Language("en")));
             readPlayer = reader.readPlayer();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -29,7 +27,7 @@ public class FromFileReaderTest {
         Size readSize = new Size();
         try {
             File file = new File("C:\\Users\\Olka\\Desktop\\test_size.txt");
-            Reader reader = new FromFileReader(new GameOptions(), file);
+            Reader reader = new FromFileReader(new GameOptions(), file, new Displayer(new Language("en")));
             readSize = reader.readSize();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -45,7 +43,7 @@ public class FromFileReaderTest {
         int readCharacter = 0;
         try {
             File file = new File("C:\\Users\\Olka\\Desktop\\test_characters.txt");
-            Reader reader = new FromFileReader(new GameOptions(), file);
+            Reader reader = new FromFileReader(new GameOptions(), file, new Displayer(new Language("en")));
             readCharacter = reader.readNumberOfCharacters();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -58,7 +56,7 @@ public class FromFileReaderTest {
         Position readPosition = new Position("new");
         try {
             File file = new File("C:\\Users\\Olka\\Desktop\\test_position.txt");
-            Reader reader = new FromFileReader(new GameOptions(), file);
+            Reader reader = new FromFileReader(new GameOptions(), file, new Displayer(new Language("en")));
             readPosition = reader.readPosition();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -70,6 +68,6 @@ public class FromFileReaderTest {
     @Test(expectedExceptions = FileNotFoundException.class)
     public void testIfThrowExceptionWhenLackOfFile() throws FileNotFoundException {
         File file = new File("C:\\Users\\Olka\\Desktop\\test.txt");
-        Reader reader = new FromFileReader(new GameOptions(), file);
+        Reader reader = new FromFileReader(new GameOptions(), file, new Displayer(new Language("en")));
     }
 }

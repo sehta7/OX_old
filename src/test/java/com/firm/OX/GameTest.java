@@ -14,7 +14,7 @@ public class GameTest {
     @Test
     public void testIfChosenOptionsAreSaved() {
         String input = "jacek\nbasia\n100 100\n10\n";
-        InputReader inputReader = new InputReader(new Scanner(input));
+        InputReader inputReader = new InputReader(new Scanner(input), new Displayer(new Language("en")));
         Game ticTacToe = new Game(inputReader);
         ticTacToe.setGameOptions();
         assert (ticTacToe.gameOptions().sizeOfBoard().equals(new Size(100, 100))) : "Size of board wasn't save in game options";
@@ -26,7 +26,7 @@ public class GameTest {
     @Test
     public void testIfBoardCanBeInitialized() {
         String input = "jacek\nbasia\n15 10\n10\n";
-        InputReader inputReader = new InputReader(new Scanner(input));
+        InputReader inputReader = new InputReader(new Scanner(input), new Displayer(new Language("en")));
         Game ticTacToe = new Game(inputReader);
         ticTacToe.setGameOptions();
     }

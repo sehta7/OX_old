@@ -18,7 +18,7 @@ class GameFromFile implements GameAPI {
 
     GameFromFile(File file) throws FileNotFoundException {
         this.gameOptions = new GameOptions();
-        this.fileReader = new FromFileReader(gameOptions, file);
+        this.fileReader = new FromFileReader(gameOptions, file, new Displayer(new Language("en")));
     }
 
     @Override

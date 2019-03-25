@@ -1,7 +1,5 @@
 package com.firm.OX;
 
-import java.util.InputMismatchException;
-import java.util.MissingResourceException;
 import java.util.Scanner;
 
 /**
@@ -12,9 +10,11 @@ import java.util.Scanner;
 class InputReader implements Reader {
 
     private Scanner sc;
+    private Displayer displayer;
 
-    InputReader(Scanner scanner) {
+    InputReader(Scanner scanner, Displayer displayer) {
         this.sc = scanner;
+        this.displayer = displayer;
     }
 
     String readLanguage() throws LanguageException{
@@ -30,13 +30,14 @@ class InputReader implements Reader {
             try {
                 return sc.nextLine();
             } catch (NumberFormatException e) {
-                System.err.println("Choose only available languages");
+                displayer.displayLanguageError();
             }
         }
     }
 
     public Size readSize() throws BoardSizeException {
-        int length = askAgain(), height = askAgain();
+        int length = askAgain();
+        int height = askAgain();
         if (length < 3 || height < 3) {
             throw new BoardSizeException("Board must have size greater than 3x3");
         }
@@ -47,12 +48,10 @@ class InputReader implements Reader {
     private int askAgain() {
         while (true) {
             try {
-                String len = sc.nextLine();
-                String h = sc.nextLine();
-                int length = Integer.parseInt(len);
-                int height = Integer.parseInt(h);
+                String num = sc.nextLine();
+                return Integer.parseInt(num);
             } catch (NumberFormatException e) {
-                System.err.println("Give number!");
+                displayer.displayNumberError();
             }
         }
     }
@@ -60,12 +59,12 @@ class InputReader implements Reader {
 
     public Player readPlayer() {
         String name = sc.nextLine();
-        Player startingPlayer = new Player(name, new InputReader(sc));
+        Player startingPlayer = new Player(name, new InputReader(sc, displayer));
         return startingPlayer;
     }
 
     public int readNumberOfCharacters() {
-        int numberOfCharacters = sc.nextInt();
+        int numberOfCharacters = askAgain();
         if (numberOfCharacters < 3) {
             throw new CharactersNumberException("Winning characters must be greater than 3");
         }
@@ -77,8 +76,8 @@ class InputReader implements Reader {
         if (whatIsThat.toLowerCase().equals("q")) {
             return new Position("end of game");
         } else {
-            int column = Integer.valueOf(whatIsThat);
-            int row = sc.nextInt();
+            int column = askAgain();
+            int row = askAgain();
             Position position = new Position(row, column);
             return position;
         }
