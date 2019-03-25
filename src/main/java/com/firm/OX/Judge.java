@@ -41,11 +41,14 @@ class Judge {
         return false;
     }
 
-    boolean checkIfWinRound(Player winner) {
-        if (winner.checkPoints() == 3) {
-            return true;
+    Player checkWhoWinRound(Map<String, Player> players) {
+        int naughtScores = players.get("O").checkPoints();
+        int crossScores = players.get("X").checkPoints();
+        if (naughtScores > crossScores) {
+            return players.get("O");
+        } else {
+            return players.get("X");
         }
-        return false;
     }
 
     boolean checkDraw(Positions positions, GameOptions gameOptions) {
@@ -59,5 +62,12 @@ class Judge {
         if (position.getRow() > gameOptions.sizeOfBoard().getLength() || position.getColumn() > gameOptions.sizeOfBoard().getHeight() || positions.hasPosition(position)) {
             throw new ChosenFieldException("Chosen field must be free and in board");
         }
+    }
+
+    boolean checkIfEndOfRound(int counter) {
+        if (counter == 3){
+            return true;
+        }
+        return false;
     }
 }

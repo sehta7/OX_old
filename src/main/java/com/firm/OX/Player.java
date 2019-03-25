@@ -66,8 +66,8 @@ class Player {
         return name + " (" + character.getCharacter() + ")";
     }
 
-    void addPoint() {
-        points++;
+    void addPoints() {
+        this.points = this.points + 3;
     }
 
     int checkPoints() {
@@ -76,5 +76,9 @@ class Player {
 
     void resetPoints() {
         points = 0;
+    }
+
+    public void addPoint() {
+        this.points = this.points + 1;
     }
 }

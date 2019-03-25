@@ -36,9 +36,9 @@ class TicTacToe {
             gameOptions.initializeBoard();
             Player player = round.start(gameOptions.players());
             if (points.containsKey(player)){
-                points.put(player, (points.get(player) + 1));
+                points.put(player, (points.get(player) + player.checkPoints()));
             } else{
-                points.put(player, 1);
+                points.put(player, player.checkPoints());
             }
         }
         Player winner = checkWinner();
@@ -51,9 +51,9 @@ class TicTacToe {
         while (!positions.isEmpty()) {
             Player player = round.startFromFile(gameOptions.players(), positions);
             if (points.containsKey(player)) {
-                points.put(player, (points.get(player) + 1));
+                points.put(player, (points.get(player) + player.checkPoints()));
             } else {
-                points.put(player, 1);
+                points.put(player, player.checkPoints());
             }
         }
     }

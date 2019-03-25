@@ -21,6 +21,7 @@ class Round {
     private Displayer displayer;
     private Registrar registrar;
     private Positions draw;
+    private int counter;
 
     Round(GameOptions gameOptions, Displayer displayer, Registrar registrar) {
         this.gameOptions = gameOptions;
@@ -31,6 +32,7 @@ class Round {
         positions = new Positions(10, new PositionComparator());
         startingPlayer = gameOptions.whoStarts();
         startO = true;
+        counter = 0;
     }
 
     Player start(Map<String, Player> players) {
@@ -56,33 +58,43 @@ class Round {
     }
 
     private boolean checkPositions(Map<String, Player> players, boolean noWinner, Field chosenField) {
-        Player smallWinner;
         if (judge.checkDraw(positions, gameOptions)) {
             showDraw(players);
         }
         if (judge.isWinningSequence(chosenField, positions)) {
-            saveVictory(players, chosenField, positions);
+            noWinner = saveVictory(players, chosenField, positions, noWinner);
         }
         return noWinner;
     }
 
-    private void saveVictory(Map<String, Player> players, Field chosenField, Positions positions) {
+    private boolean saveVictory(Map<String, Player> players, Field chosenField, Positions positions, boolean noWinner) {
         Player smallWinner;
         smallWinner = positions.findPlayer(chosenField);
-        smallWinner.addPoint();
-        if (judge.checkIfWinRound(smallWinner)) {
-            finishRound(smallWinner);
+        smallWinner.addPoints();
+        counter++;
+        if (judge.checkIfEndOfRound(counter)) {
+            this.roundWinner = judge.checkWhoWinRound(players);
+            noWinner = finishRound();
+            return noWinner;
         }
-        displayer.displayScore(gameOptions.players());
+        displayer.displayScore(players);
         displayer.displaySeparator();
+        cleanBoard(players);
+        gameOptions.initializeBoard();
+        return noWinner;
+    }
+
+    private void showDraw(Map<String, Player> players) {
+        addPoint(players);
+        displayer.displayDraw();
+        displayer.displayScore(players);
         cleanBoard(players);
         gameOptions.initializeBoard();
     }
 
-    private void showDraw(Map<String, Player> players) {
-        displayer.displayDraw();
-        cleanBoard(players);
-        gameOptions.initializeBoard();
+    private void addPoint(Map<String, Player> players) {
+        players.get("O").addPoint();
+        players.get("X").addPoint();
     }
 
     private Field chooseField(Map<String, Player> players) {
@@ -150,14 +162,14 @@ class Round {
         this.draw = new Positions(10, new DrawerComparator());
         while (noWinner) {
             while (!positionList.isEmpty()) {
-                checkNextPosition(players, positionList);
+                checkNextPosition(players, positionList, noWinner);
             }
             return roundWinner;
         }
         return roundWinner;
     }
 
-    private void checkNextPosition(Map<String, Player> players, List<Position> positionList) {
+    private void checkNextPosition(Map<String, Player> players, List<Position> positionList, boolean noWinner) {
         Position position = positionList.get(0);
         positionList.remove(0);
         Field field = new NotEmptyField(position);
@@ -174,7 +186,7 @@ class Round {
                 showDraw(players);
             }
             if (judge.isWinningSequence(field, draw)) {
-                saveVictory(players, field, draw);
+                saveVictory(players, field, draw, noWinner);
             }
         }
     }
@@ -189,11 +201,11 @@ class Round {
         }
     }
 
-    private void finishRound(Player smallWinner) {
-        roundWinner = smallWinner;
+    private boolean finishRound() {
         displayer.displayScores(roundWinner);
         startingPlayer.resetPoints();
         nextPlayer.resetPoints();
+        return false;
     }
 
     void setWinner(Player player){
