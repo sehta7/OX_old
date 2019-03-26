@@ -9,15 +9,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * Create all wining positions vertically
+ * Create all wining positions horizontally
  *
  * @author Ola Podorska
  */
-class AutomatCreatorVertically implements AutomatCreator {
+class AutomatCreatorHorizontally implements AutomatCreator {
 
     @Override
     public void createFile(int length, int height, int winningCharacters) {
-        String name = "/home/ola/Desktop/" + length + "_" + height + "_" + winningCharacters + "_v.txt";
+        String name = "/home/ola/Desktop/" + length + "_" + height + "_" + winningCharacters + "_h.txt";
         File file = new File(name);
         try(FileWriter fr = new FileWriter(file)){
             fr.write("player1");
@@ -60,7 +60,7 @@ class AutomatCreatorVertically implements AutomatCreator {
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < height; j++) {
-                positions.add(new Position(j, i));
+                positions.add(new Position(i, j));
             }
         }
         return positions;
@@ -71,10 +71,10 @@ class AutomatCreatorVertically implements AutomatCreator {
         List<List<Position>> allWinings = new ArrayList<>();
         for (Position position : availablePositions
         ) {
-            if (hasEnoughNext(position, winningCharacters, height)) {
+            if (hasEnoughNext(position, winningCharacters, length)) {
                 winning = addPositions(position, winningCharacters, availablePositions);
             }
-            if (hasEnoughNext(position, winningCharacters, height)) {
+            if (hasEnoughNext(position, winningCharacters, length)) {
                 allWinings.add(winning);
             }
         }
@@ -91,7 +91,7 @@ class AutomatCreatorVertically implements AutomatCreator {
     }
 
     boolean hasEnoughNext(Position position, int winningCharacters, int height) {
-        return (height > (position.getRow() + winningCharacters - 1));
+        return (height > (position.getColumn() + winningCharacters - 1));
     }
 
     Position randomMove(List<Position> positions) {

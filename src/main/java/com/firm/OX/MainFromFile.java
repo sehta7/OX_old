@@ -12,7 +12,8 @@ public class MainFromFile {
         int length = sc.nextInt();
         int height = sc.nextInt();
         int winningCharacters = sc.nextInt();
-        String name = "/home/ola/Desktop/" + length + "_" + height + "_" + winningCharacters + "_h.txt";
+        String type = sc.next();
+        String name = "/home/ola/Desktop/" + length + "_" + height + "_" + winningCharacters + "_" + type + ".txt";
 
         File file = new File(name);
         try{
