@@ -30,11 +30,11 @@ class AutomatCreatorVertically implements AutomatCreator {
             fr.write(System.getProperty("line.separator"));
             fr.write(String.valueOf(winningCharacters));
             fr.write(System.getProperty("line.separator"));
-            List<Position> allAvailablePositions = availableFields(length, height);
-            List<List<Position>> winningPositions = winning(allAvailablePositions, height, winningCharacters, length);
+            List<Position> allAvailablePositions = availableFields(height, length);
+            List<List<Position>> winningPositions = winning(allAvailablePositions, length, winningCharacters, height);
             for (List<Position> winning: winningPositions
             ) {
-                allAvailablePositions = availableFields(length, height);
+                allAvailablePositions = availableFields(height, length);
                 List<Position> positionsWithoutWinning = positionsWithoutWinning(allAvailablePositions, winning);
                 while (!winning.isEmpty()) {
                     fr.write(String.valueOf(winning.get(0).getRow()));
@@ -84,14 +84,16 @@ class AutomatCreatorVertically implements AutomatCreator {
     private List<Position> addPositions(Position position, int winningCharacters, List<Position> availablePositions) {
         List<Position> winning = new ArrayList<>();
         int index = availablePositions.indexOf(position);
-        for (int i = index; i < index + winningCharacters; i++) {
-            winning.add(availablePositions.get(i));
+        if (index > availablePositions.size()) {
+            for (int i = index; i < index + winningCharacters; i++) {
+                winning.add(availablePositions.get(i));
+            }
         }
         return winning;
     }
 
-    boolean hasEnoughNext(Position position, int winningCharacters, int height) {
-        return (height > (position.getRow() + winningCharacters - 1));
+    boolean hasEnoughNext(Position position, int winningCharacters, int length) {
+        return (length > (position.getRow() + winningCharacters - 1));
     }
 
     Position randomMove(List<Position> positions) {

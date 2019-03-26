@@ -9,17 +9,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * Create all wining positions horizontally
+ * Create all wining positions vertically
  *
  * @author Ola Podorska
  */
-class AutomatCreatorHorizontally implements AutomatCreator {
+class AutomatCreatorDiagonally implements AutomatCreator {
 
     @Override
     public void createFile(int length, int height, int winningCharacters) {
-        String name = "/home/ola/Desktop/" + length + "_" + height + "_" + winningCharacters + "_h.txt";
+        String name = "/home/ola/Desktop/" + length + "_" + height + "_" + winningCharacters + "_v.txt";
         File file = new File(name);
-        try (FileWriter fr = new FileWriter(file)) {
+        try(FileWriter fr = new FileWriter(file)){
             fr.write("player1");
             fr.write(System.getProperty("line.separator"));
             fr.write("player2");
@@ -32,7 +32,7 @@ class AutomatCreatorHorizontally implements AutomatCreator {
             fr.write(System.getProperty("line.separator"));
             List<Position> allAvailablePositions = availableFields(length, height);
             List<List<Position>> winningPositions = winning(allAvailablePositions, height, winningCharacters, length);
-            for (List<Position> winning : winningPositions
+            for (List<Position> winning: winningPositions
             ) {
                 allAvailablePositions = availableFields(length, height);
                 List<Position> positionsWithoutWinning = positionsWithoutWinning(allAvailablePositions, winning);
@@ -42,7 +42,7 @@ class AutomatCreatorHorizontally implements AutomatCreator {
                     fr.write(String.valueOf(winning.get(0).getColumn()));
                     fr.write(System.getProperty("line.separator"));
                     winning.remove(0);
-                    if (!winning.isEmpty()) {
+                    if (!winning.isEmpty()){
                         Position randomMove = randomMove(positionsWithoutWinning);
                         fr.write(String.valueOf(randomMove.getRow()));
                         fr.write(System.getProperty("line.separator"));
@@ -51,7 +51,7 @@ class AutomatCreatorHorizontally implements AutomatCreator {
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException e){
 
         }
     }
@@ -60,7 +60,7 @@ class AutomatCreatorHorizontally implements AutomatCreator {
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < height; j++) {
-                positions.add(new Position(i, j));
+                positions.add(new Position(j, i));
             }
         }
         return positions;
@@ -71,10 +71,10 @@ class AutomatCreatorHorizontally implements AutomatCreator {
         List<List<Position>> allWinings = new ArrayList<>();
         for (Position position : availablePositions
         ) {
-            if (hasEnoughNext(position, winningCharacters, length)) {
+            if (hasEnoughNext(position, winningCharacters, height)) {
                 winning = addPositions(position, winningCharacters, availablePositions);
             }
-            if (hasEnoughNext(position, winningCharacters, length)) {
+            if (hasEnoughNext(position, winningCharacters, height)) {
                 allWinings.add(winning);
             }
         }
@@ -91,7 +91,7 @@ class AutomatCreatorHorizontally implements AutomatCreator {
     }
 
     boolean hasEnoughNext(Position position, int winningCharacters, int height) {
-        return (height > (position.getColumn() + winningCharacters - 1));
+        return (height > (position.getRow() + winningCharacters - 1));
     }
 
     Position randomMove(List<Position> positions) {
@@ -112,7 +112,7 @@ class AutomatCreatorHorizontally implements AutomatCreator {
         int length = sc.nextInt();
         int height = sc.nextInt();
         int winningCharacters = sc.nextInt();
-        AutomatCreator creator = new AutomatCreatorHorizontally();
+        AutomatCreator creator = new AutomatCreatorDiagonally();
         creator.createFile(length, height, winningCharacters);
     }
 }
