@@ -19,11 +19,13 @@ class Game implements GameAPI {
     Game() {
         gameOptions = new GameOptions();
         inputReader = new InputReader(new Scanner(System.in), new Displayer(new Language("en")));
+        this. displayer = new Displayer(new Language("en"));
     }
 
     Game(InputReader inputReader) {
         this.inputReader = inputReader;
         this.gameOptions = new GameOptions();
+        this. displayer = new Displayer(new Language("en"));
     }
 
     @Override

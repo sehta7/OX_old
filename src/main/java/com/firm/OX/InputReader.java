@@ -11,6 +11,7 @@ class InputReader implements Reader {
 
     private Scanner sc;
     private Displayer displayer;
+    private boolean end;
 
     InputReader(Scanner scanner, Displayer displayer) {
         this.sc = scanner;
@@ -48,7 +49,10 @@ class InputReader implements Reader {
     private int askAgain() {
         while (true) {
             try {
-                String num = sc.nextLine();
+                String num = sc.next();
+                if (num.equals("")){
+                    num = sc.next();
+                }
                 return Integer.parseInt(num);
             } catch (NumberFormatException e) {
                 displayer.displayNumberError();
@@ -72,14 +76,23 @@ class InputReader implements Reader {
     }
 
     public Position readPosition() {
-        String whatIsThat = sc.next();
-        if (whatIsThat.toLowerCase().equals("q")) {
+        String readEnd = readEnd();
+        if (end){
             return new Position("end of game");
-        } else {
-            int column = askAgain();
+        } else{
+            int column = Integer.parseInt(readEnd);
             int row = askAgain();
             Position position = new Position(row, column);
             return position;
         }
+    }
+
+    String readEnd(){
+        String isEnd = sc.next();
+        if (isEnd.toLowerCase().equals("q")) {
+            end = true;
+            return "end";
+        }
+        return isEnd;
     }
 }
