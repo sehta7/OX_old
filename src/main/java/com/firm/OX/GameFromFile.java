@@ -28,8 +28,8 @@ class GameFromFile implements GameAPI {
 
     @Override
     public void startGame() {
-        ticTacToe = new TicTacToe(gameOptions, new HashMap<>());
-        ticTacToe.startAutoGame(fileReader.readMoves());
+        Round round = new Round(gameOptions, new Displayer(new Language("en")), new Registrar(gameOptions));
+        round.startFromFile(gameOptions.players(), fileReader.readMoves());
     }
 
     @Override

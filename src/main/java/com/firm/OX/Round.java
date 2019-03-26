@@ -186,7 +186,9 @@ class Round {
                 showDraw(players);
             }
             if (judge.isWinningSequence(field, draw)) {
-                saveVictory(players, field, draw, noWinner);
+                System.out.println("Winning!");
+                displayer.displaySeparator();
+                draw = new Positions(10, new DrawerComparator());
             }
         }
     }

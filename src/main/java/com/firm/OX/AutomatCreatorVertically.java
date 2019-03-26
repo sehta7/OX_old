@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Create all wining positions vertically
@@ -16,8 +17,19 @@ class AutomatCreatorVertically implements AutomatCreator {
 
     @Override
     public void createFile(int length, int height, int winningCharacters) {
-        File file = new File("C:\\Users\\Olka\\Desktop\\4_4_3_h.txt");
+        String name = "/home/ola/Desktop/" + length + "_" + height + "_" + winningCharacters + "_h.txt";
+        File file = new File(name);
         try(FileWriter fr = new FileWriter(file)){
+            fr.write("player1");
+            fr.write(System.getProperty("line.separator"));
+            fr.write("player2");
+            fr.write(System.getProperty("line.separator"));
+            fr.write(String.valueOf(length));
+            fr.write(System.getProperty("line.separator"));
+            fr.write(String.valueOf(height));
+            fr.write(System.getProperty("line.separator"));
+            fr.write(String.valueOf(winningCharacters));
+            fr.write(System.getProperty("line.separator"));
             List<Position> allAvailablePositions = availableFields(length, height);
             List<List<Position>> winningPositions = winning(allAvailablePositions, height, winningCharacters, length);
             for (List<Position> winning: winningPositions
@@ -29,7 +41,6 @@ class AutomatCreatorVertically implements AutomatCreator {
                     fr.write(System.getProperty("line.separator"));
                     fr.write(String.valueOf(winning.get(0).getColumn()));
                     fr.write(System.getProperty("line.separator"));
-                    //System.out.println(winning.get(0));
                     winning.remove(0);
                     if (!winning.isEmpty()){
                         Position randomMove = randomMove(positionsWithoutWinning);
@@ -37,7 +48,6 @@ class AutomatCreatorVertically implements AutomatCreator {
                         fr.write(System.getProperty("line.separator"));
                         fr.write(String.valueOf(randomMove.getColumn()));
                         fr.write(System.getProperty("line.separator"));
-                        //System.out.println(randomMove(positionsWithoutWinning));
                     }
                 }
             }
@@ -98,7 +108,11 @@ class AutomatCreatorVertically implements AutomatCreator {
     }
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int length = sc.nextInt();
+        int height = sc.nextInt();
+        int winningCharacters = sc.nextInt();
         AutomatCreator creator = new AutomatCreatorVertically();
-        creator.createFile(4, 4, 3);
+        creator.createFile(length, height, winningCharacters);
     }
 }
