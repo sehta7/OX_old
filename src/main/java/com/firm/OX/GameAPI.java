@@ -6,7 +6,7 @@ package com.firm.OX;
  *
  * @author Ola Podorska
  */
-public interface GameAPI {
+interface GameAPI {
 
     void setGameOptions();
     void startGame();

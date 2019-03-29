@@ -7,7 +7,7 @@ import java.io.IOException;
  *
  * @author Ola Podorska
  */
-public interface Reader {
+interface Reader {
 
     Size readSize() throws IOException;
     Player readPlayer();

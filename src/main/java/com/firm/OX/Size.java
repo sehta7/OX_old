@@ -47,10 +47,7 @@ class Size {
      * @return boolean if board size is proper
      */
     public boolean lowerThan(int length, int height) {
-        if (this.length < length || this.height < height){
-            return true;
-        }
-        return false;
+        return this.length < length || this.height < height;
     }
 
     @Override

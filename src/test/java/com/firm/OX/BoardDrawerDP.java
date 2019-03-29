@@ -63,7 +63,7 @@ public class BoardDrawerDP {
         };
     }
 
-    public static Positions randomPositions(){
+    private static Positions randomPositions(){
         Random random = new Random();
         Positions positions = new Positions(10, new PositionComparator());
         for (int i = 0; i < random.nextInt(10) + 1; i++){

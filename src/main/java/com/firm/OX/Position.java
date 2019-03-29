@@ -49,10 +49,7 @@ class Position {
     }
 
     public boolean hasEnd() {
-        if (special != null){
-            return true;
-        }
-        return false;
+        return special != null;
     }
 
     boolean hasNextInRow(Position element) {

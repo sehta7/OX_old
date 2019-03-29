@@ -5,6 +5,6 @@ package com.firm.OX;
  *
  * @author Ola Podorska
  */
-public interface Field {
+interface Field {
     Position getPosition();
 }

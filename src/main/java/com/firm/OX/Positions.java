@@ -8,8 +8,8 @@ import java.util.*;
  * @author Ola Podorska
  */
 class Positions {
-    Queue<Position> positions;
-    Map<Position, Player> playersPositions;
+    private Queue<Position> positions;
+    private Map<Position, Player> playersPositions;
 
     Positions(int size, PositionComparator positionComparator) {
         positions = new PriorityQueue<>(size, positionComparator);
@@ -51,10 +51,7 @@ class Positions {
     }
 
     boolean enoughToCheck() {
-        if (positions.size() > 4) {
-            return true;
-        }
-        return false;
+        return positions.size() > 4;
     }
 
     Player findPlayer(Field field) {
@@ -66,10 +63,7 @@ class Positions {
     }
 
     boolean hasPosition(Position position) {
-        if (positions.contains(position)) {
-            return true;
-        }
-        return false;
+        return positions.contains(position);
     }
 
     Queue<Position> findAllInRow(int placeNumber, Player player) {

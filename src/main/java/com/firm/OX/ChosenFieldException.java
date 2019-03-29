@@ -5,7 +5,7 @@ package com.firm.OX;
  *
  * @author Ola Podorska
  */
-public class ChosenFieldException extends IllegalArgumentException {
+class ChosenFieldException extends IllegalArgumentException {
 
     public ChosenFieldException(String message) {
         super(message);

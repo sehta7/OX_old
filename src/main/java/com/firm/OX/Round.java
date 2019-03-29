@@ -133,7 +133,7 @@ class Round {
         }
     }
 
-    Field play(Player player) {
+    private Field play(Player player) {
         displayer.displaySeparator();
         displayer.displayQuestionAboutField();
         Position position = player.chooseField();

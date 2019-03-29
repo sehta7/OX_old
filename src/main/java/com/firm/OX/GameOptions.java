@@ -39,17 +39,11 @@ class GameOptions {
     }
 
     boolean isPlayerNaught(Player player) {
-        if (player.equals(players.get("O"))){
-            return true;
-        }
-        return false;
+        return player.equals(players.get("O"));
     }
 
     boolean isPlayerCross(Player player) {
-        if (player.equals(players.get("X"))){
-            return true;
-        }
-        return false;
+        return player.equals(players.get("X"));
     }
 
     void start(Player player) {

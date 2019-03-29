@@ -30,7 +30,7 @@ class Registrar {
         }
     }
 
-    void createFileForGame(){
+    private void createFileForGame(){
         try {
             String name = gameOptions.sizeOfBoard() + "_" + gameOptions.numberOfCharacters();
             file = new File(gameOptions.getPath() + name + ".txt");

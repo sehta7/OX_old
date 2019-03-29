@@ -10,9 +10,9 @@ import java.util.Queue;
  */
 class Board {
 
-    private Size size;
+    private final Size size;
     private Field[][] board;
-    private Queue<Position> positions;
+    private final Queue<Position> positions;
 
     Board(Size size) {
         this.size = size;

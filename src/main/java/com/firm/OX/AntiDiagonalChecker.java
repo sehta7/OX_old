@@ -10,7 +10,7 @@ import java.util.Queue;
  */
 class AntiDiagonalChecker implements Checker{
 
-    private GameOptions gameOptions;
+    private final GameOptions gameOptions;
 
     AntiDiagonalChecker(GameOptions gameOptions) {
         this.gameOptions = gameOptions;

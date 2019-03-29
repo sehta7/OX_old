@@ -13,7 +13,6 @@ class Game implements GameAPI {
 
     private GameOptions gameOptions;
     private InputReader inputReader;
-    private TicTacToe ticTacToe;
     private Displayer displayer;
 
     Game() {
@@ -75,7 +74,7 @@ class Game implements GameAPI {
 
     @Override
     public void startGame() {
-        ticTacToe = new TicTacToe(gameOptions, new HashMap<>(), displayer);
+        TicTacToe ticTacToe = new TicTacToe(gameOptions, new HashMap<>(), displayer);
         ticTacToe.startConsoleGame();
     }
 

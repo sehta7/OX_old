@@ -73,8 +73,7 @@ class FromFileReader implements Reader {
             e.printStackTrace();
         }
 
-        Size size = new Size(length, height);
-        return size;
+        return new Size(length, height);
     }
 
     public Player readPlayer() {
@@ -116,7 +115,6 @@ class FromFileReader implements Reader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Position position = new Position(row, column);
-        return position;
+        return new Position(row, column);
     }
 }

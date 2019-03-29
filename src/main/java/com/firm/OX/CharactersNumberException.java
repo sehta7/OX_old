@@ -5,7 +5,7 @@ package com.firm.OX;
  *
  * @author Ola Podorska
  */
-public class CharactersNumberException extends IllegalArgumentException {
+class CharactersNumberException extends IllegalArgumentException {
 
     public CharactersNumberException(String message) {
         super(message);

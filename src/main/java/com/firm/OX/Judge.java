@@ -19,10 +19,7 @@ class Judge {
         Map<Position, Player> playerMap = positions.findPlayerPositions();
         Player player1 = playerMap.get(field1.getPosition());
         Player player2 = playerMap.get(field2.getPosition());
-        if (player1.equals(player2)) {
-            return false;
-        }
-        return true;
+        return !player1.equals(player2);
     }
 
     boolean isWinningSequence(Field field, Positions positions){
@@ -35,10 +32,7 @@ class Judge {
         Checker antiDiagonalChecker = new AntiDiagonalChecker(gameOptions);
         boolean antiDiagonal = antiDiagonalChecker.checkSequence(field, positions);
 
-        if (horizontally || vertically || diagonal || antiDiagonal){
-            return true;
-        }
-        return false;
+        return horizontally || vertically || diagonal || antiDiagonal;
     }
 
     Player checkWhoWinRound(Map<String, Player> players) {
@@ -52,10 +46,7 @@ class Judge {
     }
 
     boolean checkDraw(Positions positions, GameOptions gameOptions) {
-        if (positions.howMuchChosenFields() == gameOptions.availableFields()) {
-            return true;
-        }
-        return false;
+        return positions.howMuchChosenFields() == gameOptions.availableFields();
     }
 
     void isPositionGood(Position position, Positions positions) throws ChosenFieldException{
@@ -65,9 +56,6 @@ class Judge {
     }
 
     boolean checkIfEndOfRound(int counter) {
-        if (counter == 3){
-            return true;
-        }
-        return false;
+        return counter == 3;
     }
 }

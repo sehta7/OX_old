@@ -42,8 +42,7 @@ class InputReader implements Reader {
         if (length < 3 || height < 3) {
             throw new BoardSizeException("Board must have size greater than 3x3");
         }
-        Size newSize = new Size(length, height);
-        return newSize;
+        return new Size(length, height);
     }
 
     private int askAgain() {
@@ -63,8 +62,7 @@ class InputReader implements Reader {
 
     public Player readPlayer() {
         String name = sc.nextLine();
-        Player startingPlayer = new Player(name, new InputReader(sc, displayer));
-        return startingPlayer;
+        return new Player(name, new InputReader(sc, displayer));
     }
 
     public int readNumberOfCharacters() {
@@ -82,12 +80,11 @@ class InputReader implements Reader {
         } else{
             int column = Integer.parseInt(readEnd);
             int row = askAgain();
-            Position position = new Position(row, column);
-            return position;
+            return new Position(row, column);
         }
     }
 
-    String readEnd(){
+    private String readEnd(){
         String isEnd = sc.next();
         if (isEnd.toLowerCase().equals("q")) {
             end = true;

@@ -7,7 +7,7 @@ import java.util.Queue;
  *
  * @author Ola Podorska
  */
-public interface Checker {
+interface Checker {
 
     boolean checkSequence(Field field, Positions positions);
     int checkInLine(Queue<Position> fields);

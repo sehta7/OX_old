@@ -56,7 +56,7 @@ class AutomatCreatorVertically implements AutomatCreator {
         }
     }
 
-    List<Position> availableFields(int length, int height) {
+    private List<Position> availableFields(int length, int height) {
         List<Position> positions = new ArrayList<>();
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < height; j++) {
@@ -66,7 +66,7 @@ class AutomatCreatorVertically implements AutomatCreator {
         return positions;
     }
 
-    List<List<Position>> winning(List<Position> availablePositions, int height, int winningCharacters, int length) {
+    private List<List<Position>> winning(List<Position> availablePositions, int height, int winningCharacters, int length) {
         List<Position> winning = new ArrayList<>();
         List<List<Position>> allWinings = new ArrayList<>();
         for (Position position : availablePositions
@@ -92,16 +92,16 @@ class AutomatCreatorVertically implements AutomatCreator {
         return winning;
     }
 
-    boolean hasEnoughNext(Position position, int winningCharacters, int length) {
+    private boolean hasEnoughNext(Position position, int winningCharacters, int length) {
         return (length > (position.getRow() + winningCharacters - 1));
     }
 
-    Position randomMove(List<Position> positions) {
+    private Position randomMove(List<Position> positions) {
         Random random = new Random();
         return positions.remove(random.nextInt(positions.size()));
     }
 
-    List<Position> positionsWithoutWinning(List<Position> positions, List<Position> winningPositions) {
+    private List<Position> positionsWithoutWinning(List<Position> positions, List<Position> winningPositions) {
         for (Position winningPosition : winningPositions
         ) {
             positions.remove(winningPosition);

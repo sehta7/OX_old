@@ -6,7 +6,7 @@ package com.firm.OX;
  *
  * @author Ola Podorska
  */
-public interface AutomatCreator {
+interface AutomatCreator {
 
     void createFile(int length, int height, int winningCharacters);
 }
